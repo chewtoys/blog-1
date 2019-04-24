@@ -12,7 +12,7 @@ module.exports = {
   pathPrefix: '/',
   siteMetadata: {
     title: `Ahonn's Blog`,
-    author: 'Ahonn',
+    author: 'Yuexun Jiang',
     description: 'Personal blog by Ahonn.',
     siteUrl: 'https://www.ahonn.me',
     since: 2015,
@@ -192,14 +192,20 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-plugin-sass`,
+      resolve: 'gatsby-plugin-typescript',
       options: {
-        implementation: require('sass'),
+        isTSX: true,
+        allExtensions: true,
+      },
+    },
+    {
+      resolve: 'gatsby-plugin-jss',
+      options: {
+        theme: require('./src/styles/theme.ts'),
       },
     },
     'gatsby-plugin-catch-links',
     'gatsby-plugin-react-helmet',
-    'gatsby-plugin-typescript',
     'gatsby-transformer-sharp',
     'gatsby-plugin-sharp',
   ],
