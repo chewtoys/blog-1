@@ -8,10 +8,10 @@
   ],
   "license": "MIT",
   "scripts": {
-    "test": "echo 'no test'",
     "dev": "gatsby develop",
     "build": "./scripts/build.sh",
-    "deploy": "./scripts/deploy.sh"
+    "deploy": "./scripts/deploy.sh",
+    "now-build": "npm run build"
   },
   "dependencies": {
     "bootstrap": "^4.3.1",
