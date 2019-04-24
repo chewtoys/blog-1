@@ -1,5 +1,3 @@
-import 'normalize.css';
-import 'bootstrap/scss/bootstrap-grid.scss';
+import 'normalize.css'
+import 'bootstrap/dist/css/bootstrap-grid.css';
 import 'prismjs/themes/prism.css';
-
-import './src/assets/styles/global.scss';

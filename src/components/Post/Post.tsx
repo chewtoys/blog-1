@@ -1,6 +1,6 @@
 import * as React from 'react';
 import classnames from 'classnames';
-import withStyles, { WithStyles } from 'react-jss';
+import withStyles, { WithSheet } from 'react-jss';
 
 import PostHeader from './PostHeader';
 import PostContent from './PostContent';
@@ -9,7 +9,7 @@ import PostContext from './context';
 
 import { getPostLink } from '../../utils/helpers';
 
-const styles = (theme) => ({
+const styles = (theme: any) => ({
   post: {
     paddingBottom: '10px',
   },
@@ -24,12 +24,12 @@ const styles = (theme) => ({
   },
 });
 
-type IPostProps = WithStyles<typeof styles> & {
+type IPostProps = WithSheet<typeof styles> & {
   post: IMarkdownRemarkNode;
   simple?: boolean;
 }
 
-const Post = (props: IPostDetailProps) => {
+const Post = (props: IPostProps) => {
   const { classes, post, simple } = props;
   const link: string = getPostLink(post);
 

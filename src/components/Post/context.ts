@@ -5,6 +5,6 @@ export type IPostContext = IMarkdownRemarkNode & {
   simple: boolean;
 }
 
-const PostContent = React.createContext({});
+const PostContext = React.createContext({});
 
-export default PostContent;
+export default PostContext;

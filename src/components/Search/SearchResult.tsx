@@ -1,15 +1,15 @@
 import * as React from 'react';
-import withStyles, { WithStyles } from 'react-jss';
+import withStyles, { WithSheet } from 'react-jss';
 
 import Post from '../Post';
 
-const styles = (theme) => ({
-  wrap: {
+const styles = (theme: any) => ({
+  wrapper: {
     paddingBottom: '20px',
   },
 });
 
-type ISearchResultProps = WithStyles<typeof styles> & {
+type ISearchResultProps = WithSheet<typeof styles> & {
   dataSource: IMarkdownRemarkNode[];
 }
 

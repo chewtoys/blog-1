@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
-import withStyles, { WithStyles, jss } from 'react-jss';
+import withStyles, { WithSheet } from 'react-jss';
 import Color from 'color';
 
 import PostContext, { IPostContext } from './context';
 
-const styles = (theme) => ({
+const styles = (theme: any) => ({
   excerpt: {
     margin: '10px 0 20px',
     color: Color(theme.blackColor).lighten(0.75).hex(),
@@ -38,7 +38,7 @@ const styles = (theme) => ({
   },
 });
 
-type IPostContextPorps = WithStyles<typeof styles>
+type IPostContextPorps = WithSheet<typeof styles>
 
 const PostContent = (props: IPostContextPorps) => {
   const { classes } = props;

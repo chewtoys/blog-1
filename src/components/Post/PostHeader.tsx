@@ -2,13 +2,13 @@ import * as React from 'react';
 import { Link } from 'gatsby';
 import classnames from 'classnames';
 import { FaCalendarAlt, FaClock  } from 'react-icons/fa';
-import withStyles, { WithStyles } from 'react-jss';
+import withStyles, { WithSheet } from 'react-jss';
 import Color from 'color';
 
 import PostContext, { IPostContext } from './context';
 import { formatPostDate, formatReadingTime } from '../../utils/helpers';
 
-const styles = (theme) => ({
+const styles = (theme: any) => ({
   header: {
     margin: '20px 0',
   },
@@ -32,6 +32,7 @@ const styles = (theme) => ({
     }
   },
   meta: {
+    fontSize: '0.85em',
     color: theme.garyColor,
   },
   item: {
@@ -39,13 +40,13 @@ const styles = (theme) => ({
   },
   icon: {
     position: 'relative',
-    top: '1px',
+    top: '2px',
     marginRight: '5px',
-    fontSize: '0.75em',
+    fontSize: '0.9em',
   },
 });
 
-type IPostHeaderProps = WithStyles<typeof styles>
+type IPostHeaderProps = WithSheet<typeof styles>
 
 const PostHeader = (props: IPostHeaderProps) => {
   const { classes } = props;

@@ -1,12 +1,12 @@
 import * as React from 'react';
 import { Link } from 'gatsby';
 import { FaHashtag } from 'react-icons/fa';
-import withStyles, { WithStyles } from 'react-jss';
+import withStyles, { WithSheet } from 'react-jss';
 
 import PostContext, { IPostContext } from './context';
 import { TAG_SYMBOL } from '../../consts';
 
-const styles = (theme) => ({
+const styles = (theme: any) => ({
   footer: {
     paddingTop: '15px',
     borderTop: theme.defaultBorder,
@@ -27,7 +27,7 @@ const styles = (theme) => ({
   }
 });
 
-type IPostFooterPorps = WithStyles<typeof styles>
+type IPostFooterPorps = WithSheet<typeof styles>
 
 const PostFooter = (props: IPostFooterPorps) => {
   const { classes } = props;

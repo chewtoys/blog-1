@@ -1,18 +1,23 @@
 import * as React from 'react';
 import { graphql } from 'gatsby';
 import { Container, Row, Col } from 'react-bootstrap';
+import withStyles, { WithSheet } from 'react-jss';
 
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import Post from '../components/Post';
+import Sidebar from '../components/Sidebar';
 import Pagination from '../components/Pagination';
-import RecentWidget from '../components/RecentWidget';
-import TagsWidget from '../components/TagsWidget';
-import ArchivesWidget from '../components/ArchivesWidget';
 
 import { getMarkdownRemarkEdgeNode } from '../utils/helpers';
 
-interface IIndexPageProps {
+const styles = (theme: any) => ({
+  wrapper: {
+    maxWidth: '650px',
+  },
+});
+
+type IIndexPageProps = WithSheet<typeof styles> & {
   location: Location;
   data: {
     allMarkdownRemark: IMarkdownRemark;
@@ -25,7 +30,7 @@ interface IIndexPageProps {
 }
 
 const IndexPageTemplate = (props: IIndexPageProps) => {
-  const { location, data, pageContext } = props;
+  const { location, data, pageContext, classes } = props;
   const posts = getMarkdownRemarkEdgeNode(data);
   const { page, total, limit } = pageContext;
 
@@ -35,7 +40,7 @@ const IndexPageTemplate = (props: IIndexPageProps) => {
       <Container>
         <Row>
           <Col lg={8}>
-            <div className="posts">
+            <div className={classes.wrapper}>
               {posts.map((node: IMarkdownRemarkNode) => (
                 <Post key={node.id} post={node} simple />
               ))}
@@ -43,11 +48,7 @@ const IndexPageTemplate = (props: IIndexPageProps) => {
             <Pagination page={page} size={limit} total={total} />
           </Col>
           <Col lg={4}>
-            <div className="widgets">
-              <RecentWidget posts={posts} />
-              <TagsWidget posts={posts} />
-              <ArchivesWidget posts={posts} />
-            </div>
+            <Sidebar />
           </Col>
         </Row>
       </Container>
@@ -81,4 +82,4 @@ export const query = graphql`
   }
 `;
 
-export default IndexPageTemplate;
+export default withStyles(styles)(IndexPageTemplate);

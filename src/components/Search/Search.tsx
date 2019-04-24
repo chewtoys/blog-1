@@ -6,7 +6,7 @@ import useQueryParam from '../../hooks/useQueryParam';
 import useSearchResult from '../../hooks/useSearchResult';
 
 type ISearchProps = {
-  posts: IMarkdownRemarkNodep[];
+  posts: IMarkdownRemarkNode[];
 };
 
 const Search = (props: ISearchProps) => {
@@ -16,7 +16,7 @@ const Search = (props: ISearchProps) => {
 
   return (
     <div>
-      <SearchInput value={keyword} count={result.length} onChange={setKeyword} />
+      <SearchInput value={keyword as string} count={result.length} onChange={setKeyword} />
       <SearchResult dataSource={result} />
     </div>
   );

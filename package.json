@@ -38,7 +38,6 @@
     "@types/classnames": "^2.2.7",
     "@types/color": "^3.0.0",
     "@types/lodash": "^4.14.121",
-    "@types/lunr": "^2.3.2",
     "@types/node": "^11.9.4",
     "@types/react": "^16.8.4",
     "@types/react-helmet": "^5.0.8",
@@ -51,7 +50,6 @@
     "gatsby-plugin-manifest": "^2.0.25",
     "gatsby-plugin-offline": "^2.0.25",
     "gatsby-plugin-react-helmet": "^3.0.11",
-    "gatsby-plugin-sass": "^2.0.10",
     "gatsby-plugin-sharp": "^2.0.30",
     "gatsby-plugin-sitemap": "^2.0.11",
     "gatsby-plugin-typescript": "^2.0.8",
@@ -67,7 +65,6 @@
     "gatsby-transformer-remark": "^2.2.6",
     "gatsby-transformer-sharp": "^2.1.17",
     "gh-pages": "^2.0.1",
-    "sass": "^1.17.2",
     "source-map-support": "^0.5.10",
     "ts-node": "^8.0.3",
     "typescript": "^3.3.4000"

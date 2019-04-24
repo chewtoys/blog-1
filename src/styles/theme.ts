@@ -12,6 +12,8 @@ const theme = {
   garyColor,
 
   defaultBorder: '1px solid #e9e9e9',
+
+  footerBackground: 'rgba(0, 0, 0, 0.03)',
 };
 
 export default theme;

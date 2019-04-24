@@ -1,8 +1,8 @@
 import * as React from 'react';
-import withStyles, { WithStyles } from 'react-jss';
+import withStyles, { WithSheet } from 'react-jss';
 import _ from 'lodash/fp';
 
-const styles = (theme) => ({
+const styles = (theme: any) => ({
   wrapper: {
     position: 'relative',
     margin: '20px 0 30px',
@@ -28,7 +28,7 @@ const styles = (theme) => ({
   },
 });
 
-type ISearchInputProps = WithStyles<typeof styles> & {
+type ISearchInputProps = WithSheet<typeof styles> & {
   value: string;
   count: number;
   onChange: any;
