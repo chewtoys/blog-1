@@ -4,6 +4,7 @@ import SearchInput from './SearchInput';
 import SearchResult from './SearchResult';
 import useQueryParam from '../../hooks/useQueryParam';
 import useSearchResult from '../../hooks/useSearchResult';
+import { getBrowserWindow } from '../../utils/helpers';
 
 type ISearchProps = {
   posts: IMarkdownRemarkNode[];
@@ -11,7 +12,12 @@ type ISearchProps = {
 
 const Search = (props: ISearchProps) => {
   const { posts } = props;
-  const [keyword = '', setKeyword] = useQueryParam(location, 'keyword');
+  const window =  getBrowserWindow();
+  if (!window) {
+    return null;
+  }
+
+  const [keyword = '', setKeyword] = useQueryParam(window.location, 'keyword');
   const result = useSearchResult(posts, keyword as string);
 
   return (

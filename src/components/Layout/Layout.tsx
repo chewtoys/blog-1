@@ -24,9 +24,11 @@ const styles = (theme: any) => ({
     }
   },
   '@media (max-width: 992px)': {
-    container: {
-      padding: '0 20px',
-    },
+    wrapper: {
+      '& .container': {
+        padding: '0 20px',
+      },
+    }
   },
 });
 

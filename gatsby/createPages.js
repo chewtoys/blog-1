@@ -34,7 +34,7 @@ function createIndexPages(actions, result) {
 }
 
 function createPostPages(actions, result) {
-  const { createPage } = actions;
+  const { createPage, createRedirect } = actions;
 
   const posts = result.data.allMarkdownRemark.edges;
   posts.forEach(({ node }) => {
@@ -45,6 +45,7 @@ function createPostPages(actions, result) {
       fileAbsolutePath,
     } = node;
 
+    // eslint-disable-next-line no-console
     console.log(`createPage: ${slug}`);
     createPage({
       path: slug,
@@ -59,16 +60,23 @@ function createPostPages(actions, result) {
       const [, fileName] = fileAbsolutePath.match(/([^\\/]+)\.md$/);
       const redirectUrl = `/${date}/${fileName}/`;
 
-      console.log(`createPage: ${redirectUrl}`);
-      createPage({
-        path: redirectUrl,
-        component: path.resolve('src/templates/blog-post.tsx'),
-        context: {
-          id,
-          redirect: true,
-          redirectUrl: slug,
-        },
+      // eslint-disable-next-line no-console
+      console.log(`createRedirect: ${redirectUrl}`);
+      createRedirect({
+        fromPath: redirectUrl,
+        toPath: slug,
+        isPermanent: true,
+        redirectInBrowser: true,
       });
+      // createPage({
+      //   path: redirectUrl,
+      //   component: path.resolve('src/templates/blog-post.tsx'),
+      //   context: {
+      //     id,
+      //     redirect: true,
+      //     redirectUrl: slug,
+      //   },
+      // });
     }
   });
 }

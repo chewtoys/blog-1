@@ -2,6 +2,11 @@ import _ from 'lodash/fp';
 import format from 'date-fns/format';
 import getTime from 'date-fns/get_time';
 
+// getBrowserWindow :: void -> window
+export const getBrowserWindow = () => {
+  return typeof window !== 'undefined' && window;
+};
+
 // getPostLink :: IMarkdownRemarkNode -> string
 export const getPostLink = (post: IMarkdownRemarkNode) => {
   const {

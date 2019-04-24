@@ -1,10 +1,17 @@
-import * as React from "react";
+import * as React from 'react';
 
-const NotFoundPage = () => (
-  <div>
-    <h1>NOT FOUND</h1>
-    <p>You just hit a route that doesn&#39;t exist... the sadness.</p>
-  </div>
-);
+import { getBrowserWindow } from '../utils/helpers';
+
+const NotFoundPage = () => {
+  if (!getBrowserWindow()) {
+    return null;
+  }
+
+  return (
+    <div>
+      <h1>NOT FOUND</h1>
+    </div>
+  );
+};
 
 export default NotFoundPage;
