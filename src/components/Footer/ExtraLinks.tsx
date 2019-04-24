@@ -4,7 +4,7 @@ import withStyles, { WithSheet } from 'react-jss';
 import FooterContext, { IFooterContext } from './context';
 
 const styles = (theme: any) => ({
-  wrapper: {
+  extra: {
     float: 'right',
     display: 'table',
     width: '40%',
@@ -42,7 +42,12 @@ const styles = (theme: any) => ({
       color: theme.themeColor,
       borderBottom: 'none',
     }
-  }
+  },
+  '@media (max-width: 992px)': {
+    extra: {
+      display: 'none',
+    },
+  },
 });
 
 type IExtraLinksProps = WithSheet<typeof styles>;
@@ -52,7 +57,7 @@ const ExtraLinks = (props: IExtraLinksProps) => {
   const { socials, friends } = React.useContext(FooterContext) as IFooterContext;
 
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.extra}>
       <div className={classes.cellWrapper}>
         <div className={classes.cell}>
           <span className={classes.title}>

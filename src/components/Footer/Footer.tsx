@@ -12,6 +12,11 @@ const styles = (theme: any) => ({
     background: theme.footerBackground,
     overflow: 'auto',
   },
+  '@media (max-width: 992px)': {
+    footer: {
+      padding: '30px 0 20px',
+    },
+  },
 });
 
 type IFooterProps = WithSheet<typeof styles> & {

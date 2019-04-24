@@ -8,7 +8,7 @@ import Logo from '../Logo';
 import FooterContext, { IFooterContext } from './context';
 
 const styles = (theme: any) => ({
-  wrapper: {
+  copyright: {
     float: 'left',
     height: '100%',
     width: '50%',
@@ -36,6 +36,12 @@ const styles = (theme: any) => ({
       borderBottom: 'none',
     },
   },
+  '@media (max-width: 992px)': {
+    copyright: {
+      float: 'none',
+      width: '100%',
+    },
+  },
 });
 
 type ICopyrightProps = WithSheet<typeof styles>;
@@ -46,7 +52,7 @@ const Copyright = (props: ICopyrightProps) => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <div className={classes.wrapper}>
+    <div className={classes.copyright}>
       <Logo className={classes.logo} title={title} />
       <Menu items={menu} />
       <div className={classes.text}>
