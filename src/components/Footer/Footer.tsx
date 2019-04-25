@@ -8,6 +8,7 @@ import FooterContext from './context';
 
 const styles = (theme: any) => ({
   footer: {
+    height: '160px',
     padding: '30px 10px 20px',
     background: theme.footerBackground,
     overflow: 'auto',

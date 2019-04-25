@@ -16,29 +16,20 @@ interface IPostPageProps {
   };
   pageContext: {
     id: string;
-    // redirect?: boolean;
-    // redirectUrl?: string;
   };
 }
 
 const PostPageTemplate = (props: IPostPageProps) => {
   const { location, data, pageContext } = props;
-  // const { redirect = false, redirectUrl } = pageContext;
 
   const post = data.markdownRemark;
   const postLink = getPostLink(post);
   const postCommentId = post.frontmatter.issueId;
 
-  // Used for redirect the old hexo blog posts.
-  // Because when I use gatsby createRedirect in gatsby-node.js.
-  // In the production environment will rendered 404 page before redirect.
-  // const meta = [];
-  // if (redirect) {
-  //   meta.push({
-  //     'http-equiv': 'refresh',
-  //     'content': `0; url='${redirectUrl}'`,
-  //   });
-  // }
+  const postMeta = [{
+    name: 'keywords',
+    content: post.fields.keywords.join(', '),
+  }];
 
   return (
     <Layout location={location}>
@@ -46,6 +37,7 @@ const PostPageTemplate = (props: IPostPageProps) => {
         title={post.frontmatter.title}
         description={post.excerpt}
         slug={postLink}
+        meta={postMeta}
       />
       <Container>
         <Row className="justify-content-md-center">
@@ -71,6 +63,7 @@ export const query = graphql`
       }
       fields {
         slug
+        keywords,
       }
       excerpt(truncate: true)
       html

@@ -3,13 +3,13 @@ import Helmet from 'react-helmet';
 import { useStaticQuery, graphql } from 'gatsby';
 import _ from 'lodash/fp';
 
-interface ISEOProps {
+type ISEOProps = {
   lang: string;
   slug: string;
   meta: any[];
   title: string;
   description: string;
-}
+};
 
 const SEO = (props: ISEOProps) => {
   const { lang, slug, title, description, meta } = props;
@@ -22,10 +22,6 @@ const SEO = (props: ISEOProps) => {
           description
           siteUrl
           twitter
-          socials {
-            name
-            link
-          }
         }
       }
     }
