@@ -68,15 +68,6 @@ function createPostPages(actions, result) {
         isPermanent: true,
         redirectInBrowser: true,
       });
-      // createPage({
-      //   path: redirectUrl,
-      //   component: path.resolve('src/templates/blog-post.tsx'),
-      //   context: {
-      //     id,
-      //     redirect: true,
-      //     redirectUrl: slug,
-      //   },
-      // });
     }
   });
 }
