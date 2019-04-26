@@ -12,6 +12,7 @@ function createIndexPages(actions, result) {
 
   const pageTotal = Math.round(total / PAGE_SIZE);
   for (let page = 1; page <= pageTotal; page += 1) {
+    // eslint-disable-next-line no-console
     console.log(`createPage: /page/${page}`);
     createPage({
       path: page === 1 ? '/' : `/page/${page}`,
@@ -34,15 +35,13 @@ function createIndexPages(actions, result) {
 }
 
 function createPostPages(actions, result) {
-  const { createPage, createRedirect } = actions;
+  const { createPage } = actions;
 
   const posts = result.data.allMarkdownRemark.edges;
   posts.forEach(({ node }) => {
     const {
       id,
-      frontmatter: { date },
       fields: { slug },
-      fileAbsolutePath,
     } = node;
 
     // eslint-disable-next-line no-console
@@ -54,21 +53,6 @@ function createPostPages(actions, result) {
         id,
       },
     });
-
-    // hexo post redirect
-    if (fileAbsolutePath !== null) {
-      const [, fileName] = fileAbsolutePath.match(/([^\\/]+)\.md$/);
-      const redirectUrl = `/${date}/${fileName}/`;
-
-      // eslint-disable-next-line no-console
-      console.log(`createRedirect: ${redirectUrl}`);
-      createRedirect({
-        fromPath: redirectUrl,
-        toPath: slug,
-        isPermanent: true,
-        redirectInBrowser: true,
-      });
-    }
   });
 }
 
@@ -94,6 +78,7 @@ module.exports = ({ actions, graphql }) => {
     }
   `).then((result) => {
     if (result.errors) {
+      // eslint-disable-next-line no-console
       result.errors.forEach((e) => console.error(e.toString()));
       return Promise.reject(result.errors);
     }
