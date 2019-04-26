@@ -26,7 +26,8 @@ Wordpress2016.overrideThemeStyles = ({ rhythm }) => ({
     marginBottom: rhythm(1 / 2),
   },
   'li': {
-    lineHeight: rhythm(1 / 2),
+    lineHeight: rhythm(1),
+    marginBottom: '0',
   },
   'blockquote': {
     marginRight: 0,
