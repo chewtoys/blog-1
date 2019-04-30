@@ -26,6 +26,9 @@ const styles = (theme: any) => ({
     margin: '0 5px',
     fontSize: '0.75em',
   },
+  author: {
+    marginRight: '5px',
+  },
   link: {
     color: 'inherit',
     margin: '0 5px',
@@ -62,7 +65,10 @@ const Copyright = (props: ICopyrightProps) => {
         <span className={classes.icon}>
           <FaHeart />
         </span>
-        <span>{author}</span>
+        <span className={classes.author}>
+          {author}
+        </span>
+        <span>/ All rights Reserved.</span>
       </div>
       <div className={classes.text}>
         <span>

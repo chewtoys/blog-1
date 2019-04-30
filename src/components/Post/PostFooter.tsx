@@ -8,7 +8,7 @@ import { TAG_SYMBOL } from '../../consts';
 
 const styles = (theme: any) => ({
   footer: {
-    paddingTop: '15px',
+    paddingTop: '10px',
     borderTop: theme.defaultBorder,
   },
   tagList: {

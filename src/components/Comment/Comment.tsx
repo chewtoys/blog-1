@@ -9,7 +9,7 @@ import 'gitalk/dist/gitalk.css';
 
 const styles = (theme: any) => ({
   comment: {
-    marginBottom: '30px',
+    marginBottom: '50px',
     '& .gt-container': {
       '& a': {
         color: theme.themeColor,
