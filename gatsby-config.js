@@ -62,7 +62,12 @@ module.exports = {
         optimizeId: 'GTM-PKS39F4',
       },
     },
-    // 'gatsby-plugin-offline',
+    {
+      resolve: 'gatsby-plugin-baidu-analytics',
+      options: {
+        siteId: '0a275bcf7d954b807e1db498d8e5b192',
+      },
+    },
     {
       resolve: `gatsby-plugin-manifest`,
       options: {

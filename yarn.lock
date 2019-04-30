@@ -4860,6 +4860,11 @@ gatsby-link@^2.0.16:
     "@types/reach__router" "^1.0.0"
     prop-types "^15.6.1"
 
+gatsby-plugin-baidu-analytics@^1.1.16:
+  version "1.1.16"
+  resolved "http://r.cnpmjs.org/gatsby-plugin-baidu-analytics/download/gatsby-plugin-baidu-analytics-1.1.16.tgz#20f9c296826a24da9b4724d6fe3e37691e7efddf"
+  integrity sha1-IPnCloJqJNqbRyTW/j43aR5+/d8=
+
 gatsby-plugin-catch-links@^2.0.13:
   version "2.0.13"
   resolved "https://registry.yarnpkg.com/gatsby-plugin-catch-links/-/gatsby-plugin-catch-links-2.0.13.tgz#b49bb1e2383881cffca86a428348a7afdb6c3dd4"
