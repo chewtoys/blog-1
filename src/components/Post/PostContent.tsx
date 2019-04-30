@@ -35,6 +35,11 @@ const styles = (theme: any) => ({
         borderRadius: '5px',
       },
     },
+    '& img': {
+      maxHeight: '500px',
+      marginLeft: '50%',
+      transform: 'translateX(-50%)',
+    },
   },
 });
 
