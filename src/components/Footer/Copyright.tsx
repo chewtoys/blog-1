@@ -68,7 +68,6 @@ const Copyright = (props: ICopyrightProps) => {
         <span className={classes.author}>
           {author}
         </span>
-        <span>/ All rights Reserved.</span>
       </div>
       <div className={classes.text}>
         <span>

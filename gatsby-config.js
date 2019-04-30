@@ -12,7 +12,7 @@ module.exports = {
   pathPrefix: '/',
   siteMetadata: {
     title: `Ahonn's Blog`,
-    author: 'Yuexun Jiang',
+    author: 'Ahonn',
     description: 'Personal blog by Ahonn.',
     siteUrl: 'https://www.ahonn.me',
     since: 2015,
