@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "gatsby develop",
     "build": "./scripts/build.sh",
-    "deploy": "./scripts/deploy.sh",
+    "deploy": "now",
     "now-build": "npm run build"
   },
   "dependencies": {
@@ -66,7 +66,6 @@
     "gatsby-source-github-issue": "^1.0.4",
     "gatsby-transformer-remark": "^2.2.6",
     "gatsby-transformer-sharp": "^2.1.17",
-    "gh-pages": "^2.0.1",
     "source-map-support": "^0.5.10",
     "ts-node": "^8.0.3",
     "typescript": "^3.3.4000"
