@@ -9,7 +9,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "gatsby develop",
-    "build": "./scripts/build.sh",
+    "build": "gatsby build --prefix-paths",
     "deploy": "now",
     "now-build": "npm run build"
   },
