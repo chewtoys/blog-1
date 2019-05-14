@@ -33,10 +33,11 @@ const styles = (theme: any) => ({
       color: theme.themeColor,
     },
   },
-  icon: {
+  searchIcon: {
     position: 'relative',
     top: '5px',
     fontSize: '0.9em',
+    verticalAlign: 'top',
   },
 });
 
@@ -58,7 +59,7 @@ const Menu = (props: IMenuProps) => {
             return (
               <li key={path} className={classnames(classes.menuItem, classes.search)}>
                 <Link to="/search" className={classes.link} aria-label={name}>
-                  <FaSearch className={classes.icon} />
+                  <FaSearch className={classes.searchIcon} />
                 </Link>
               </li>
             );
