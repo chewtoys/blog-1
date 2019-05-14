@@ -9,27 +9,27 @@ const themeColor = '#FA7268';
 // @ts-ignore
 // tslint:disable-next-line:no-shadowed-variable
 Wordpress2016.overrideThemeStyles = ({ rhythm }) => ({
-  'body': {
+  body: {
     color: '#2e3444',
   },
   'h1, h2, h3, h4, h5, h6': {
     fontFamily: Wordpress2016.headerFontFamily.join(','),
     fontWeight: '400',
   },
-  'a': {
+  a: {
     boxShadow: `0 1px 0 0 ${theme.themeColor}`,
     color: theme.themeColor,
     textDecoration: 'none',
   },
-  'p': {
+  p: {
     lineHeight: rhythm(1),
     marginBottom: rhythm(1 / 2),
   },
-  'li': {
+  li: {
     lineHeight: rhythm(1),
     marginBottom: '0',
   },
-  'blockquote': {
+  blockquote: {
     marginRight: 0,
     marginTop: rhythm(1),
     paddingTop: rhythm(1 / 3),
@@ -40,8 +40,15 @@ Wordpress2016.overrideThemeStyles = ({ rhythm }) => ({
   },
 });
 
-Wordpress2016.headerFontFamily =  ['Georgia', 'serif'];
-Wordpress2016.bodyFontFamily =  ['Georgia', 'serif'];
+Wordpress2016.headerFontFamily = ['Georgia', 'serif'];
+Wordpress2016.bodyFontFamily = [
+  '-apple-system',
+  'Helvetica Neue',
+  'PingFang SC',
+  'Microsoft YaHei',
+  'WenQuanYi Micro Hei',
+  'sans-serif',
+];
 
 delete Wordpress2016.googleFonts;
 
