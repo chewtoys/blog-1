@@ -32,7 +32,13 @@ const styles = (theme: any) => ({
       },
       '& .gt-comment-content': {
         backgroundColor: '#fff',
-      }
+      },
+      '& .email-hidden-toggle':{
+        display: 'hidden',
+      },
+      '& .email-hidden-reply':{
+        display: 'hidden',
+      },
     },
   },
 });
