@@ -34,10 +34,10 @@ const styles = (theme: any) => ({
         backgroundColor: '#fff',
       },
       '& .email-hidden-toggle':{
-        display: 'hidden',
+        display: 'none',
       },
       '& .email-hidden-reply':{
-        display: 'hidden',
+        display: 'none',
       },
     },
   },
