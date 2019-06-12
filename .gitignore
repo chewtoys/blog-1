@@ -9,3 +9,5 @@ yarn-error.log
 
 # lighthouse report
 *.report.html
+
+.next/
