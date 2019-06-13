@@ -1,5 +1,8 @@
 {
   "version": 2,
   "name": "next-blog",
+  "env": {
+    "TOKEN": "@github-token"
+  },
   "builds": [{ "src": "next.config.js", "use": "@now/next" }]
 }

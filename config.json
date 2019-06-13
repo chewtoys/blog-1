@@ -1,0 +1,10 @@
+{
+  "owner": "ahonn",
+  "repo": "blog",
+
+  "title": "Ahonn's Blog",
+  "icon": "/static/icon.png",
+  "themeColor": "#FA7268",
+
+  "per_page": 15
+}

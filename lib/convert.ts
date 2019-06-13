@@ -1,17 +1,7 @@
 import { format } from 'date-fns';
 import _ from 'lodash/fp';
 
-interface OctokitIssue {
-  number: number;
-  title: string;
-  labels: Array<{name: string}>;
-  body: string;
-  created_at: string;
-  updated_at: string;
-  comments: number;
-}
-
-export const convertIssueToPost = (issue: OctokitIssue) => {
+export const convertIssueToPost = (issue: GithubIssue) => {
   const { number, title, labels, body, created_at, updated_at, comments } = issue;
 
   const slug = format(updated_at, 'YYYYMMDD') + number;
