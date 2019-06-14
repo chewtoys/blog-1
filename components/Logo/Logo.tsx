@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Link from 'next/link';
 import { withRouter, WithRouterProps } from 'next/router'
 import styled from 'styled-components';
 
@@ -30,10 +31,12 @@ const Title = styled.h1`
 const Logo: React.SFC<WithRouterProps> = (props) => {
   return (
     <Wrapper>
-      <Title onClick={() => props.router!.push('/')}>
-        <Icon src={config.icon} alt={config.title} />
-        <span>{config.title}</span>
-      </Title>
+      <Link href="/" prefetch>
+        <Title>
+          <Icon src={config.icon} alt={config.title} />
+          <span>{config.title}</span>
+        </Title>
+      </Link>
     </Wrapper>
   );
 };

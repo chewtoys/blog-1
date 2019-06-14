@@ -34,6 +34,9 @@ Wordpress2016.bodyFontFamily = [
     lineHeight: rhythm(1),
     marginBottom: rhythm(1 / 2),
   },
+  ul: {
+    listStyle: 'inside',
+  },
   li: {
     lineHeight: rhythm(1),
     marginBottom: '0',

@@ -4,5 +4,6 @@
   "env": {
     "TOKEN": "@github-token"
   },
-  "builds": [{ "src": "next.config.js", "use": "@now/next" }]
+  "builds": [{ "src": "next.config.js", "use": "@now/next" }],
+  "routes": [{ "src": "/posts/(?<slug>[^/]+)$", "dest": "/posts?slug=$slug" }]
 }

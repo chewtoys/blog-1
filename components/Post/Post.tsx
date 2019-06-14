@@ -28,14 +28,14 @@ const ReadMore = styled.span`
 
 const Post: React.SFC<PostProps> = (props) => {
   const { data, excerpt } = props;
-  const { slug, title, tags, body, created_at } = data;
+  const { slug, body } = data;
 
   return (
     <Card>
-      <PostHeader title={title} createdAt={created_at} tags={tags} />
+      <PostHeader {...props} />
       <PostContent body={body} excerpt={excerpt} />
       {excerpt ? (
-        <Link href={`/posts/${slug}`} prefetch>
+        <Link href={`/posts/${slug}`} as={`/posts/${slug}`} prefetch>
           <ReadMore>阅读更多...</ReadMore>
         </Link>
       ) : (
