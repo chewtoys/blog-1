@@ -2,6 +2,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
+import Card from '../Card';
 import PostHeader from './PostHeader';
 import PostContent from './PostContent';
 import { themeColor } from '../../config.json';
@@ -10,17 +11,6 @@ interface PostProps {
   data: BlogPost;
   excerpt?: boolean;
 }
-
-const Card = styled.div`
-  padding: 1.5rem;
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 0 1px rgba(0, 0, 0, 0.1);
-
-  & + & {
-    margin-top: 1.5rem;
-  }
-`;
 
 const ReadMore = styled.span`
   color: ${themeColor};

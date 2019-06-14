@@ -29,7 +29,7 @@ const Title = styled.h1<TitleProps>`
 
 const Meta = styled.div`
   margin-bottom: 1rem;
-  color: #b2bac2;
+  color: #7a7a7a;
   font-size: 14px;
 `;
 

@@ -7,10 +7,15 @@ import 'bootstrap/dist/css/bootstrap-grid.css';
 
 import Header from '../Header';
 import Container from '../Container';
+import Sidebar from '../Sidebar';
 
 const Main = styled.main`
   margin-top: 70px;
   padding-top: 25px;
+`;
+
+const StyledCol = styled(Col)`
+  padding: 0 10px;
 `;
 
 const Layout: React.SFC = (props) => {
@@ -20,9 +25,12 @@ const Layout: React.SFC = (props) => {
       <Main>
         <Container>
           <Row>
-            <Col lg={8}>
+            <StyledCol lg={8}>
               {props.children}
-            </Col>
+            </StyledCol>
+            <StyledCol lg={4}>
+              <Sidebar />
+            </StyledCol>
           </Row>
         </Container>
       </Main>

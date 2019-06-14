@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Link from 'next/link';
-import { withRouter, WithRouterProps } from 'next/router'
 import styled from 'styled-components';
 
 import config from '../../config.json';
@@ -28,7 +27,7 @@ const Title = styled.h1`
   text-transform: uppercase;
 `;
 
-const Logo: React.SFC<WithRouterProps> = (props) => {
+const Logo: React.SFC = () => {
   return (
     <Wrapper>
       <Link href="/" prefetch>
@@ -41,4 +40,4 @@ const Logo: React.SFC<WithRouterProps> = (props) => {
   );
 };
 
-export default withRouter(Logo);
+export default Logo;

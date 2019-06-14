@@ -22,7 +22,7 @@ Wordpress2016.bodyFontFamily = [
   'h1, h2, h3, h4, h5, h6': {
     fontFamily: Wordpress2016.headerFontFamily.join(','),
     fontWeight: '400',
-    marginTop: '1.25rem',
+    marginTop: '1.75rem',
     marginBottom: '1.25rem',
   },
   a: {

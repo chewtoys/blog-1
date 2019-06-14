@@ -4,9 +4,8 @@ import _ from 'lodash/fp';
 
 import Layout from '../components/Layout';
 import Post from '../components/Post';
-import octokit from '../lib/octokit';
-import { convertIssueToPost } from '../lib/convert';
-import config from '../config.json';
+import PageContext from '../lib/context'
+import service from '../lib/service';
 
 interface PostsPageProps {
   post: BlogPost;
@@ -22,9 +21,11 @@ const getIssueNumberBySlug = _.compose(
 const PostsPage: next.NextFunctionComponent<PostsPageProps> = (props) => {
   const { post } = props;
   return (
-    <Layout>
-      <Post data={post} />
-    </Layout>
+    <PageContext.Provider value={props}>
+      <Layout>
+        <Post data={post} />
+      </Layout>
+    </PageContext.Provider>
   );
 };
 
@@ -33,15 +34,14 @@ PostsPage.getInitialProps = async (ctx: next.NextContext) => {
   if (!slug) {
     throw new Error('slug is required!');
   }
-  const issue_number = getIssueNumberBySlug(slug);
-  const res = await octokit.issues.get({
-    owner: config.owner,
-    repo: config.repo,
-    issue_number,
-  });
-  const post = convertIssueToPost(res.data);
+  const issueNumber = getIssueNumberBySlug(slug);
+  const post = await service.getPostByIssueNumber(issueNumber);
+  const context = await service.getPageContext();
 
-  return { post };
+  return {
+    ...context,
+    post,
+  };
 }
 
 export default PostsPage;
