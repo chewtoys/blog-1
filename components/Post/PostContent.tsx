@@ -1,27 +1,47 @@
 import * as React from 'react';
-import MarkdownIt from 'markdown-it';
-import excerptHtml from 'excerpt-html';
+import _ from 'lodash/fp';
+import Markdown from 'react-markdown';
+
+import CodeRender from './CodeRender';
+import BlockquteRender from './BlockquteRender';
+import ImageRender from './ImageRender';
 
 interface PostContentProps {
-  markdown: string;
-  excerpt: boolean;
+  body: string;
+  excerpt?: boolean;
 }
 
+const markdownRenderers = {
+  code: CodeRender,
+  blockquote: BlockquteRender,
+  image: ImageRender,
+};
+
+const excerptSeparator = '<!--more-->';
+// getMarkdownExcerpt : string -> string
+const getMarkdownExcerpt = _.compose(
+  _.first,
+  _.split(excerptSeparator),
+);
+// removeExcerptSeparator : string -> string
+const removeExcerptSeparator = _.replace(excerptSeparator, '');
+
 const PostContent: React.SFC<PostContentProps> = (props) => {
-  const mdt = new MarkdownIt();
-  const html = mdt.render(props.markdown);
+  const { body, excerpt } = props;
+  const source = excerpt ? getMarkdownExcerpt(body) : removeExcerptSeparator(body);
 
-  if (props.excerpt) {
-    const text = excerptHtml(html);
-    console.log(text);
-    return (
-      <div>
-        <p>{text}</p>
-      </div>
-    );
-  }
+  return (
+    <div>
+      <Markdown
+        source={source}
+        renderers={markdownRenderers}
+      />
+    </div>
+  );
+};
 
-  return <div dangerouslySetInnerHTML={{ __html: html }} />
+PostContent.defaultProps = {
+  excerpt: false,
 };
 
 export default PostContent;

@@ -1,6 +1,31 @@
 {
-  "presets": [
-    "next/babel",
-    "@zeit/next-typescript/babel"
+  "presets": ["next/babel", "@zeit/next-typescript/babel"],
+  "plugins": [
+    [
+      "prismjs",
+      {
+        "languages": [
+          "markup",
+          "javascript",
+          "css",
+          "yaml",
+          "lua",
+          "haskell",
+          "bash",
+          "vim",
+          "python",
+          "php",
+          "ruby",
+          "stylus",
+          "scss",
+          "less",
+          "cpp",
+          "c",
+          "clojure"
+        ],
+        "plugins": ["show-language"],
+        "css": true
+      }
+    ]
   ]
 }

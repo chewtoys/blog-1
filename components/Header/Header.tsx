@@ -12,7 +12,7 @@ interface WrapperProps {
 const Wrapper = styled.header<WrapperProps>`
   position: fixed;
   top: 0;
-  height: 70px;
+  height: 60px;
   width: 100%;
   opacity: ${props => props.visible ? 1 : 0};
   background-color: #fff;

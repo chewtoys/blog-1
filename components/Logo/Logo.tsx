@@ -1,21 +1,22 @@
 import * as React from 'react';
-import Link from 'next/link';
+import { withRouter, WithRouterProps } from 'next/router'
 import styled from 'styled-components';
 
 import config from '../../config.json';
 
 const Wrapper = styled.div`
   display: inline-block;
-  padding: 23px 0;
+  padding: 18px 0;
   cursor: pointer;
 `;
 
 const Icon = styled.img`
   display: inline-block;
-  margin-right: 5px;
-  margin-bottom: 7px;
-  width: 25px;
-  height: 25px;
+  position: relative;
+  top: 2px;
+  margin: 0 5px;
+  width: 20px;
+  height: 20px;
 `;
 
 const Title = styled.h1`
@@ -26,17 +27,15 @@ const Title = styled.h1`
   text-transform: uppercase;
 `;
 
-const Logo: React.SFC = () => {
+const Logo: React.SFC<WithRouterProps> = (props) => {
   return (
     <Wrapper>
-      <Link href="/" prefetch>
-        <span>
-          <Icon src={config.icon} alt={config.title} />
-          <Title>{config.title}</Title>
-        </span>
-      </Link>
+      <Title onClick={() => props.router!.push('/')}>
+        <Icon src={config.icon} alt={config.title} />
+        <span>{config.title}</span>
+      </Title>
     </Wrapper>
   );
 };
 
-export default Logo;
+export default withRouter(Logo);
