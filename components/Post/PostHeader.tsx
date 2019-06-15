@@ -49,7 +49,7 @@ const PostHeader: React.SFC<IPostHeaderProps> = (props) => {
   const { slug, title, created_at, tags } = data;
   return (
     <div>
-      <Link href={`/posts/${slug}`} as={`/posts/${slug}`} prefetch>
+      <Link href={`/posts/${slug}`} as={`/posts/${slug}`}>
         <Title excerpt={excerpt}>{title}</Title>
       </Link>
       <Meta>

@@ -25,7 +25,7 @@ const Post: React.SFC<IPostProps> = (props) => {
       <PostHeader {...props} />
       <PostContent body={body} excerpt={excerpt} />
       {excerpt ? (
-        <Link href={`/posts/${slug}`} as={`/posts/${slug}`} prefetch>
+        <Link href={`/posts/${slug}`} as={`/posts/${slug}`}>
           <ReadMore>阅读更多...</ReadMore>
         </Link>
       ) : (

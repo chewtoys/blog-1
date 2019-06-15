@@ -30,7 +30,7 @@ const Title = styled.h1`
 const Logo: React.SFC = () => {
   return (
     <Wrapper>
-      <Link href="/" prefetch>
+      <Link href="/">
         <Title>
           <Icon src={config.icon} alt={config.title} />
           <span>{config.title}</span>
