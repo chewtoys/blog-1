@@ -4,10 +4,10 @@ import _ from 'lodash/fp';
 
 import Layout from '../components/Layout';
 import Post from '../components/Post';
-import PageContext from '../lib/context'
+import PageContext from '../lib/context';
 import service from '../lib/service';
 
-interface PostsPageProps {
+interface IPostsPageProps {
   post: BlogPost;
 }
 
@@ -15,10 +15,10 @@ interface PostsPageProps {
 const getIssueNumberBySlug = _.compose(
   _.toNumber,
   _.last,
-  (slug) => slug.match(/^(\d{8})(\d+)/)
+  (slug) => slug.match(/^(\d{8})(\d+)/),
 );
 
-const PostsPage: next.NextFunctionComponent<PostsPageProps> = (props) => {
+const PostsPage: next.NextFunctionComponent<IPostsPageProps> = (props) => {
   const { post } = props;
   return (
     <PageContext.Provider value={props}>
@@ -42,6 +42,6 @@ PostsPage.getInitialProps = async (ctx: next.NextContext) => {
     ...context,
     post,
   };
-}
+};
 
 export default PostsPage;

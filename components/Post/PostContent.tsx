@@ -6,13 +6,14 @@ import CodeRender from './CodeRender';
 import BlockquteRender from './BlockquteRender';
 import ImageRender from './ImageRender';
 
-interface PostContentProps {
+interface IPostContentProps {
   body: string;
   excerpt?: boolean;
 }
 
 const markdownRenderers = {
   code: CodeRender,
+  inlineCode: CodeRender,
   blockquote: BlockquteRender,
   image: ImageRender,
 };
@@ -26,7 +27,7 @@ const getMarkdownExcerpt = _.compose(
 // removeExcerptSeparator : string -> string
 const removeExcerptSeparator = _.replace(excerptSeparator, '');
 
-const PostContent: React.SFC<PostContentProps> = (props) => {
+const PostContent: React.SFC<IPostContentProps> = (props) => {
   const { body, excerpt } = props;
   const source = excerpt ? getMarkdownExcerpt(body) : removeExcerptSeparator(body);
 

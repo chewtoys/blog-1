@@ -6,6 +6,10 @@ import Card from '../Card';
 import PageContext from '../../lib/context';
 import { themeColor } from '../../config.json';
 
+const Tags = styled.div`
+  overflow: auto;
+`;
+
 const Tag = styled.span`
   float: left;
   color: #242424;
@@ -25,9 +29,11 @@ const TagsWidget: React.SFC = () => {
 
   return (
     <Card title="标签">
-      {_.shuffle(tags).map((tag) => {
-        return <Tag key={tag}>{tag}</Tag>;
-      })}
+      <Tags>
+        {_.shuffle(tags).map((tag) => {
+          return <Tag key={tag}>{tag}</Tag>;
+        })}
+      </Tags>
     </Card>
   );
 };

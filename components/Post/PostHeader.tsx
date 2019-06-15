@@ -5,26 +5,27 @@ import styled from 'styled-components';
 
 import { themeColor } from '../../config.json';
 
-interface PostHeaderProps {
+interface IPostHeaderProps {
   data: {
     slug: string;
     title: string;
     created_at: string;
     tags: string[];
-  },
+  };
   excerpt?: boolean;
 }
 
-interface TitleProps {
+interface ITitleProps {
   excerpt: boolean | undefined;
 }
 
-const Title = styled.h1<TitleProps>`
+// tslint:disable-next-line
+const Title = styled.h1<ITitleProps>`
   margin-top: 0;
   margin-bottom: 10px;
   color: ${themeColor};
   font-size: 2rem;
-  cursor: ${props => props.excerpt ? 'pointer' : 'initial'}
+  cursor: ${(props) => (props.excerpt ? 'pointer' : 'initial')};
 `;
 
 const Meta = styled.div`
@@ -43,26 +44,22 @@ const TagLink = styled.a`
   cursor: pointer;
 `;
 
-const PostHeader: React.SFC<PostHeaderProps> = (props) => {
+const PostHeader: React.SFC<IPostHeaderProps> = (props) => {
   const { data, excerpt } = props;
   const { slug, title, created_at, tags } = data;
   return (
     <div>
       <Link href={`/posts/${slug}`} as={`/posts/${slug}`} prefetch>
-        <Title excerpt={excerpt}>
-          {title}
-        </Title>
+        <Title excerpt={excerpt}>{title}</Title>
       </Link>
       <Meta>
         <DateTime>{format(created_at, 'YYYY年MM月DD日')}</DateTime>
         {tags.map((tag) => (
-          <TagLink key={tag}>
-            #{tag}
-          </TagLink>
+          <TagLink key={tag}>#{tag}</TagLink>
         ))}
       </Meta>
     </div>
-  )
+  );
 };
 
 export default PostHeader;

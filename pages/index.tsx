@@ -4,7 +4,7 @@ import _ from 'lodash/fp';
 
 import Layout from '../components/Layout';
 import Post from '../components/Post';
-import PageContext from '../lib/context'
+import PageContext from '../lib/context';
 import service from '../lib/service';
 import config from '../config.json';
 
@@ -29,6 +29,7 @@ const IndexPage: next.NextFunctionComponent<IndexPageProps> = (props) => {
 
 IndexPage.getInitialProps = async (ctx: next.NextContext) => {
   const page: number = _.toNumber(ctx.query.page) || 1;
+  // tslint:disable-next-line
   const per_page: number = _.toNumber(ctx.query.per_page) || config.perPage;
 
   const posts = await service.getPostsByPage(page, per_page);

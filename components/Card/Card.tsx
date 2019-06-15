@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-interface CardProps {
+interface ICardProps {
   title?: string;
 }
 
@@ -22,19 +22,15 @@ const Title = styled.h3`
   font-weight: 200;
 `;
 
-const Content = styled.div`
-  overflow: auto;
-`;
-
-const Card: React.SFC<CardProps> = (props) => {
+const Card: React.SFC<ICardProps> = (props) => {
   const { title, children } = props;
 
   return (
     <Wrapper>
       {title && <Title>{title}</Title>}
-      <Content>
+      <div>
         {children}
-      </Content>
+      </div>
     </Wrapper>
   );
 };

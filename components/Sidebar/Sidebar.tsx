@@ -9,7 +9,7 @@ const Sidebar: React.SFC = () => {
       <RencentWidget />
       <TagsWidget />
     </div>
-  )
+  );
 };
 
 export default Sidebar;

@@ -7,7 +7,7 @@ import PostHeader from './PostHeader';
 import PostContent from './PostContent';
 import { themeColor } from '../../config.json';
 
-interface PostProps {
+interface IPostProps {
   data: BlogPost;
   excerpt?: boolean;
 }
@@ -16,7 +16,7 @@ const ReadMore = styled.span`
   color: ${themeColor};
 `;
 
-const Post: React.SFC<PostProps> = (props) => {
+const Post: React.SFC<IPostProps> = (props) => {
   const { data, excerpt } = props;
   const { slug, body } = data;
 

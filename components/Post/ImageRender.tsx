@@ -2,12 +2,12 @@ import * as React from 'react';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 
-interface ImageRenderProps {
+interface IImageRenderProps {
   alt: string;
   src: string;
 }
 
-const ImageRender: React.SFC<ImageRenderProps> = (props) => {
+const ImageRender: React.SFC<IImageRenderProps> = (props) => {
   const { alt, src } = props;
   const [show, setShow] = React.useState(false);
 

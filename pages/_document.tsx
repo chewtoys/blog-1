@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Document, { NextDocumentContext, Html, Head, Main, NextScript } from 'next/document';
-import { TypographyStyle } from 'react-typography'
+import { TypographyStyle } from 'react-typography';
 import { ServerStyleSheet } from 'styled-components';
 
 import typography from '../lib/typography';

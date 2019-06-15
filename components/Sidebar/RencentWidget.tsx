@@ -29,7 +29,7 @@ const Title = styled.span`
   &:hover {
     color: ${themeColor};
   }
-`
+`;
 
 const RecentWidget: React.SFC = () => {
   const pageContext = React.useContext(PageContext);
@@ -44,12 +44,8 @@ const RecentWidget: React.SFC = () => {
           <PostItem key={slug}>
             <Link href={`/posts?slug=${slug}`} as={`/posts/${slug}`}>
               <div>
-                <DateTime>
-                  {format(created_at, 'YYYY年MM月DD日')}
-                </DateTime>
-                <Title>
-                  {title}
-                </Title>
+                <DateTime>{format(created_at, 'YYYY年MM月DD日')}</DateTime>
+                <Title>{title}</Title>
               </div>
             </Link>
           </PostItem>

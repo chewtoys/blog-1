@@ -5,19 +5,19 @@ import Logo from '../Logo';
 import Container from '../Container';
 import useWindowScroll from '../../hoc/useWindowScroll';
 
-interface WrapperProps {
+interface IWrapperProps {
   readonly visible: boolean;
 }
 
-const Wrapper = styled.header<WrapperProps>`
+const Wrapper = styled.header<IWrapperProps>`
   position: fixed;
   top: 0;
   height: 60px;
   width: 100%;
-  opacity: ${props => props.visible ? 1 : 0};
+  opacity: ${(props) => (props.visible ? 1 : 0)};
   background-color: #fff;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
-  transition: opacity ease-out .3s;
+  transition: opacity ease-out 0.3s;
   overflow: hidden;
   z-index: 666;
 `;

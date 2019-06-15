@@ -2,7 +2,7 @@ import * as React from 'react';
 import styled from 'styled-components';
 import { Row, Col } from 'react-bootstrap';
 
-import 'normalize.css'
+import 'normalize.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 
 import Header from '../Header';

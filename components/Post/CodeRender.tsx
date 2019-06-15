@@ -1,31 +1,53 @@
 import * as React from 'react';
 import _ from 'lodash/fp';
 import styled from 'styled-components';
-import Prism from 'prismjs';
-import 'prismjs/themes/prism.css';
+import Highlight from 'react-highlight';
 
-interface CodeRenderProps {
-  language: string;
+import 'highlight.js/styles/tomorrow.css';
+
+interface ICodeRenderProps {
+  inline: string;
   value: string;
+  language?: string;
 }
 
-const StyledPre = styled.pre`
-  font-size: 0.9rem !important;
-  margin: 1.25rem -1.5rem !important;
-  padding: 1rem 1.5rem !important;
+const InlineCode = styled.code`
+  padding: 3px 5px;
+  font-size: 0.9rem;
+  background-color: #f5f2f0;
+  border-radius: 5px;
 `;
 
-const CodeRender: React.SFC<CodeRenderProps> = (props) => {
-  const language = _.toLower(props.language) || 'txt';
-  const code = props.value;
+const CodeBlock = styled(Highlight)`
+  position: relative;
+  font-size: 0.9rem !important;
+  line-height: 1.5rem;
+  margin: 1.25rem -1.5rem !important;
+  padding: 1rem 1.5rem !important;
+  background-color: #f5f2f0;
+`;
 
-  const grammar: Prism.Grammar | void = Prism.languages[language];
-  const html = grammar ? Prism.highlight(code, grammar, language) : code;
+const Language = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  opacity: 0.3;
+  font-size: 0.85rem;
+  padding: 0 7px;
+  text-transform: uppercase;
+`;
 
+const CodeRender: React.SFC<ICodeRenderProps> = (props) => {
+  if (props.inline) {
+    return <InlineCode>{props.value}</InlineCode>;
+  }
+
+  const language = _.toLower(props.language || '');
   return (
-    <StyledPre className={`language-${language}`}>
-      <code dangerouslySetInnerHTML={{ __html: html }} />
-    </StyledPre>
+    <CodeBlock className={language}>
+      {props.value}
+      <Language>{language}</Language>
+    </CodeBlock>
   );
 };
 
