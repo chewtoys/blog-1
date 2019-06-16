@@ -8,7 +8,7 @@ import PostContent from './PostContent';
 import { themeColor } from '../../config.json';
 
 interface IPostProps {
-  data: BlogPost;
+  data: IBlogPost;
   excerpt?: boolean;
 }
 

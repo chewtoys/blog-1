@@ -25,7 +25,7 @@ const Tag = styled.span`
 
 const TagsWidget: React.SFC = () => {
   const pageContext = React.useContext(PageContext);
-  const { tags } = pageContext as PageContextValue;
+  const { tags } = pageContext as IPageContextValue;
 
   return (
     <Card title="标签">

@@ -5,79 +5,93 @@ import _ from 'lodash/fp';
 import { convertIssueToPost } from '../lib/convert';
 import config from '../config.json';
 
-const { owner, repo, recentCount } = config;
-
 const octokit = new Octokit({
   auth: process.env.TOKEN,
   log: logger({ level: 'info' }),
 });
 
 const service = {
-  async getOwnerInfo(): Promise<BlogOwner> {
-    const res = await octokit.users.getByUsername({
-      username: owner,
+  async getBlogInfo(): Promise<IBlogInfo> {
+    const res = await octokit.repos.get({
+      owner: config.owner,
+      repo: config.repo,
     });
-    return res.data as BlogOwner;
+    const repo = res.data as IGithubRepo;
+    const { owner } = repo;
+    const info = {
+      user: {
+        name: owner.login,
+        avatar: owner.avatar_url,
+        url: owner.html_url,
+      },
+      description: repo.description,
+      posts_count: repo.open_issues_count,
+    };
+    return info;
   },
 
-  async getPostsByPage(page: number = 1, per_page: number = 15): Promise<BlogPost[]> {
+  // tslint:disable-next-line
+  async getPostsByPage(page: number = 1, per_page: number = 15): Promise<IBlogPost[]> {
     const res = await octokit.issues.listForRepo({
-      owner,
-      repo,
+      owner: config.owner,
+      repo: config.repo,
+      creator: config.owner,
       page,
       per_page,
-      creator: owner,
     });
-    const issues = res.data as GithubIssue[];
+    const issues = res.data as IGithubIssue[];
     const posts = _.map(convertIssueToPost, issues);
     return posts;
   },
 
-  async getRecentPosts(): Promise<BlogPost[]> {
+  async getRecentPosts(): Promise<IBlogPost[]> {
     const res = await octokit.issues.listForRepo({
-      owner,
-      repo,
       page: 1,
-      per_page: recentCount,
-      creator: owner,
+      per_page: config.recentCount,
+      owner: config.owner,
+      repo: config.repo,
+      creator: config.owner,
     });
-    const issues = res.data as GithubIssue[];
+    const issues = res.data as IGithubIssue[];
     const posts = _.map(convertIssueToPost, issues);
     return posts;
   },
 
-  async getPostByIssueNumber(issue_number: number): Promise<BlogPost> {
+  // tslint:disable-next-line
+  async getPostByIssueNumber(issue_number: number): Promise<IBlogPost> {
     const res = await octokit.issues.get({
-      owner,
-      repo,
+      owner: config.owner,
+      repo: config.repo,
       issue_number,
     });
-    const post = convertIssueToPost(res.data as GithubIssue);
+    const post = convertIssueToPost(res.data as IGithubIssue);
     return post;
   },
 
   async getAllTags(): Promise<string[]> {
     const res = await octokit.issues.listLabelsForRepo({
-      owner,
-      repo,
+      owner: config.owner,
+      repo: config.repo,
     });
-    const tags = _.map(_.get('name'), res.data as GithubLabel[]);
+    const tags = _.map(_.get('name'), res.data as IGithubLabel[]);
     return tags;
   },
 
-  async getPageContext(): Promise<PageContextValue> {
-    const [user, recent, tags] = await Promise.all([
-      service.getOwnerInfo(),
+  async getPageContext(): Promise<IPageContextValue> {
+    const [info, recent, tags] = await Promise.all([
+      service.getBlogInfo(),
       service.getRecentPosts(),
       service.getAllTags(),
     ]);
 
+    info.tags_count = tags.length;
+
     return {
-      user,
+      info,
       recent,
       tags,
     };
-  }
+  },
 };
 
 export default service;

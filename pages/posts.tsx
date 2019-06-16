@@ -8,7 +8,7 @@ import PageContext from '../lib/context';
 import service from '../lib/service';
 
 interface IPostsPageProps {
-  post: BlogPost;
+  post: IBlogPost;
 }
 
 // getIssueNumberBySlug : string -> number

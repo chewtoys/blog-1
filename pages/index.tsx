@@ -9,7 +9,7 @@ import service from '../lib/service';
 import config from '../config.json';
 
 interface IndexPageProps {
-  posts: BlogPost[];
+  posts: IBlogPost[];
   page: number;
 }
 
@@ -19,7 +19,7 @@ const IndexPage: next.NextFunctionComponent<IndexPageProps> = (props) => {
   return (
     <PageContext.Provider value={props}>
       <Layout>
-        {posts.map((post: BlogPost) => {
+        {posts.map((post: IBlogPost) => {
           return <Post key={post.slug} data={post} excerpt />;
         })}
       </Layout>

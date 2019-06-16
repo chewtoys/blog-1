@@ -33,11 +33,11 @@ const Title = styled.span`
 
 const RecentWidget: React.SFC = () => {
   const pageContext = React.useContext(PageContext);
-  const { recent } = pageContext as PageContextValue;
+  const { recent } = pageContext as IPageContextValue;
 
   return (
     <Card title="最新文章">
-      {recent.map((post: BlogPost) => {
+      {recent.map((post: IBlogPost) => {
         const { slug, title, created_at } = post;
 
         return (

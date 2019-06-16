@@ -13,7 +13,6 @@ Wordpress2016.bodyFontFamily = [
   'sans-serif',
 ];
 
-
 (Wordpress2016 as TypographyOptions).overrideThemeStyles = ({ rhythm }) => ({
   body: {
     color: '#2e3444',
