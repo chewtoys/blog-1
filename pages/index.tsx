@@ -6,7 +6,7 @@ import Layout from '../components/Layout';
 import Post from '../components/Post';
 import PageContext from '../lib/context';
 import service from '../lib/service';
-import config from '../config.json';
+import { perPage } from '../config.json';
 
 interface IndexPageProps {
   posts: IBlogPost[];
@@ -30,7 +30,7 @@ const IndexPage: next.NextFunctionComponent<IndexPageProps> = (props) => {
 IndexPage.getInitialProps = async (ctx: next.NextContext) => {
   const page: number = _.toNumber(ctx.query.page) || 1;
   // tslint:disable-next-line
-  const per_page: number = _.toNumber(ctx.query.per_page) || config.perPage;
+  const per_page: number = _.toNumber(ctx.query.per_page) || perPage;
 
   const posts = await service.getPostsByPage(page, per_page);
   const context = await service.getPageContext();

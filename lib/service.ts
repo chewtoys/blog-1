@@ -5,37 +5,20 @@ import _ from 'lodash/fp';
 import { convertIssueToPost } from '../lib/convert';
 import config from '../config.json';
 
+const { owner, repo, recentCount } = config;
+
 const octokit = new Octokit({
   auth: process.env.TOKEN,
   log: logger({ level: 'info' }),
 });
 
 const service = {
-  async getBlogInfo(): Promise<IBlogInfo> {
-    const res = await octokit.repos.get({
-      owner: config.owner,
-      repo: config.repo,
-    });
-    const repo = res.data as IGithubRepo;
-    const { owner } = repo;
-    const info = {
-      user: {
-        name: owner.login,
-        avatar: owner.avatar_url,
-        url: owner.html_url,
-      },
-      description: repo.description,
-      posts_count: repo.open_issues_count,
-    };
-    return info;
-  },
-
   // tslint:disable-next-line
   async getPostsByPage(page: number = 1, per_page: number = 15): Promise<IBlogPost[]> {
     const res = await octokit.issues.listForRepo({
-      owner: config.owner,
-      repo: config.repo,
-      creator: config.owner,
+      owner,
+      repo,
+      creator: owner,
       page,
       per_page,
     });
@@ -47,10 +30,10 @@ const service = {
   async getRecentPosts(): Promise<IBlogPost[]> {
     const res = await octokit.issues.listForRepo({
       page: 1,
-      per_page: config.recentCount,
-      owner: config.owner,
-      repo: config.repo,
-      creator: config.owner,
+      owner,
+      repo,
+      creator: owner,
+      per_page: recentCount,
     });
     const issues = res.data as IGithubIssue[];
     const posts = _.map(convertIssueToPost, issues);
@@ -60,8 +43,8 @@ const service = {
   // tslint:disable-next-line
   async getPostByIssueNumber(issue_number: number): Promise<IBlogPost> {
     const res = await octokit.issues.get({
-      owner: config.owner,
-      repo: config.repo,
+      owner,
+      repo,
       issue_number,
     });
     const post = convertIssueToPost(res.data as IGithubIssue);
@@ -70,24 +53,20 @@ const service = {
 
   async getAllTags(): Promise<string[]> {
     const res = await octokit.issues.listLabelsForRepo({
-      owner: config.owner,
-      repo: config.repo,
+      owner,
+      repo,
     });
     const tags = _.map(_.get('name'), res.data as IGithubLabel[]);
     return tags;
   },
 
   async getPageContext(): Promise<IPageContextValue> {
-    const [info, recent, tags] = await Promise.all([
-      service.getBlogInfo(),
+    const [recent, tags] = await Promise.all([
       service.getRecentPosts(),
       service.getAllTags(),
     ]);
 
-    info.tags_count = tags.length;
-
     return {
-      info,
       recent,
       tags,
     };

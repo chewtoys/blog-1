@@ -47,7 +47,6 @@ interface IBlogPost {
 }
 
 interface IPageContextValue {
-  info: IBlogInfo;
   recent: IBlogPost[];
   tags: string[];
 }

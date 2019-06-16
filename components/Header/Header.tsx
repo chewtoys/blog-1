@@ -9,6 +9,7 @@ interface IWrapperProps {
   readonly visible: boolean;
 }
 
+// tslint:disable-next-line
 const Wrapper = styled.header<IWrapperProps>`
   position: fixed;
   top: 0;
