@@ -36,7 +36,7 @@ const RecommendWidget: React.SFC = () => {
   const { recommend } = pageContext as IPageContextValue;
 
   return (
-    <Card title="推荐文章">
+    <Card title="热门推荐">
       {recommend.map((post: IBlogPost) => {
         const { slug, title, created_at } = post;
 

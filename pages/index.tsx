@@ -1,42 +1,68 @@
 import * as React from 'react';
 import * as next from 'next';
 import _ from 'lodash/fp';
+import styled from 'styled-components';
 
 import Layout from '../components/Layout';
 import Post from '../components/Post';
+import LoadMore from '../components/LoadMore';
+import Card from '../components/Card';
 import PageContext from '../lib/context';
 import service from '../lib/service';
-import useWindowScroll from '../hooks/useWindowScroll';
 import { perPage } from '../config.json';
 
 interface IndexPageProps {
   posts: IBlogPost[];
   page: number;
+  tag: string;
 }
 
+const Query = styled.span`
+  font-family: Georgia, serif;
+  font-weight: 400;
+  font-size: 1.25rem;
+`;
+
 const IndexPage: next.NextFunctionComponent<IndexPageProps> = (props) => {
+  const { tag } = props;
   const [posts, setPosts] = React.useState(props.posts);
   const [page, setPage] = React.useState(props.page);
 
-  useWindowScroll(_.debounce(300, async () => {
-    const { clientHeight, scrollHeight, scrollTop } = document.documentElement;
-    const height = scrollHeight - scrollTop;
+  const [more, setMore] = React.useState(posts.length >= perPage);
+  const [loading, setLoading] = React.useState(false);
 
-    if (height === clientHeight) {
-      const nextPage = page + 1;
-      const nextPosts = await service.getPostsByPage(page + 1);
+  const handleLoadMore = async () => {
+    setLoading(true);
+    const newPage = page + 1;
+    const newPosts = await service.getPostsByPage(newPage, perPage, { tag });
 
-      setPage(nextPage);
-      setPosts([...posts, ...nextPosts]);
+    setPage(newPage);
+    setPosts([...posts, ...newPosts]);
+    setLoading(false);
+
+    if (newPosts.length < perPage) {
+      setMore(false);
     }
-  }));
+  };
+
+  React.useEffect(() => {
+    setPosts(props.posts);
+  }, [props]);
 
   return (
     <PageContext.Provider value={props}>
       <Layout>
+        {tag && (
+          <Card padding="1rem 1.5rem">
+            <Query>标签: {tag}</Query>
+          </Card>
+        )}
         {posts.map((post: IBlogPost) => {
           return <Post key={post.slug} data={post} excerpt />;
         })}
+        {more && (
+          <LoadMore loading={loading} onClick={handleLoadMore} />
+        )}
       </Layout>
     </PageContext.Provider>
   );
@@ -44,13 +70,16 @@ const IndexPage: next.NextFunctionComponent<IndexPageProps> = (props) => {
 
 IndexPage.getInitialProps = async (ctx: next.NextContext) => {
   const page: number = _.toNumber(ctx.query.page) || 1;
-  const posts = await service.getPostsByPage(page, perPage);
+  const tag: string = _.toString(ctx.query.tag) || '';
+
+  const posts = await service.getPostsByPage(page, perPage, { tag });
   const context = await service.getPageContext();
 
   return {
     ...context,
-    page,
     posts,
+    page,
+    tag,
   };
 };
 

@@ -13,6 +13,7 @@ interface IPostProps {
 }
 
 const ReadMore = styled.span`
+  font-size: 0.9rem;
   color: ${themeColor};
 `;
 

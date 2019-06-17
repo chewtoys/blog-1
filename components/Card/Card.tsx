@@ -3,11 +3,17 @@ import styled from 'styled-components';
 
 interface ICardProps {
   title?: string;
+  padding?: string;
 }
 
-const Wrapper = styled.div`
-  margin-top: 1.5rem;
-  padding: 1.5rem;
+interface IWrapperProps {
+  padding?: string;
+}
+
+// tslint:disable-next-line
+const Wrapper = styled.div<IWrapperProps>`
+  margin-top: 1rem;
+  padding: ${(props) => props.padding || '1.5rem'};
   background-color: #fff;
   border-radius: 4px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 0 1px rgba(0, 0, 0, 0.1);
@@ -20,14 +26,12 @@ const Title = styled.h3`
 `;
 
 const Card: React.SFC<ICardProps> = (props) => {
-  const { title, children } = props;
+  const { title, padding, children } = props;
 
   return (
-    <Wrapper>
+    <Wrapper padding={padding}>
       {title && <Title>{title}</Title>}
-      <div>
-        {children}
-      </div>
+      <div>{children}</div>
     </Wrapper>
   );
 };

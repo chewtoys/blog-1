@@ -10,7 +10,7 @@ import Container from '../Container';
 import Sidebar from '../Sidebar';
 
 const Main = styled.main`
-  margin-top: 70px;
+  margin-top: 60px;
   padding-bottom: 30px;
 `;
 

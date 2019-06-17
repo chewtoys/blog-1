@@ -5,6 +5,10 @@ import _ from 'lodash/fp';
 import { convertIssueToPost } from '../lib/convert';
 import config from '../config.json';
 
+interface IPostFilterOptions {
+  tag: string;
+}
+
 const { owner, repo, recentCount } = config;
 
 const octokit = new Octokit({
@@ -13,14 +17,20 @@ const octokit = new Octokit({
 });
 
 const service = {
-  // tslint:disable-next-line
-  async getPostsByPage(page: number = 1, per_page: number = 15): Promise<IBlogPost[]> {
+  async getPostsByPage(
+    page: number = 1,
+    // tslint:disable-next-line
+    per_page: number = 15,
+    filter?: IPostFilterOptions,
+  ): Promise<IBlogPost[]> {
+    const { tag: labels = '' } = filter || {};
     const res = await octokit.issues.listForRepo({
       owner,
       repo,
       creator: owner,
       page,
       per_page,
+      labels,
     });
     const issues = res.data as IGithubIssue[];
     const posts = _.map(convertIssueToPost, issues);

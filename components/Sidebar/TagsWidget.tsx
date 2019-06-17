@@ -1,4 +1,5 @@
 import * as React from 'react';
+import Link from 'next/link';
 import _ from 'lodash/fp';
 import styled from 'styled-components';
 
@@ -30,8 +31,14 @@ const TagsWidget: React.SFC = () => {
   return (
     <Card title="标签">
       <Tags>
-        {_.shuffle(tags).map((tag) => {
-          return <Tag key={tag}>{tag}</Tag>;
+        {tags.map((tag) => {
+          return (
+            <Link href={`/?tag=${tag}`} key={tag}>
+              <Tag>
+                {tag}
+              </Tag>
+            </Link>
+          );
         })}
       </Tags>
     </Card>

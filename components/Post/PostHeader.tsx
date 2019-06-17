@@ -24,7 +24,7 @@ const Title = styled.h1<ITitleProps>`
   margin-top: 0;
   margin-bottom: 10px;
   color: ${themeColor};
-  font-size: 2rem;
+  font-size: 1.85rem;
   cursor: ${(props) => (props.excerpt ? 'pointer' : 'initial')};
 `;
 
