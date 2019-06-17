@@ -6,14 +6,11 @@ interface ICardProps {
 }
 
 const Wrapper = styled.div`
+  margin-top: 1.5rem;
   padding: 1.5rem;
   background-color: #fff;
   border-radius: 4px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 0 1px rgba(0, 0, 0, 0.1);
-
-  & + & {
-    margin-top: 1.5rem;
-  }
 `;
 
 const Title = styled.h3`

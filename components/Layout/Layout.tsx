@@ -11,7 +11,6 @@ import Sidebar from '../Sidebar';
 
 const Main = styled.main`
   margin-top: 70px;
-  padding-top: 25px;
   padding-bottom: 30px;
 `;
 

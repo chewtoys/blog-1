@@ -1,12 +1,12 @@
 import * as React from 'react';
 
-import RencentWidget from './RencentWidget';
+import RecommendWidget from './RecommendWidget';
 import TagsWidget from './TagsWidget';
 
 const Sidebar: React.SFC = () => {
   return (
     <div>
-      <RencentWidget />
+      <RecommendWidget />
       <TagsWidget />
     </div>
   );

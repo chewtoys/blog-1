@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import Logo from '../Logo';
 import Container from '../Container';
-import useWindowScroll from '../../hoc/useWindowScroll';
+import useWindowScroll from '../../hooks/useWindowScroll';
 
 interface IWrapperProps {
   readonly visible: boolean;
@@ -23,9 +23,6 @@ const Wrapper = styled.header<IWrapperProps>`
   z-index: 666;
 `;
 
-// getDocumentScrollTop :: () -> number
-const getDocumentScrollTop = () => window.pageYOffset || document.documentElement.scrollTop;
-
 let headerHeight: number = 0;
 
 const Header: React.SFC = () => {
@@ -34,7 +31,7 @@ const Header: React.SFC = () => {
   const headerRef = React.createRef<HTMLDivElement>();
 
   useWindowScroll(() => {
-    const scrollTop = getDocumentScrollTop();
+    const { scrollTop } = document.documentElement;
     if (headerHeight === 0 && headerRef.current) {
       headerHeight = headerRef.current.offsetHeight / 2;
     }

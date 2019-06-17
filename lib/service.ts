@@ -27,12 +27,13 @@ const service = {
     return posts;
   },
 
-  async getRecentPosts(): Promise<IBlogPost[]> {
+  async getRecommendPosts(): Promise<IBlogPost[]> {
     const res = await octokit.issues.listForRepo({
       page: 1,
       owner,
       repo,
       creator: owner,
+      sort: 'comments',
       per_page: recentCount,
     });
     const issues = res.data as IGithubIssue[];
@@ -61,13 +62,13 @@ const service = {
   },
 
   async getPageContext(): Promise<IPageContextValue> {
-    const [recent, tags] = await Promise.all([
-      service.getRecentPosts(),
+    const [recommend, tags] = await Promise.all([
+      service.getRecommendPosts(),
       service.getAllTags(),
     ]);
 
     return {
-      recent,
+      recommend,
       tags,
     };
   },

@@ -6,6 +6,7 @@ import Layout from '../components/Layout';
 import Post from '../components/Post';
 import PageContext from '../lib/context';
 import service from '../lib/service';
+import useWindowScroll from '../hooks/useWindowScroll';
 import { perPage } from '../config.json';
 
 interface IndexPageProps {
@@ -14,7 +15,21 @@ interface IndexPageProps {
 }
 
 const IndexPage: next.NextFunctionComponent<IndexPageProps> = (props) => {
-  const { posts } = props;
+  const [posts, setPosts] = React.useState(props.posts);
+  const [page, setPage] = React.useState(props.page);
+
+  useWindowScroll(_.debounce(300, async () => {
+    const { clientHeight, scrollHeight, scrollTop } = document.documentElement;
+    const height = scrollHeight - scrollTop;
+
+    if (height === clientHeight) {
+      const nextPage = page + 1;
+      const nextPosts = await service.getPostsByPage(page + 1);
+
+      setPage(nextPage);
+      setPosts([...posts, ...nextPosts]);
+    }
+  }));
 
   return (
     <PageContext.Provider value={props}>
@@ -29,10 +44,7 @@ const IndexPage: next.NextFunctionComponent<IndexPageProps> = (props) => {
 
 IndexPage.getInitialProps = async (ctx: next.NextContext) => {
   const page: number = _.toNumber(ctx.query.page) || 1;
-  // tslint:disable-next-line
-  const per_page: number = _.toNumber(ctx.query.per_page) || perPage;
-
-  const posts = await service.getPostsByPage(page, per_page);
+  const posts = await service.getPostsByPage(page, perPage);
   const context = await service.getPageContext();
 
   return {

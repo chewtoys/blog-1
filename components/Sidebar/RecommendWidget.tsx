@@ -31,13 +31,13 @@ const Title = styled.span`
   }
 `;
 
-const RecentWidget: React.SFC = () => {
+const RecommendWidget: React.SFC = () => {
   const pageContext = React.useContext(PageContext);
-  const { recent } = pageContext as IPageContextValue;
+  const { recommend } = pageContext as IPageContextValue;
 
   return (
-    <Card title="最新文章">
-      {recent.map((post: IBlogPost) => {
+    <Card title="推荐文章">
+      {recommend.map((post: IBlogPost) => {
         const { slug, title, created_at } = post;
 
         return (
@@ -55,4 +55,4 @@ const RecentWidget: React.SFC = () => {
   );
 };
 
-export default RecentWidget;
+export default RecommendWidget;
