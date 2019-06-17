@@ -12,7 +12,7 @@ interface IWrapperProps {
 
 // tslint:disable-next-line
 const Wrapper = styled.div<IWrapperProps>`
-  margin-top: 1rem;
+  margin-top: 10px;
   padding: ${(props) => props.padding || '1.5rem'};
   background-color: #fff;
   border-radius: 4px;

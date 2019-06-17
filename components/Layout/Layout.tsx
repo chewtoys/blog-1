@@ -15,7 +15,8 @@ const Main = styled.main`
 `;
 
 const StyledCol = styled(Col)`
-  padding: 0 10px;
+  padding-left: 0;
+  padding-right: 10px;
 `;
 
 const Layout: React.SFC = (props) => {
