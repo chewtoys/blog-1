@@ -4,6 +4,15 @@
   "env": {
     "TOKEN": "@github-token"
   },
-  "builds": [{ "src": "next.config.js", "use": "@now/next" }],
-  "routes": [{ "src": "/posts/(?<slug>[^/]+)$", "dest": "/posts?slug=$slug" }]
+  "builds": [
+    { "src": "next.config.js", "use": "@now/next" },
+    { "src": "/server/api/*.ts", "use": "@now/node" }
+  ],
+  "routes": [
+    { "src": "/api/posts", "dest": "server/api/posts.ts" },
+    { "src": "/api/post", "dest": "server/api/post.ts" },
+    { "src": "/api/recommend", "dest": "server/api/recommend.ts" },
+    { "src": "/api/tags", "dest": "server/api/tags.ts" },
+    { "src": "/posts/(?<slug>[^/]+)$", "dest": "/posts?slug=$slug" }
+  ]
 }

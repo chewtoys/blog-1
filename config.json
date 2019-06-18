@@ -7,5 +7,6 @@
   "themeColor": "#FA7268",
 
   "perPage": 15,
+  "recommendCount": 5,
   "recentCount": 5
 }
