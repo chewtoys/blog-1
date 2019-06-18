@@ -11,8 +11,8 @@ interface IPostsPageProps {
   post: IBlogPost;
 }
 
-// getIssueNumberBySlug : string -> number
-const getIssueNumberBySlug = _.compose(
+// getIdBySlug : string -> number
+const getIdBySlug = _.compose(
   _.toNumber,
   _.last,
   (slug) => slug.match(/^(\d{8})(\d+)/),
@@ -34,8 +34,8 @@ PostsPage.getInitialProps = async (ctx: next.NextContext) => {
   if (!slug) {
     throw new Error('slug is required!');
   }
-  const issueNumber = getIssueNumberBySlug(slug);
-  const post = await service.getPostByIssueNumber(issueNumber);
+  const issueNumber = getIdBySlug(slug);
+  const post = await service.getPostById(issueNumber);
   const context = await service.getPageContext();
 
   return {
