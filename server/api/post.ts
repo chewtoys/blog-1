@@ -1,16 +1,11 @@
 import assert from 'assert';
+
 import { NowRequest, NowResponse } from '@now/node';
-import Octokit from '@octokit/rest';
-import logger from 'console-log-level';
 import _ from 'lodash/fp';
 
-import { convertIssueToPost } from '../../lib/convert';
+import { convertIssueToPost } from './common/convert';
+import octokit from './common/octokit';
 import { owner, repo } from '../../config.json';
-
-const octokit = new Octokit({
-  auth: process.env.TOKEN,
-  log: logger({ level: 'info' }),
-});
 
 export default async (req: NowRequest, res: NowResponse) => {
   const id = _.toNumber(req.query.id);

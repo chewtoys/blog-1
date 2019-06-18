@@ -1,15 +1,9 @@
 import { NowRequest, NowResponse } from '@now/node';
-import Octokit from '@octokit/rest';
-import logger from 'console-log-level';
 import _ from 'lodash/fp';
 
-import { convertIssueToPost } from '../../lib/convert';
+import octokit from './common/octokit';
+import { convertIssueToPost } from './common/convert';
 import { owner, repo, recommendCount } from '../../config.json';
-
-const octokit = new Octokit({
-  auth: process.env.TOKEN,
-  log: logger({ level: 'info' }),
-});
 
 // @ts-ignore
 export default async (req: NowRequest, res: NowResponse) => {
