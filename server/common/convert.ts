@@ -3,22 +3,26 @@ import _ from 'lodash/fp';
 
 import posts from '../posts.json';
 
-export const convertIssueToPost = (issue: IGithubIssue) => {
-  const { number: issueId, title, labels, body, updated_at, comments } = issue;
-  const post = _.find({ issueId }, posts);
+const getRealCreatedAt = (issue: IGithubIssue) => {
+  return _.compose(
+    _.get('created_at'),
+    _.find({ issueId: issue.number }),
+    _.map(_.get('data')),
+  )(posts);
+};
 
-  const slug = format(updated_at, 'YYYYMMDD') + issueId;
+export const convertIssueToPost = (issue: IGithubIssue) => {
+  const { number: id, title, body, labels, created_at } = issue;
+
   const tags = _.map(_.get('name'), labels);
-  // @ts-ignore
-  const created_at = post ? posts.date : issue.created_at;
+  const createdAt = getRealCreatedAt(issue) || created_at;
+  const slug = format(createdAt, 'YYYYMMDD') + id;
 
   return {
     slug,
     title,
     body,
     tags,
-    created_at,
-    updated_at,
-    comments,
+    createdAt,
   };
 };
