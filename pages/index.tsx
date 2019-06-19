@@ -1,10 +1,13 @@
 import * as React from 'react';
 import * as next from 'next';
 import _ from 'lodash/fp';
+import { Row, Col } from 'react-bootstrap';
+import styled from 'styled-components';
 
 import Layout from '../components/Layout';
 import Post from '../components/Post';
 import LoadMore from '../components/LoadMore';
+import Sidebar from '../components/Sidebar';
 import PageContext from '../lib/context';
 import Api from '../lib/api';
 import { perPage } from '../config.json';
@@ -21,7 +24,15 @@ interface IIndexPageState {
   loading: boolean;
 }
 
-enum ActionType { LOADING, LOADED, RESET };
+const Content = styled.div`
+  max-width: 650px;
+`;
+
+enum ActionType {
+  LOADING,
+  LOADED,
+  RESET,
+}
 
 const init = ({ posts, page }: IIndexPageProps): IIndexPageState => ({
   posts,
@@ -46,7 +57,7 @@ const reducer = (state: IIndexPageState, action: any) => {
     default:
       return state;
   }
-}
+};
 
 const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
   const { tag } = props;
@@ -62,7 +73,7 @@ const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
     dispatch({
       type: ActionType.LOADED,
       payload: {
-        posts: newPosts,
+        posts: [...posts, ...newPosts],
         page: newPage,
       },
     });
@@ -78,14 +89,23 @@ const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
   return (
     <PageContext.Provider value={props}>
       <Layout>
-        {posts.map((post: IBlogPost) => {
-          return <Post key={post.slug} data={post} excerpt />;
-        })}
-        <LoadMore
-          visiable={posts.length % perPage === 0}
-          loading={loading}
-          onClick={handleLoadMore}
-        />
+        <Row>
+          <Col lg={8}>
+            <Content>
+              {posts.map((post: IBlogPost) => {
+                return <Post key={post.slug} data={post} excerpt />;
+              })}
+              <LoadMore
+                visiable={posts.length % perPage === 0}
+                loading={loading}
+                onClick={handleLoadMore}
+              />
+            </Content>
+          </Col>
+          <Col lg={4}>
+            <Sidebar />
+          </Col>
+        </Row>
       </Layout>
     </PageContext.Provider>
   );

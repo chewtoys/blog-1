@@ -19,6 +19,10 @@ const Tag = styled.span`
   margin-bottom: 10px;
   cursor: pointer;
 
+  &::before {
+    content: '#';
+  }
+
   &:hover {
     color: ${themeColor};
   }

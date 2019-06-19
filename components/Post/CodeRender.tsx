@@ -22,9 +22,10 @@ const CodeBlock = styled(Highlight)`
   position: relative;
   font-size: 0.9rem !important;
   line-height: 1.5rem;
-  margin: 1.25rem -1.5rem !important;
+  margin: 1.25rem 0 !important;
   padding: 1rem 1.5rem !important;
   background-color: #f5f2f0;
+  border-radius: 5px;
 `;
 
 const Language = styled.div`

@@ -13,10 +13,8 @@ interface IWrapperProps {
 // tslint:disable-next-line
 const Wrapper = styled.div<IWrapperProps>`
   margin-top: 10px;
-  padding: ${(props) => props.padding || '1.5rem'};
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05), 0 0 1px rgba(0, 0, 0, 0.1);
+  padding: ${(props) => props.padding || '1.5rem 0'};
+  border-bottom: 1px solid #e9e9e9;
 `;
 
 const Title = styled.h3`

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as next from 'next';
 import _ from 'lodash/fp';
+import { Row, Col } from 'react-bootstrap';
 
 import Layout from '../components/Layout';
 import Post from '../components/Post';
@@ -23,7 +24,11 @@ const PostsPage: next.NextFunctionComponent<IPostsPageProps> = (props) => {
   return (
     <PageContext.Provider value={props}>
       <Layout>
-        <Post data={post} />
+        <Row className="justify-content-md-center">
+          <Col lg={10}>
+            <Post data={post} />
+          </Col>
+        </Row>
       </Layout>
     </PageContext.Provider>
   );

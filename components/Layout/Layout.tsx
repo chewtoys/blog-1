@@ -1,22 +1,15 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Row, Col } from 'react-bootstrap';
 
 import 'normalize.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 
 import Header from '../Header';
 import Container from '../Container';
-import Sidebar from '../Sidebar';
 
 const Main = styled.main`
-  margin-top: 60px;
+  margin-top: 70px;
   padding-bottom: 30px;
-`;
-
-const StyledCol = styled(Col)`
-  padding-left: 0;
-  padding-right: 10px;
 `;
 
 const Layout: React.SFC = (props) => {
@@ -25,14 +18,7 @@ const Layout: React.SFC = (props) => {
       <Header />
       <Main>
         <Container>
-          <Row>
-            <StyledCol lg={8}>
-              {props.children}
-            </StyledCol>
-            <StyledCol lg={4}>
-              <Sidebar />
-            </StyledCol>
-          </Row>
+          {props.children}
         </Container>
       </Main>
     </div>
