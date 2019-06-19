@@ -8,7 +8,7 @@ import Post from '../components/Post';
 import LoadMore from '../components/LoadMore';
 import Card from '../components/Card';
 import PageContext from '../lib/context';
-import service from '../lib/service';
+import api from '../lib/api';
 import { perPage } from '../config.json';
 
 interface IndexPageProps {
@@ -34,7 +34,7 @@ const IndexPage: next.NextFunctionComponent<IndexPageProps> = (props) => {
   const handleLoadMore = async () => {
     setLoading(true);
     const newPage = page + 1;
-    const newPosts = await service.getPostsByPage(newPage, perPage, { tag });
+    const newPosts = await api.client().getPostsByPage(newPage, perPage, { tag });
 
     setPage(newPage);
     setPosts([...posts, ...newPosts]);
@@ -72,8 +72,8 @@ IndexPage.getInitialProps = async (ctx: next.NextContext) => {
   const page: number = _.toNumber(ctx.query.page) || 1;
   const tag: string = _.toString(ctx.query.tag) || '';
 
-  const posts = await service.getPostsByPage(page, perPage, { tag });
-  const context = await service.getPageContext();
+  const posts = await api.server(ctx).getPostsByPage(page, perPage, { tag });
+  const context = await api.server(ctx).getPageContext();
 
   return {
     ...context,

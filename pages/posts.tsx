@@ -5,7 +5,7 @@ import _ from 'lodash/fp';
 import Layout from '../components/Layout';
 import Post from '../components/Post';
 import PageContext from '../lib/context';
-import service from '../lib/service';
+import api from '../lib/api';
 
 interface IPostsPageProps {
   post: IBlogPost;
@@ -35,8 +35,8 @@ PostsPage.getInitialProps = async (ctx: next.NextContext) => {
     throw new Error('slug is required!');
   }
   const issueNumber = getIdBySlug(slug);
-  const post = await service.getPostById(issueNumber);
-  const context = await service.getPageContext();
+  const post = await api.server(ctx).getPostById(issueNumber);
+  const context = await api.server(ctx).getPageContext();
 
   return {
     ...context,
