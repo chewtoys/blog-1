@@ -13,6 +13,7 @@
     { "src": "/api/post", "dest": "server/api/post.ts" },
     { "src": "/api/recommend", "dest": "server/api/recommend.ts" },
     { "src": "/api/tags", "dest": "server/api/tags.ts" },
+    { "src": "/api/queryPostsByPage", "dest": "server/api/queryPostsByPage.ts" },
     { "src": "/posts/(?<slug>[^/]+)$", "dest": "/posts?slug=$slug" }
   ]
 }

@@ -6,7 +6,6 @@ import posts from '../posts.json';
 export const convertIssueToPost = (issue: IGithubIssue) => {
   const { number: issueId, title, labels, body, updated_at, comments } = issue;
   const post = _.find({ issueId }, posts);
-  console.log(post);
 
   const slug = format(updated_at, 'YYYYMMDD') + issueId;
   const tags = _.map(_.get('name'), labels);
