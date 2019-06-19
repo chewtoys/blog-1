@@ -28,7 +28,6 @@ const IndexPage: next.NextFunctionComponent<IndexPageProps> = (props) => {
   const [posts, setPosts] = React.useState(props.posts);
   const [page, setPage] = React.useState(props.page);
 
-  const [more, setMore] = React.useState(posts.length >= perPage);
   const [loading, setLoading] = React.useState(false);
 
   const handleLoadMore = async () => {
@@ -39,10 +38,6 @@ const IndexPage: next.NextFunctionComponent<IndexPageProps> = (props) => {
     setPage(newPage);
     setPosts([...posts, ...newPosts]);
     setLoading(false);
-
-    if (newPosts.length < perPage) {
-      setMore(false);
-    }
   };
 
   React.useEffect(() => {
@@ -60,7 +55,7 @@ const IndexPage: next.NextFunctionComponent<IndexPageProps> = (props) => {
         {posts.map((post: IBlogPost) => {
           return <Post key={post.slug} data={post} excerpt />;
         })}
-        {more && (
+        {(posts.length % perPage === 0) && (
           <LoadMore loading={loading} onClick={handleLoadMore} />
         )}
       </Layout>
