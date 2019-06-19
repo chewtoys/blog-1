@@ -1,8 +1,8 @@
 import { NowRequest, NowResponse } from '@now/node';
 import _ from 'lodash/fp';
 
-import { convertIssueToPost } from './common/convert';
-import octokit from './common/octokit';
+import octokit from '../common/octokit';
+import { convertIssueToPost } from '../common/convert';
 import { owner, repo, perPage } from '../../config.json';
 
 export default async (req: NowRequest, res: NowResponse) => {

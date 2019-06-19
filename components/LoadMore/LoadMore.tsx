@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import { themeColor } from '../../config.json';
 
 interface ILoadMoreProps {
-  loading: boolean;
+  visiable?: boolean;
+  loading?: boolean;
   onClick: () => Promise<void>;
 }
 
@@ -32,11 +33,22 @@ const Loader = styled(({ className }) => (
 `;
 
 const LoadMore: React.SFC<ILoadMoreProps> = (props) => {
-  if (props.loading) {
+  const { visiable, loading, onClick } = props;
+
+  if (!visiable) {
+    return null;
+  }
+
+  if (loading) {
     return <Loader />;
   }
 
-  return <More onClick={props.onClick}>加载更多</More>;
+  return <More onClick={onClick}>加载更多</More>;
+};
+
+LoadMore.defaultProps = {
+  visiable: true,
+  loading: false,
 };
 
 export default LoadMore;

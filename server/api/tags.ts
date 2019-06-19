@@ -1,7 +1,7 @@
 import { NowRequest, NowResponse } from '@now/node';
 import _ from 'lodash/fp';
 
-import octokit from './common/octokit';
+import octokit from '../common/octokit';
 import { owner, repo } from '../../config.json';
 
 // @ts-ignore

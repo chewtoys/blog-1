@@ -1,63 +1,91 @@
 import * as React from 'react';
 import * as next from 'next';
 import _ from 'lodash/fp';
-import styled from 'styled-components';
 
 import Layout from '../components/Layout';
 import Post from '../components/Post';
 import LoadMore from '../components/LoadMore';
-import Card from '../components/Card';
 import PageContext from '../lib/context';
 import Api from '../lib/api';
 import { perPage } from '../config.json';
 
-interface IndexPageProps {
+interface IIndexPageProps {
   posts: IBlogPost[];
   page: number;
   tag: string;
 }
 
-const Query = styled.span`
-  font-family: Georgia, serif;
-  font-weight: 400;
-  font-size: 1.25rem;
-`;
+interface IIndexPageState {
+  posts: IBlogPost[];
+  page: number;
+  loading: boolean;
+}
 
-const IndexPage: next.NextFunctionComponent<IndexPageProps> = (props) => {
+enum ActionType { LOADING, LOADED, RESET };
+
+const init = ({ posts, page }: IIndexPageProps): IIndexPageState => ({
+  posts,
+  page,
+  loading: false,
+});
+
+const reducer = (state: IIndexPageState, action: any) => {
+  const { type, payload } = action;
+  switch (type) {
+    case ActionType.LOADING:
+      return { ...state, loading: true };
+    case ActionType.LOADED:
+      return {
+        ...state,
+        posts: payload.posts,
+        page: payload.page,
+        loading: false,
+      };
+    case ActionType.RESET:
+      return init(payload);
+    default:
+      return state;
+  }
+}
+
+const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
   const { tag } = props;
-  const [posts, setPosts] = React.useState(props.posts);
-  const [page, setPage] = React.useState(props.page);
-
-  const [loading, setLoading] = React.useState(false);
+  const [state, dispatch] = React.useReducer(reducer, props, init);
+  const { posts, page, loading } = state;
 
   const handleLoadMore = async () => {
-    setLoading(true);
+    dispatch({ type: ActionType.LOADING });
+
     const newPage = page + 1;
     const newPosts = await Api.client().getPostsByPage(newPage, perPage, { tag });
 
-    setPage(newPage);
-    setPosts([...posts, ...newPosts]);
-    setLoading(false);
+    dispatch({
+      type: ActionType.LOADED,
+      payload: {
+        posts: newPosts,
+        page: newPage,
+      },
+    });
   };
 
   React.useEffect(() => {
-    setPosts(props.posts);
+    dispatch({
+      type: ActionType.RESET,
+      payload: props,
+    });
   }, [props]);
 
   return (
     <PageContext.Provider value={props}>
       <Layout>
-        {tag && (
-          <Card padding="1rem 1.5rem">
-            <Query>标签: {tag}</Query>
-          </Card>
-        )}
         {posts.map((post: IBlogPost) => {
           return <Post key={post.slug} data={post} excerpt />;
         })}
-        {(posts.length % perPage === 0) && (
-          <LoadMore loading={loading} onClick={handleLoadMore} />
-        )}
+        <LoadMore
+          visiable={posts.length % perPage === 0}
+          loading={loading}
+          onClick={handleLoadMore}
+        />
       </Layout>
     </PageContext.Provider>
   );
