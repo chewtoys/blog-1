@@ -20,8 +20,7 @@ class Api {
 
   static server(ctx: next.NextContext) {
     const { req } = ctx;
-
-    let baseURL = req!.headers['x-now-deployment-url'] as string;
+    let baseURL = 'https://' + req!.headers['x-now-deployment-url'] as string;
     if (process.env.NODE_ENV === 'development') {
       baseURL = req!.headers['referer'] as string;
     }
