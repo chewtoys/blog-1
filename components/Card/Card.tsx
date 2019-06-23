@@ -19,6 +19,7 @@ const Wrapper = styled.div<IWrapperProps>`
 
 const Title = styled.h3`
   margin: 0 0 15px;
+  color: #7a7a7a;
   font-size: 1em;
   font-weight: 200;
 `;

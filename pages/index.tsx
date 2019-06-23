@@ -1,129 +1,108 @@
 import * as React from 'react';
 import * as next from 'next';
-import _ from 'lodash/fp';
 import { Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
+import useWindowScroll from 'react-use/lib/useWindowScroll';
+import useDebounce from 'react-use/lib/useDebounce';
 
 import Layout from '../components/Layout';
 import Post from '../components/Post';
-import LoadMore from '../components/LoadMore';
 import Sidebar from '../components/Sidebar';
-import PageContext from '../lib/context';
-import Api from '../lib/api';
-import { perPage } from '../config.json';
+import Loading from '../components/Loading';
+import Github from '../lib/github';
 
 interface IIndexPageProps {
-  posts: IBlogPost[];
-  page: number;
-  tag: string;
+  issues: IGithubIssues;
+  recommend: IGithubIssues;
+  labels: IGithubLabels;
 }
 
-interface IIndexPageState {
-  posts: IBlogPost[];
-  page: number;
-  loading: boolean;
-}
-
-const Content = styled.div`
-  max-width: 650px;
-`;
-
-enum ActionType {
+enum ActionTypes {
   LOADING,
   LOADED,
   RESET,
 }
 
-const init = ({ posts, page }: IIndexPageProps): IIndexPageState => ({
-  posts,
-  page,
-  loading: false,
-});
-
-const reducer = (state: IIndexPageState, action: any) => {
+const reducer = (state: IGithubLabels, action: any) => {
   const { type, payload } = action;
   switch (type) {
-    case ActionType.LOADING:
-      return { ...state, loading: true };
-    case ActionType.LOADED:
+    case ActionTypes.LOADED:
       return {
-        ...state,
-        posts: payload.posts,
-        page: payload.page,
-        loading: false,
+        nodes: [...state.nodes, ...payload.nodes],
+        pageInfo: payload.pageInfo,
       };
-    case ActionType.RESET:
-      return init(payload);
+    case ActionTypes.RESET:
+      return { ...state };
     default:
       return state;
   }
 };
 
+const PostList = styled.div`
+  max-width: 650px;
+`;
+
 const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
-  const { tag } = props;
-  const [state, dispatch] = React.useReducer(reducer, props, init);
-  const { posts, page, loading } = state;
+  const { issues, recommend, labels } = props;
+  const [state, dispatch] = React.useReducer(reducer, issues);
+  const { nodes, pageInfo } = state as IGithubIssues;
 
-  const handleLoadMore = async () => {
-    dispatch({ type: ActionType.LOADING });
-
-    const newPage = page + 1;
-    const newPosts = await Api.client().getPostsByPage(newPage, perPage, { tag });
-
-    dispatch({
-      type: ActionType.LOADED,
-      payload: {
-        posts: [...posts, ...newPosts],
-        page: newPage,
-      },
-    });
-  };
+  const { y } = useWindowScroll();
+  useDebounce(
+    () => {
+      const { scrollHeight, clientHeight } = window.document.documentElement;
+      if (y === scrollHeight - clientHeight) {
+        Github.createWithContext()
+          .issues(pageInfo.endCursor)
+          .then((newIssues) => {
+            dispatch({
+              type: ActionTypes.LOADED,
+              payload: newIssues,
+            });
+          });
+      }
+    },
+    500,
+    [y],
+  );
 
   React.useEffect(() => {
     dispatch({
-      type: ActionType.RESET,
-      payload: props,
+      type: ActionTypes.RESET,
+      payload: issues,
     });
-  }, [props]);
+  }, [issues]);
 
   return (
-    <PageContext.Provider value={props}>
-      <Layout>
-        <Row>
-          <Col lg={8}>
-            <Content>
-              {posts.map((post: IBlogPost) => {
-                return <Post key={post.slug} data={post} excerpt />;
-              })}
-              <LoadMore
-                visiable={posts.length % perPage === 0}
-                loading={loading}
-                onClick={handleLoadMore}
-              />
-            </Content>
-          </Col>
-          <Col lg={4}>
-            <Sidebar />
-          </Col>
-        </Row>
-      </Layout>
-    </PageContext.Provider>
+    <Layout>
+      <Row>
+        <Col lg={8}>
+          <PostList>
+            {nodes.map((node: IGithubIssue) => (
+              <Post key={node.id} data={node} excerpt />
+            ))}
+            <Loading visiable={pageInfo.hasNextPage} />
+          </PostList>
+        </Col>
+        <Col lg={4}>
+          <Sidebar dataSource={{ recommend, labels }} />
+        </Col>
+      </Row>
+    </Layout>
   );
 };
 
 IndexPage.getInitialProps = async (ctx: next.NextContext) => {
-  const page: number = _.toNumber(ctx.query.page) || 1;
-  const tag: string = _.toString(ctx.query.tag) || '';
+  const github = Github.createWithContext(ctx);
 
-  const api = ctx.req ? Api.server(ctx) : Api.client();
-  const posts = await api.getPostsByPage(page, perPage, { tag });
-  const context = await api.getPageContext();
+  const issues = await github.issues();
+  const recommend = await github.recommend();
+  const labels = await github.labels();
 
   return {
-    ...context,
-    posts,
-    page,
-    tag,
+    issues,
+    recommend,
+    labels,
   };
 };
 

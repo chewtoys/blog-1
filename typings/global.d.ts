@@ -1,52 +1,31 @@
+interface IGithubPageInfo {
+  startCursor: string;
+  endCursor: string;
+  hasPreviousPage: boolean;
+  hasNextPage: boolean;
+}
+
 interface IGithubLabel {
-  id: number;
-  url: string;
   name: string;
-  color: string;
+  issues: {
+    totalCount: number;
+  };
+}
+
+interface IGithubLabels {
+  nodes: IGithubLabel[];
 }
 
 interface IGithubIssue {
+  id: string;
   number: number;
   title: string;
-  labels: IGithubLabel[];
   body: string;
-  created_at: string;
-  updated_at: string;
-  comments: number;
+  labels: IGithubLabels;
+  createdAt: string;
 }
 
-interface IGithubRepo {
-  owner: {
-    login: string;
-    avatar_url: string;
-    html_url: string;
-  };
-  description: string;
-  open_issues_count: number;
-}
-
-interface IBlogInfo {
-  user: {
-    name: string;
-    avatar: string;
-    url: string;
-  };
-  description: string;
-  posts_count: number;
-  tags_count?: number;
-}
-
-interface IBlogPost {
-  slug: string;
-  title: string;
-  body: string;
-  tags: string[];
-  created_at: string;
-  updated_at: string;
-  comments: number;
-}
-
-interface IPageContextValue {
-  recommend: IBlogPost[];
-  tags: string[];
+interface IGithubIssues {
+  nodes: IGithubIssue[];
+  pageInfo: IGithubPageInfo;
 }

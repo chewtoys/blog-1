@@ -4,8 +4,11 @@ import { format } from 'date-fns';
 import styled from 'styled-components';
 
 import Card from '../Card';
-import PageContext from '../../lib/context';
 import { themeColor } from '../../config.json';
+
+interface IRecommendWidgetProps {
+  recommend: IGithubIssues;
+}
 
 const PostItem = styled.div`
   & + & {
@@ -31,20 +34,19 @@ const Title = styled.span`
   }
 `;
 
-const RecommendWidget: React.SFC = () => {
-  const pageContext = React.useContext(PageContext);
-  const { recommend } = pageContext as IPageContextValue;
+const RecommendWidget: React.SFC<IRecommendWidgetProps> = (props) => {
+  const { recommend } = props;
 
   return (
     <Card title="热门推荐">
-      {recommend.map((post: IBlogPost) => {
-        const { slug, title, created_at } = post;
+      {recommend.nodes.map((node: IGithubIssue) => {
+        const { number: id, title, createdAt } = node;
 
         return (
-          <PostItem key={slug}>
-            <Link href={`/posts?slug=${slug}`} as={`/posts/${slug}`}>
+          <PostItem key={id}>
+            <Link href={`/posts?id=${id}`} as={`/posts/${id}`}>
               <div>
-                <DateTime>{format(created_at, 'YYYY年MM月DD日')}</DateTime>
+                <DateTime>{format(createdAt, 'YYYY年MM月DD日')}</DateTime>
                 <Title>{title}</Title>
               </div>
             </Link>

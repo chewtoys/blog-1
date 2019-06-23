@@ -8,7 +8,7 @@ import PostContent from './PostContent';
 import { themeColor } from '../../config.json';
 
 interface IPostProps {
-  data: IBlogPost;
+  data: IGithubIssue;
   excerpt?: boolean;
 }
 
@@ -19,14 +19,14 @@ const ReadMore = styled.span`
 
 const Post: React.SFC<IPostProps> = (props) => {
   const { data, excerpt } = props;
-  const { slug, body } = data;
+  const { number: id, body } = data;
 
   return (
     <Card>
       <PostHeader {...props} />
       <PostContent body={body} excerpt={excerpt} />
       {excerpt ? (
-        <Link href={`/posts/${slug}`} as={`/posts/${slug}`}>
+        <Link href={`/posts?id=${id}`}>
           <ReadMore>阅读更多...</ReadMore>
         </Link>
       ) : (

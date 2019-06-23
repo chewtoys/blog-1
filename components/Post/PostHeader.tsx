@@ -6,12 +6,7 @@ import styled from 'styled-components';
 import { themeColor } from '../../config.json';
 
 interface IPostHeaderProps {
-  data: {
-    slug: string;
-    title: string;
-    created_at: string;
-    tags: string[];
-  };
+  data: IGithubIssue;
   excerpt?: boolean;
 }
 
@@ -46,16 +41,17 @@ const TagLink = styled.a`
 
 const PostHeader: React.SFC<IPostHeaderProps> = (props) => {
   const { data, excerpt } = props;
-  const { slug, title, created_at, tags } = data;
+  const { number: id, title, createdAt, labels } = data;
+
   return (
     <div>
-      <Link href={`/posts/${slug}`} as={`/posts/${slug}`}>
+      <Link href={`/posts?id=${id}`}>
         <Title excerpt={excerpt}>{title}</Title>
       </Link>
       <Meta>
-        <DateTime>{format(created_at, 'YYYY年MM月DD日')}</DateTime>
-        {tags.map((tag) => (
-          <TagLink key={tag}>#{tag}</TagLink>
+        <DateTime>{format(createdAt, 'YYYY年MM月DD日')}</DateTime>
+        {labels.nodes.map(({ name }) => (
+          <TagLink key={name}>#{name}</TagLink>
         ))}
       </Meta>
     </div>

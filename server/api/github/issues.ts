@@ -2,7 +2,7 @@ import { NowRequest, NowResponse } from '@now/node';
 import octokit from '@octokit/graphql';
 import _ from 'lodash/fp';
 
-import { owner, repo } from '../../config.json';
+import { owner, repo, perPage } from '../../../config.json';
 
 const graphql = octokit.defaults({
   headers: {
@@ -15,7 +15,8 @@ query ($owner: String!, $repo: String!, $after: String) {
   repository(owner: $owner, name: $repo) {
     issues(
       orderBy: {field: CREATED_AT, direction: DESC},
-      first: 15,
+      filterBy: { createdBy: $owner, states: OPEN },
+      first: ${perPage},
       after: $after
     ) {
       nodes {
@@ -36,20 +37,20 @@ query ($owner: String!, $repo: String!, $after: String) {
         hasNextPage
         hasPreviousPage
       }
-      totalCount
     }
   }
 }
 `;
 
 export default async (req: NowRequest, res: NowResponse) => {
-  const after = req.query.after || null;
+  const after = _.toString(req.query.cursor) || null;
 
   const data = await graphql(query, {
     owner,
     repo,
     after,
   });
+  const { issues } = data.repository;
 
-  res.status(200).json(data);
+  res.status(200).json(issues);
 };
