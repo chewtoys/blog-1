@@ -3,9 +3,12 @@
   "repo": "blog",
 
   "title": "Ahonn's Blog",
+  "author": "Ahonn Jiang",
+  "since": 2015,
   "icon": "/static/icon.png",
-  "themeColor": "#FA7268",
+  "license": "/static/license.png",
 
+  "themeColor": "#FA7268",
   "perPage": 15,
   "recommendCount": 5,
   "recentCount": 5

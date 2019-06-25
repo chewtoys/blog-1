@@ -10,7 +10,7 @@ interface IRecommendWidgetProps {
   recommend: IGithubIssues;
 }
 
-const PostItem = styled.div`
+const Item = styled.div`
   & + & {
     margin-top: 0.85rem;
   }
@@ -43,14 +43,14 @@ const RecommendWidget: React.SFC<IRecommendWidgetProps> = (props) => {
         const { number: id, title, createdAt } = node;
 
         return (
-          <PostItem key={id}>
-            <Link href={`/posts?id=${id}`} as={`/posts/${id}`}>
+          <Item key={id}>
+            <Link href={`/post?id=${id}`} as={`/post/${id}`}>
               <div>
                 <DateTime>{format(createdAt, 'YYYY年MM月DD日')}</DateTime>
                 <Title>{title}</Title>
               </div>
             </Link>
-          </PostItem>
+          </Item>
         );
       })}
     </Card>

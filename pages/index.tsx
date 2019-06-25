@@ -8,6 +8,7 @@ import useDebounce from 'react-use/lib/useDebounce';
 import Layout from '../components/Layout';
 import Post from '../components/Post';
 import Sidebar from '../components/Sidebar';
+import Copyright from '../components/Copyright';
 import Loading from '../components/Loading';
 import Github from '../lib/github';
 
@@ -86,6 +87,7 @@ const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
         </Col>
         <Col lg={4}>
           <Sidebar dataSource={{ recommend, labels }} />
+          <Copyright />
         </Col>
       </Row>
     </Layout>

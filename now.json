@@ -12,6 +12,13 @@
     { "src": "/api/github/issues", "dest": "server/api/github/issues.ts" },
     { "src": "/api/github/recommend", "dest": "server/api/github/recommend.ts" },
     { "src": "/api/github/labels", "dest": "server/api/github/labels.ts" },
-    { "src": "/api/github/issue", "dest": "server/api/github/issue.ts" }
+    { "src": "/api/github/issue", "dest": "server/api/github/issue.ts" },
+
+    { "src": "/p/(?<id>[0-9]+)$", "dest": "/post?id=$id" },
+    {
+      "src": "/posts/[0-9]{8}(?<id>[0-9]+)$",
+      "status": 301,
+      "headers": { "Location": "/p/$id" }
+    }
   ]
 }

@@ -14,10 +14,10 @@ const Sidebar: React.SFC<ISidebarProps> = (props) => {
   const { recommend, labels } = props.dataSource;
 
   return (
-    <div>
+    <>
       {recommend && <RecommendWidget recommend={recommend} />}
       {labels && <LabelsWidget labels={labels} />}
-    </div>
+    </>
   );
 };
 
