@@ -4,6 +4,7 @@ import { TypographyStyle } from 'react-typography';
 import { ServerStyleSheet } from 'styled-components';
 
 import typography from '../lib/typography';
+import { title, description, siteUrl, icon, themeColor } from '../config.json';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: NextDocumentContext) {
@@ -35,6 +36,10 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <title>{title}</title>
+          <link rel="shortcut icon" href={icon} />
+          <meta name="theme-color" content={themeColor} />
+          <meta name="description" content={description} />
           <TypographyStyle typography={typography} />
         </Head>
         <body>

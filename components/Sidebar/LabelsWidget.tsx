@@ -7,7 +7,7 @@ import Card from '../Card';
 import { themeColor } from '../../config.json';
 
 const MIN_LABEL_SIZE = 14;
-const MAX_LABEL_SIZE = 20;
+const MAX_LABEL_SIZE = 18;
 
 interface ILabelsWidgetProps {
   labels: IGithubLabels;
@@ -30,6 +30,10 @@ const Label = styled.span<ILabelProps>`
   margin-right: 10px;
   margin-bottom: 10px;
   cursor: pointer;
+
+  &::before {
+    content: '#';
+  }
 
   &:hover {
     color: ${themeColor};
@@ -54,7 +58,7 @@ const LabelsWidget: React.SFC<ILabelsWidgetProps> = (props) => {
   };
 
   return (
-    <Card title="标签云">
+    <Card title="标签">
       <Labels>
         {labels.nodes.map((node) => {
           const { name, issues } = node;

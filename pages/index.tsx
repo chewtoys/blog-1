@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as next from 'next';
+import Head from 'next/head';
 import { Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import useWindowScroll from 'react-use/lib/useWindowScroll';
@@ -8,9 +9,10 @@ import useDebounce from 'react-use/lib/useDebounce';
 import Layout from '../components/Layout';
 import Post from '../components/Post';
 import Sidebar from '../components/Sidebar';
-import Copyright from '../components/Copyright';
 import Loading from '../components/Loading';
 import Github from '../lib/github';
+
+import { title } from '../config.json';
 
 interface IIndexPageProps {
   issues: IGithubIssues;
@@ -76,6 +78,9 @@ const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
 
   return (
     <Layout>
+      <Head>
+        <title>{title}</title>
+      </Head>
       <Row>
         <Col lg={8}>
           <PostList>
@@ -87,7 +92,6 @@ const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
         </Col>
         <Col lg={4}>
           <Sidebar dataSource={{ recommend, labels }} />
-          <Copyright />
         </Col>
       </Row>
     </Layout>

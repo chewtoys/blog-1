@@ -26,7 +26,7 @@ const DateTime = styled.time`
 
 const Title = styled.span`
   color: #242424;
-  font-size: 0.9rem;
+  font-size: 0.95rem;
   cursor: pointer;
 
   &:hover {

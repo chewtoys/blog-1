@@ -3,10 +3,11 @@
   "repo": "blog",
 
   "title": "Ahonn's Blog",
-  "author": "Ahonn Jiang",
+  "author": "Ahonn",
+  "description": "Ahonn 的个人博客",
+  "siteUrl": "https://www.ahonn.me",
   "since": 2015,
   "icon": "/static/icon.png",
-  "license": "/static/license.png",
 
   "themeColor": "#FA7268",
   "perPage": 15,
