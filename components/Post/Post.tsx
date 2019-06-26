@@ -53,6 +53,7 @@ const Post: React.SFC<IPostProps> = (props) => {
   const linkProps = {
     href: `/post?id=${id}`,
     as: `/p/${id}`,
+    prefetch: true,
   };
 
   return (
