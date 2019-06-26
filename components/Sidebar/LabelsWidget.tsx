@@ -6,8 +6,8 @@ import styled from 'styled-components';
 import Card from '../Card';
 import { themeColor } from '../../config.json';
 
-const MIN_LABEL_SIZE = 14;
-const MAX_LABEL_SIZE = 18;
+const MIN_LABEL_SIZE = 12;
+const MAX_LABEL_SIZE = 16;
 
 interface ILabelsWidgetProps {
   labels: IGithubLabels;
@@ -27,9 +27,13 @@ const Label = styled.span<ILabelProps>`
   display: inline-block;
   color: #242424;
   font-size: ${(props) => `${props.size}px`};
+  padding: 7px;
   margin-right: 10px;
   margin-bottom: 10px;
+  border: 1px solid #e9e9e9;
+  border-radius: 3px;
   cursor: pointer;
+  transition: 0.2s ease-out;
 
   &::before {
     content: '#';
@@ -37,6 +41,7 @@ const Label = styled.span<ILabelProps>`
 
   &:hover {
     color: ${themeColor};
+    border-color: ${themeColor};
   }
 `;
 

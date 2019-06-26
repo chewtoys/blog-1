@@ -46,12 +46,6 @@ const Header: React.SFC<IHeaderProps> = (props) => {
     }));
   }, [y, height]);
 
-  React.useEffect(() => {
-    setState(() => ({
-      visible: true,
-    }));
-  }, [props]);
-
   return (
     <Wrapper height={60} visible={visible}>
       <Container>

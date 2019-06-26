@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import CodeRender from './CodeRender';
 import BlockquteRender from './BlockquteRender';
 import ImageRender from './ImageRender';
+import ListItemRender from './ListItemRender';
 
 interface IPostContentProps {
   source: string;
@@ -16,6 +17,7 @@ const markdownRenderers = {
   inlineCode: CodeRender,
   blockquote: BlockquteRender,
   image: ImageRender,
+  listItem: ListItemRender,
 };
 
 const getMarkdownExcerptOrSource = (

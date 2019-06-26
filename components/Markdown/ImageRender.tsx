@@ -14,6 +14,7 @@ const Wrapper = styled.div`
 
 const Image = styled.img`
   max-height: 500px;
+  cursor: zoom-in;
 `;
 
 const ImageRender: React.SFC<IImageRenderProps> = (props) => {

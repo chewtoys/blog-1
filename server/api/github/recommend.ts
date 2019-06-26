@@ -2,7 +2,7 @@ import { NowRequest, NowResponse } from '@now/node';
 import octokit from '@octokit/graphql';
 import _ from 'lodash/fp';
 
-import { owner, repo, recommendCount } from '../../../config.json';
+import { owner, repo, recommend } from '../../../config.json';
 
 const graphql = octokit.defaults({
   headers: {
@@ -16,7 +16,7 @@ query ($owner: String!, $repo: String!) {
     issues(
       orderBy: {field: COMMENTS, direction: DESC},
       filterBy: { createdBy: $owner, states: OPEN },
-      first: ${recommendCount},
+      first: ${recommend},
     ) {
       nodes {
         number
