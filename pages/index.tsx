@@ -1,6 +1,5 @@
 import * as React from 'react';
 import * as next from 'next';
-import Head from 'next/head';
 import { Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import useWindowScroll from 'react-use/lib/useWindowScroll';
@@ -11,8 +10,6 @@ import Post from '../components/Post';
 import Sidebar from '../components/Sidebar';
 import Loading from '../components/Loading';
 import Api from '../lib/api';
-
-import { title } from '../config.json';
 
 interface IIndexPageProps {
   posts: IGithubIssues;
@@ -78,9 +75,6 @@ const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
 
   return (
     <Layout>
-      <Head>
-        <title>{title}</title>
-      </Head>
       <Row>
         <Col lg={8}>
           <PostList>

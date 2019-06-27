@@ -2,6 +2,7 @@ import { NowRequest, NowResponse } from '@now/node';
 import _ from 'lodash/fp';
 
 import octokit from '../common/octokit';
+import { fixRealCreatedAt } from '../common/utils';
 import { owner, repo } from '../../config.json';
 
 const query = `
@@ -39,6 +40,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     after,
   });
   const { issues } = data.repository;
+  issues.nodes = _.map(fixRealCreatedAt, issues.nodes);
 
   res.status(200).json(issues);
 };

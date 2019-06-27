@@ -3,6 +3,7 @@ import { NowRequest, NowResponse } from '@now/node';
 import _ from 'lodash/fp';
 
 import octokit from '../common/octokit';
+import { fixRealCreatedAt } from '../common/utils';
 import { owner, repo } from '../../config.json';
 
 const query = `
@@ -36,5 +37,5 @@ export default async (req: NowRequest, res: NowResponse) => {
   });
   const { issue } = data.repository;
 
-  res.status(200).json(issue);
+  res.status(200).json(fixRealCreatedAt(issue));
 };

@@ -2,6 +2,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import { format } from 'date-fns';
 import styled from 'styled-components';
+import _ from 'lodash/fp';
 
 import Card from '../Card';
 import Markdown from '../Markdown';
@@ -60,7 +61,9 @@ const Post: React.SFC<IPostProps> = (props) => {
     <Card>
       <div>
         <Link {...linkProps}>
-          <Title excerpt={excerpt}>{title}</Title>
+          <Title excerpt={excerpt}>
+            {title}
+          </Title>
         </Link>
         <Meta>
           <DateTime>{format(createdAt, 'YYYY年MM月DD日')}</DateTime>
