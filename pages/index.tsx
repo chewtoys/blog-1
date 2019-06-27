@@ -10,12 +10,12 @@ import Layout from '../components/Layout';
 import Post from '../components/Post';
 import Sidebar from '../components/Sidebar';
 import Loading from '../components/Loading';
-import Github from '../lib/github';
+import Api from '../lib/api';
 
 import { title } from '../config.json';
 
 interface IIndexPageProps {
-  issues: IGithubIssues;
+  posts: IGithubIssues;
   recommend: IGithubIssues;
   labels: IGithubLabels;
 }
@@ -46,8 +46,8 @@ const PostList = styled.div`
 `;
 
 const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
-  const { issues, recommend, labels } = props;
-  const [state, dispatch] = React.useReducer(reducer, issues);
+  const { posts, recommend, labels } = props;
+  const [state, dispatch] = React.useReducer(reducer, posts);
   const { nodes, pageInfo } = state as IGithubIssues;
 
   const { y } = useWindowScroll();
@@ -55,12 +55,12 @@ const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
     () => {
       const { scrollHeight, clientHeight } = window.document.documentElement;
       if (y === scrollHeight - clientHeight) {
-        Github.createWithContext()
-          .issues(pageInfo.endCursor)
-          .then((newIssues) => {
+        Api.createWithContext()
+          .posts(pageInfo.endCursor)
+          .then((nextPosts: IGithubIssues) => {
             dispatch({
               type: ActionTypes.LOADED,
-              payload: newIssues,
+              payload: nextPosts,
             });
           });
       }
@@ -72,9 +72,9 @@ const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
   React.useEffect(() => {
     dispatch({
       type: ActionTypes.RESET,
-      payload: issues,
+      payload: posts,
     });
-  }, [issues]);
+  }, [posts]);
 
   return (
     <Layout>
@@ -99,14 +99,16 @@ const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
 };
 
 IndexPage.getInitialProps = async (ctx: next.NextContext) => {
-  const github = Github.createWithContext(ctx);
+  const api = Api.createWithContext(ctx);
 
-  const issues = await github.issues();
-  const recommend = await github.recommend();
-  const labels = await github.labels();
+  const [posts, recommend, labels] = await Promise.all([
+    api.posts(),
+    api.recommend(),
+    api.labels(),
+  ]);
 
   return {
-    issues,
+    posts,
     recommend,
     labels,
   };

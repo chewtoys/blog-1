@@ -5,20 +5,20 @@ import { Row, Col } from 'react-bootstrap';
 
 import Layout from '../components/Layout';
 import Post from '../components/Post';
-import Github from '../lib/github';
+import Api from '../lib/api';
 
 interface IPostsPageProps {
-  issue: IGithubIssue;
+  post: IGithubIssue;
 }
 
 const PostsPage: next.NextFunctionComponent<IPostsPageProps> = (props) => {
-  const { issue } = props;
+  const { post } = props;
 
   return (
     <Layout>
       <Row className="justify-content-md-center">
         <Col lg={10}>
-          <Post data={issue} />
+          <Post data={post} />
         </Col>
       </Row>
     </Layout>
@@ -27,11 +27,10 @@ const PostsPage: next.NextFunctionComponent<IPostsPageProps> = (props) => {
 
 PostsPage.getInitialProps = async (ctx: next.NextContext) => {
   const id = _.toNumber(ctx.query.id);
-  const github = Github.createWithContext(ctx);
-  const issue = await github.issue(id);
+  const post = await Api.createWithContext(ctx).post(id);
 
   return {
-    issue,
+    post,
   };
 };
 

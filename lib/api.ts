@@ -2,7 +2,7 @@ import * as next from 'next';
 import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import _ from 'lodash/fp';
 
-class Github {
+class Api {
   static createWithContext(ctx?: next.NextContext) {
     const config: AxiosRequestConfig = {};
     if (ctx && ctx.req) {
@@ -15,7 +15,7 @@ class Github {
     }
 
     console.log(config);
-    return new Github(config);
+    return new Api(config);
   }
 
   private request: AxiosInstance;
@@ -24,29 +24,27 @@ class Github {
     this.request = axios.create(config);
   }
 
-  async issues(cursor?: string) {
-    const params = _.pickBy(_.identity, {
-      cursor,
-    });
-    const { data } = await this.request.get('/api/github/issues', { params });
+  async posts(cursor?: string) {
+    const params = _.pickBy(_.identity, { cursor });
+    const { data } = await this.request.get('/api/posts', { params });
     return data;
   }
 
   async recommend() {
-    const { data } = await this.request.get('/api/github/recommend');
+    const { data } = await this.request.get('/api/recommend');
     return data;
   }
 
   async labels() {
-    const { data } = await this.request.get('/api/github/labels');
+    const { data } = await this.request.get('/api/labels');
     return data;
   }
 
-  async issue(id: number) {
+  async post(id: number) {
     const params = { id };
-    const { data } = await this.request.get('/api/github/issue', { params });
+    const { data } = await this.request.get('/api/post', { params });
     return data;
   }
 }
 
-export default Github;
+export default Api;

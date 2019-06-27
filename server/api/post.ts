@@ -1,15 +1,9 @@
 import assert from 'assert';
 import { NowRequest, NowResponse } from '@now/node';
-import octokit from '@octokit/graphql';
 import _ from 'lodash/fp';
 
-import { owner, repo } from '../../../config.json';
-
-const graphql = octokit.defaults({
-  headers: {
-    authorization: `token ${process.env.TOKEN}`,
-  },
-});
+import octokit from '../common/octokit';
+import { owner, repo } from '../../config.json';
 
 const query = `
 query ($owner: String!, $repo: String!, $number: Int!) {
@@ -35,7 +29,7 @@ export default async (req: NowRequest, res: NowResponse) => {
   const id = _.toNumber(req.query.id);
   assert(id, 'id must be a number');
 
-  const data = await graphql(query, {
+  const data = await octokit(query, {
     owner,
     repo,
     number: id,

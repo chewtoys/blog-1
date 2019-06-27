@@ -1,14 +1,8 @@
 import { NowRequest, NowResponse } from '@now/node';
-import octokit from '@octokit/graphql';
 import _ from 'lodash/fp';
 
-import { owner, repo, perPage } from '../../../config.json';
-
-const graphql = octokit.defaults({
-  headers: {
-    authorization: `token ${process.env.TOKEN}`,
-  },
-});
+import octokit from '../common/octokit';
+import { owner, repo, perPage } from '../../config.json';
 
 const query = `
 query ($owner: String!, $repo: String!, $after: String) {
@@ -45,7 +39,7 @@ query ($owner: String!, $repo: String!, $after: String) {
 export default async (req: NowRequest, res: NowResponse) => {
   const after = _.toString(req.query.cursor) || null;
 
-  const data = await graphql(query, {
+  const data = await octokit(query, {
     owner,
     repo,
     after,

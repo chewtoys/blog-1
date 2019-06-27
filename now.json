@@ -9,10 +9,11 @@
     { "src": "/server/api/**/*.ts", "use": "@now/node" }
   ],
   "routes": [
-    { "src": "/api/github/issues", "dest": "server/api/github/issues.ts" },
-    { "src": "/api/github/recommend", "dest": "server/api/github/recommend.ts" },
-    { "src": "/api/github/labels", "dest": "server/api/github/labels.ts" },
-    { "src": "/api/github/issue", "dest": "server/api/github/issue.ts" },
+    { "src": "/api/post", "dest": "server/api/post.ts" },
+    { "src": "/api/posts", "dest": "server/api/posts.ts" },
+    { "src": "/api/recommend", "dest": "server/api/recommend.ts" },
+    { "src": "/api/labels", "dest": "server/api/labels.ts" },
+    { "src": "/api/archives", "dest": "server/api/archives.ts" },
 
     { "src": "/p/(?<id>[0-9]+)$", "dest": "/post?id=$id" },
     {

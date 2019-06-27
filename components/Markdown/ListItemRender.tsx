@@ -19,7 +19,6 @@ const Text = styled.span<ITextProps>`
 
 const ListItemRender: React.SFC<IListItemRenderProps> = (props) => {
   const { checked, children } = props;
-  console.log(props);
 
   return (
     <li>
