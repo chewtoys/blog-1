@@ -3,7 +3,7 @@ import _ from 'lodash/fp';
 
 import octokit from '../common/octokit';
 import { fixRealCreatedAt } from '../common/utils';
-import { owner, repo, perPage } from '../../config.json';
+import { owner, repo } from '../../config.json';
 
 const query = `
 query ($owner: String!, $repo: String!, $after: String) {
@@ -11,7 +11,7 @@ query ($owner: String!, $repo: String!, $after: String) {
     issues(
       orderBy: {field: CREATED_AT, direction: DESC},
       filterBy: { createdBy: $owner, states: OPEN },
-      first: ${perPage},
+      first: 10,
       after: $after
     ) {
       nodes {

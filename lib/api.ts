@@ -14,7 +14,6 @@ class Api {
       }
     }
 
-    console.log(config);
     return new Api(config);
   }
 
@@ -43,6 +42,12 @@ class Api {
   async post(id: number) {
     const params = { id };
     const { data } = await this.request.get('/api/post', { params });
+    return data;
+  }
+
+  async archives({ cursor, label }: { cursor?: string; label?: string | undefined }) {
+    const params = _.pickBy(_.identity, { cursor, label });
+    const { data } = await this.request.get('/api/archives', { params });
     return data;
   }
 }

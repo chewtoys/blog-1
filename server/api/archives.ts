@@ -6,12 +6,13 @@ import { fixRealCreatedAt } from '../common/utils';
 import { owner, repo } from '../../config.json';
 
 const query = `
-query ($owner: String!, $repo: String!, $after: String) {
+query ($owner: String!, $repo: String!, $after: String, $labels: [String!]) {
   repository(owner: $owner, name: $repo) {
     issues(
       orderBy: {field: CREATED_AT, direction: DESC},
       filterBy: { createdBy: $owner, states: OPEN },
-      first: 100,
+      labels: $labels,
+      first: 30,
       after: $after
     ) {
       nodes {
@@ -33,11 +34,13 @@ query ($owner: String!, $repo: String!, $after: String) {
 
 export default async (req: NowRequest, res: NowResponse) => {
   const after = _.toString(req.query.cursor) || null;
+  const label = _.toString(req.query.label) || '';
 
   const data = await octokit(query, {
     owner,
     repo,
     after,
+    labels: label ? [label] : null,
   });
   const { issues } = data.repository;
   issues.nodes = _.map(fixRealCreatedAt, issues.nodes);

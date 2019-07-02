@@ -2,13 +2,12 @@ import * as React from 'react';
 import * as next from 'next';
 import { Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
-import useWindowScroll from 'react-use/lib/useWindowScroll';
-import useDebounce from 'react-use/lib/useDebounce';
 
 import Layout from '../components/Layout';
 import Post from '../components/Post';
 import Sidebar from '../components/Sidebar';
 import Loading from '../components/Loading';
+import useLoadMore from '../hooks/useLoadMore';
 import Api from '../lib/api';
 
 interface IIndexPageProps {
@@ -17,61 +16,15 @@ interface IIndexPageProps {
   labels: IGithubLabels;
 }
 
-enum ActionTypes {
-  LOADING,
-  LOADED,
-  RESET,
-}
-
-const reducer = (state: IGithubLabels, action: any) => {
-  const { type, payload } = action;
-  switch (type) {
-    case ActionTypes.LOADED:
-      return {
-        nodes: [...state.nodes, ...payload.nodes],
-        pageInfo: payload.pageInfo,
-      };
-    case ActionTypes.RESET:
-      return { ...state };
-    default:
-      return state;
-  }
-};
-
 const PostList = styled.div`
   max-width: 650px;
 `;
 
 const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
   const { posts, recommend, labels } = props;
-  const [state, dispatch] = React.useReducer(reducer, posts);
-  const { nodes, pageInfo } = state as IGithubIssues;
-
-  const { y } = useWindowScroll();
-  useDebounce(
-    () => {
-      const { scrollHeight, clientHeight } = window.document.documentElement;
-      if (y === scrollHeight - clientHeight) {
-        Api.createWithContext()
-          .posts(pageInfo.endCursor)
-          .then((nextPosts: IGithubIssues) => {
-            dispatch({
-              type: ActionTypes.LOADED,
-              payload: nextPosts,
-            });
-          });
-      }
-    },
-    500,
-    [y],
-  );
-
-  React.useEffect(() => {
-    dispatch({
-      type: ActionTypes.RESET,
-      payload: posts,
-    });
-  }, [posts]);
+  const { nodes, pageInfo } = useLoadMore(posts, ({ endCursor }) => {
+    return Api.createWithContext().posts(endCursor);
+  });
 
   return (
     <Layout>

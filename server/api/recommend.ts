@@ -3,7 +3,7 @@ import _ from 'lodash/fp';
 
 import octokit from '../common/octokit';
 import { fixRealCreatedAt } from '../common/utils';
-import { owner, repo, recommend } from '../../config.json';
+import { owner, repo } from '../../config.json';
 
 const query = `
 query ($owner: String!, $repo: String!) {
@@ -11,7 +11,7 @@ query ($owner: String!, $repo: String!) {
     issues(
       orderBy: {field: COMMENTS, direction: DESC},
       filterBy: { createdBy: $owner, states: OPEN },
-      first: ${recommend},
+      first: 5,
     ) {
       nodes {
         number
