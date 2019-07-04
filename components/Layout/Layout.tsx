@@ -12,6 +12,7 @@ import { title, description, icon, themeColor } from '../../config.json';
 const Main = styled.main`
   margin-top: 70px;
   padding-bottom: 30px;
+  overflow: hidden;
 `;
 
 const Layout: React.SFC = (props) => {
