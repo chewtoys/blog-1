@@ -3,7 +3,8 @@ import useSetState from 'react-use/lib/useSetState';
 import useWindowScroll from 'react-use/lib/useWindowScroll';
 import styled from 'styled-components';
 
-import Logo from '../Logo';
+import Logo from './Logo';
+import Navbar from './Navbar';
 import Container from '../Container';
 
 interface IHeaderProps {
@@ -49,6 +50,7 @@ const Header: React.SFC<IHeaderProps> = (props) => {
     <Wrapper height={60} visible={visible}>
       <Container>
         <Logo />
+        <Navbar />
       </Container>
     </Wrapper>
   );

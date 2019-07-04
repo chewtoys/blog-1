@@ -9,5 +9,16 @@
   "since": 2015,
   "icon": "/static/icon.png",
 
+  "menu": [
+    {
+      "name": "归档",
+      "url": "/archives"
+    },
+    {
+      "name": "关于",
+      "url": "/about"
+    }
+  ],
+
   "themeColor": "#FA7268"
 }
