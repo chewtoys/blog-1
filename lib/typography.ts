@@ -16,10 +16,11 @@ Wordpress2016.bodyFontFamily = [
 (Wordpress2016 as TypographyOptions).overrideThemeStyles = ({ rhythm }) => ({
   body: {
     color: '#2e3444',
+    fontWeight: '300',
   },
   'h1, h2, h3, h4, h5, h6': {
     fontFamily: Wordpress2016.headerFontFamily.join(','),
-    fontWeight: '400',
+    fontWeight: '300',
     marginTop: '1.75rem',
     marginBottom: '1.25rem',
   },
