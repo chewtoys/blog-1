@@ -16,7 +16,7 @@ Wordpress2016.bodyFontFamily = [
 (Wordpress2016 as TypographyOptions).overrideThemeStyles = ({ rhythm }) => ({
   body: {
     color: '#2e3444',
-    fontWeight: '300',
+    letterSpacing: '0.01em',
   },
   'h1, h2, h3, h4, h5, h6': {
     fontFamily: Wordpress2016.headerFontFamily.join(','),
