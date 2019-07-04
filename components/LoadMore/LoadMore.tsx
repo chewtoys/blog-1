@@ -25,6 +25,7 @@ const Button = styled.button`
   width: 100%;
   display: block;
   color: ${themeColor};
+  background-color: #fff;
   border: none;
   outline: none;
   padding: 10px;

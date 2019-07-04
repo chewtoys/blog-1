@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap-grid.css';
 
 import Header from '../Header';
 import Container from '../Container';
+import Footer from '../Footer';
 import { title, description, icon, themeColor } from '../../config.json';
 
 const Main = styled.main`
@@ -28,6 +29,7 @@ const Layout: React.SFC = (props) => {
       <Main>
         <Container>{props.children}</Container>
       </Main>
+      <Footer />
     </div>
   );
 };

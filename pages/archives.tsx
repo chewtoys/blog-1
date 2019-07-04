@@ -35,7 +35,7 @@ const Label = styled.span<ILabelProps>`
   font-size: 0.85rem;
   margin-right: 10px;
   margin-top: 10px;
-  padding: 5px;
+  padding: 7px;
   cursor: pointer;
   color: ${(props) => props.active ? themeColor : 'inherit'};
   border: 1px solid ${(props) => props.active ? themeColor : '#e9e9e9'};
