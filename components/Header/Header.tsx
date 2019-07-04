@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 import Logo from '../Logo';
 import Container from '../Container';
-// import useWindowScroll from '../../hooks/useWindowScroll';
 
 interface IHeaderProps {
   height?: number;

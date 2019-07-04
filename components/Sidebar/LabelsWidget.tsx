@@ -1,5 +1,5 @@
 import * as React from 'react';
-// import Link from 'next/link';
+import Link from 'next/link';
 import _ from 'lodash/fp';
 import styled from 'styled-components';
 
@@ -70,9 +70,11 @@ const LabelsWidget: React.SFC<ILabelsWidgetProps> = (props) => {
           const labelSize = getLabelSizeByCount(issues.totalCount);
 
           return (
-            <Label key={name} size={labelSize}>
-              {name}
-            </Label>
+            <Link href={`/archives?label=${name}`}>
+              <Label key={name} size={labelSize}>
+                {name}
+              </Label>
+            </Link>
           );
         })}
       </Labels>

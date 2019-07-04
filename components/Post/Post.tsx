@@ -36,7 +36,7 @@ const DateTime = styled.time`
   margin-right: 10px;
 `;
 
-const TagLink = styled.a`
+const Label = styled.a`
   box-shadow: none;
   margin-right: 7px;
   cursor: pointer;
@@ -68,7 +68,9 @@ const Post: React.SFC<IPostProps> = (props) => {
         <Meta>
           <DateTime>{format(createdAt, 'YYYY年MM月DD日')}</DateTime>
           {labels.nodes.map(({ name }) => (
-            <TagLink key={name}>#{name}</TagLink>
+            <Link href={`/archives?label=${name}`}>
+              <Label key={name}>#{name}</Label>
+            </Link>
           ))}
         </Meta>
       </div>
