@@ -7,7 +7,7 @@ import { Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
 import Layout from '../components/Layout';
-import Loading from '../components/Loading';
+import LoadMore from '../components/LoadMore';
 import Sidebar from '../components/Sidebar';
 import useLoadMore from '../hooks/useLoadMore';
 import Api from '../lib/api';
@@ -22,19 +22,24 @@ interface IArchivesPageProps {
 }
 
 interface ILabelProps {
-  highlight?: boolean;
+  active?: boolean;
 }
 
 const Block = styled.div`
   margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 `;
 
 const Label = styled.span<ILabelProps>`
   display: inline-block;
+  font-size: 0.85rem;
   margin-right: 10px;
   margin-top: 10px;
+  padding: 5px;
   cursor: pointer;
-  color: ${(props) => props.highlight ? themeColor : 'inherit'};
+  color: ${(props) => props.active ? themeColor : 'inherit'};
+  border: 1px solid ${(props) => props.active ? themeColor : '#e9e9e9'};
+  border-radius: 3px;
 
   &::before {
     content: '#';
@@ -75,7 +80,7 @@ const groupByCreatedYear = _.groupBy(
 
 const ArchivesPage: next.NextFunctionComponent<IArchivesPageProps> = (props) => {
   const { archives, recommend, labels, label } = props;
-  const { nodes, pageInfo } = useLoadMore(archives, ({ endCursor }) => {
+  const [{ nodes, pageInfo, loading }, loadMore] = useLoadMore(archives, ({ endCursor }) => {
     return Api.createWithContext().archives({
       cursor: endCursor,
       label,
@@ -92,9 +97,11 @@ const ArchivesPage: next.NextFunctionComponent<IArchivesPageProps> = (props) => 
           <Block>
             {labels.nodes.map((node) => {
               const { name } = node;
+              const active = label === name;
+              const href = active ? '/archives' : `/archives?label=${name}`;
               return (
-                <Link key={name} href={`/archives?label=${name}`}>
-                  <Label highlight={label === name}>{name}</Label>
+                <Link key={name} href={href}>
+                  <Label active={active}>{name}</Label>
                 </Link>
               );
             })}
@@ -121,10 +128,10 @@ const ArchivesPage: next.NextFunctionComponent<IArchivesPageProps> = (props) => 
               })}
             </Block>
           ))}
-          <Loading visiable={pageInfo.hasNextPage} />
+          <LoadMore loading={loading} visiable={pageInfo.hasNextPage} onClick={loadMore} />
         </Col>
         <Col lg={4}>
-          <Sidebar dataSource={{ recommend, labels }} />
+          <Sidebar dataSource={{ recommend }} />
         </Col>
       </Row>
     </Layout>

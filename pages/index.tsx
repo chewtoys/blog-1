@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import Layout from '../components/Layout';
 import Post from '../components/Post';
 import Sidebar from '../components/Sidebar';
-import Loading from '../components/Loading';
+import LoadMore from '../components/LoadMore';
 import useLoadMore from '../hooks/useLoadMore';
 import Api from '../lib/api';
 
@@ -16,27 +16,25 @@ interface IIndexPageProps {
   labels: IGithubLabels;
 }
 
-const PostList = styled.div`
+const ColWithMaxWidth = styled(Col)`
   max-width: 650px;
 `;
 
 const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
   const { posts, recommend, labels } = props;
-  const { nodes, pageInfo } = useLoadMore(posts, ({ endCursor }) => {
+  const [{ nodes, pageInfo, loading }, loadMore] = useLoadMore(posts, ({ endCursor }) => {
     return Api.createWithContext().posts(endCursor);
   });
 
   return (
     <Layout>
       <Row>
-        <Col lg={8}>
-          <PostList>
-            {nodes.map((node: IGithubIssue) => (
-              <Post key={node.id} data={node} excerpt />
-            ))}
-            <Loading visiable={pageInfo.hasNextPage} />
-          </PostList>
-        </Col>
+        <ColWithMaxWidth lg={8}>
+          {nodes.map((node: IGithubIssue) => (
+            <Post key={node.id} data={node} excerpt />
+          ))}
+          <LoadMore loading={loading} visiable={pageInfo.hasNextPage} onClick={loadMore} />
+        </ColWithMaxWidth>
         <Col lg={4}>
           <Sidebar dataSource={{ recommend, labels }} />
         </Col>
