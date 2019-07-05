@@ -8,17 +8,17 @@
   "siteUrl": "https://www.ahonn.me",
   "since": 2015,
   "icon": "/static/icon.png",
+  "themeColor": "#FA7268",
 
   "menu": [
     {
       "name": "归档",
       "url": "/archives"
-    },
-    {
-      "name": "关于",
-      "url": "/about"
     }
   ],
 
-  "themeColor": "#FA7268"
+  "gitalk": {
+    "clientID": "af04686863d8fe77f3b3",
+    "clientSecret": "908c476e842511483d95125bf57c9669db71fe51"
+  }
 }

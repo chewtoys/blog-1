@@ -116,7 +116,7 @@ const ArchivesPage: next.NextFunctionComponent<IArchivesPageProps> = (props) => 
 
                 const linkProps = {
                   href: `/post?id=${id}`,
-                  as: `/p/${id}`,
+                  as: `/post/${id}`,
                   prefetch: true,
                 };
                 return (

@@ -15,11 +15,11 @@
     { "src": "/api/labels", "dest": "server/api/labels.ts" },
     { "src": "/api/archives", "dest": "server/api/archives.ts" },
 
-    { "src": "/p/(?<id>[0-9]+)$", "dest": "/post?id=$id" },
+    { "src": "/post/(?<id>[0-9]+)$", "dest": "/post?id=$id" },
     {
       "src": "/posts/[0-9]{8}(?<id>[0-9]+)$",
       "status": 301,
-      "headers": { "Location": "/p/$id" }
+      "headers": { "Location": "/post/$id" }
     }
   ]
 }

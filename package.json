@@ -13,6 +13,7 @@
     "@octokit/graphql": "^2.1.2",
     "bootstrap": "^4.3.1",
     "date-fns": "^1.30.1",
+    "gitalk": "^1.5.0",
     "highlight.js": "^9.15.8",
     "lodash": "^4.17.11",
     "next": "^8.1.0",
@@ -26,6 +27,7 @@
     "react-spinners": "^0.5.4",
     "react-typography": "^0.16.19",
     "react-use": "^9.6.0",
+    "remove-markdown": "^0.3.0",
     "styled-components": "^4.3.1",
     "typography": "^0.16.19",
     "typography-theme-wordpress-2016": "^0.16.19"
@@ -40,6 +42,7 @@
     "@types/next": "^8.0.5",
     "@types/react": "^16.8.19",
     "@types/react-highlight": "^0.12.1",
+    "@types/remove-markdown": "^0.1.1",
     "@types/styled-components": "^4.1.16",
     "@types/typography": "^0.16.2",
     "@zeit/next-css": "^1.0.1",

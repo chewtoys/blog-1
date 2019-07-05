@@ -6,6 +6,7 @@ import _ from 'lodash/fp';
 
 import Card from '../Card';
 import Markdown from '../Markdown';
+import Comment from '../Comment';
 import { themeColor } from '../../config.json';
 
 interface IPostProps {
@@ -53,7 +54,7 @@ const Post: React.SFC<IPostProps> = (props) => {
 
   const linkProps = {
     href: `/post?id=${id}`,
-    as: `/p/${id}`,
+    as: `/post/${id}`,
     prefetch: true,
   };
 
@@ -61,9 +62,7 @@ const Post: React.SFC<IPostProps> = (props) => {
     <Card>
       <div>
         <Link {...linkProps}>
-          <Title excerpt={excerpt}>
-            {title}
-          </Title>
+          <Title excerpt={excerpt}>{title}</Title>
         </Link>
         <Meta>
           <DateTime>{format(createdAt, 'YYYY年MM月DD日')}</DateTime>
@@ -75,10 +74,12 @@ const Post: React.SFC<IPostProps> = (props) => {
         </Meta>
       </div>
       <Markdown source={body} excerpt={excerpt} />
-      {excerpt && (
+      {excerpt ? (
         <Link {...linkProps}>
           <ReadMore>阅读更多...</ReadMore>
         </Link>
+      ) : (
+        <Comment id={id} />
       )}
     </Card>
   );
