@@ -3,14 +3,30 @@ import { getYear } from 'date-fns';
 import styled from 'styled-components';
 
 import Container from '../Container';
-import { author, since } from '../../config.json';
+import Logo from '../Logo';
+import { author, since, themeColor } from '../../config.json';
 
 const Wrapper = styled.footer`
-  padding: 30px 0;
-  text-align: center;
-  color: #8C8C8C;
-  font-size: 0.9rem;
+  padding: 30px 0 40px;
   background-color: rgba(0, 0, 0, 0.03);
+`;
+
+const Copyright = styled.p`
+  margin: 0;
+  padding-left: 5px;
+  color: #8c8c8c;
+  font-size: 0.85rem;
+`;
+
+const Link = styled.a`
+  color: inherit;
+  border-bottom: 1px dotted;
+  box-shadow: none;
+
+  &:hover {
+    color: ${themeColor};
+    border-bottom: none;
+  }
 `;
 
 const Footer: React.SFC = () => {
@@ -19,9 +35,12 @@ const Footer: React.SFC = () => {
   return (
     <Wrapper>
       <Container>
-        <span>
-          Copyright &copy; {since} - {currentYear} @{author}
-        </span>
+        <Logo />
+        <Copyright>
+          &copy; {since} - {currentYear} {author} Power By{' '}
+          <Link href="https://nextjs.org/">Next.js</Link> &{' '}
+          <Link href="https://zeit.co/now">Now</Link>
+        </Copyright>
       </Container>
     </Wrapper>
   );

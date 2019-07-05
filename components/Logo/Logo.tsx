@@ -4,9 +4,17 @@ import styled from 'styled-components';
 
 import config from '../../config.json';
 
-const Wrapper = styled.div`
+interface ILogoProps {
+  padding?: string;
+}
+
+interface IWrapperProps {
+  padding: string;
+}
+
+const Wrapper = styled.div<IWrapperProps>`
   display: inline-block;
-  padding: 18px 0;
+  padding: ${(props) => props.padding};
   cursor: pointer;
 `;
 
@@ -27,9 +35,11 @@ const Title = styled.h1`
   text-transform: uppercase;
 `;
 
-const Logo: React.SFC = () => {
+const Logo: React.SFC<ILogoProps> = (props) => {
+  const { padding = '0' } = props;
+
   return (
-    <Wrapper>
+    <Wrapper padding={padding}>
       <Link prefetch href="/">
         <Title>
           <Icon src={config.icon} alt={config.title} />
