@@ -33,6 +33,9 @@ Wordpress2016.bodyFontFamily = [
     lineHeight: rhythm(1),
     marginBottom: rhythm(1 / 2),
   },
+  blockquote: {
+    fontSize: '1rem',
+  },
   ul: {
     listStyle: 'square',
   },

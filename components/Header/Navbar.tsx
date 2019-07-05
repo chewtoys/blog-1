@@ -28,7 +28,7 @@ const Navbar: React.SFC = () => {
     <Nav>
       <List>
         {menu.map(({ name, url }) => (
-          <Link href={url}>
+          <Link href={url} key={name}>
             <Item>{name}</Item>
           </Link>
         ))}

@@ -67,7 +67,7 @@ const Post: React.SFC<IPostProps> = (props) => {
         <Meta>
           <DateTime>{format(createdAt, 'YYYY年MM月DD日')}</DateTime>
           {labels.nodes.map(({ name }) => (
-            <Link href={`/archives?label=${name}`}>
+            <Link href={`/archives?label=${name}`} key={name}>
               <Label key={name}>#{name}</Label>
             </Link>
           ))}

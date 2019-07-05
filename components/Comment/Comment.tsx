@@ -33,6 +33,10 @@ const GitalkContainer = styled.div`
     }
     & .gt-comment-content {
       background-color: #fff;
+
+      &:hover {
+        box-shadow: none;
+      }
     }
     & .email-hidden-toggle {
       display: none;
