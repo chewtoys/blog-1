@@ -37,8 +37,8 @@ const Label = styled.span<ILabelProps>`
   margin-top: 10px;
   padding: 7px;
   cursor: pointer;
-  color: ${(props) => props.active ? themeColor : 'inherit'};
-  border: 1px solid ${(props) => props.active ? themeColor : '#e9e9e9'};
+  color: ${(props) => (props.active ? themeColor : 'inherit')};
+  border: 1px solid ${(props) => (props.active ? themeColor : '#e9e9e9')};
   border-radius: 3px;
 
   &::before {
@@ -80,12 +80,14 @@ const groupByCreatedYear = _.groupBy(
 
 const ArchivesPage: next.NextFunctionComponent<IArchivesPageProps> = (props) => {
   const { archives, recommend, labels, label } = props;
-  const [{ nodes, pageInfo, loading }, loadMore] = useLoadMore(archives, ({ endCursor }) => {
-    return Api.createWithContext().archives({
+
+  const api: Api = Api.createWithContext();
+  const loadCallback = ({ endCursor }: IGithubPageInfo) =>
+    api.archives({
       cursor: endCursor,
       label,
     });
-  });
+  const [{ nodes, pageInfo, loading }, loadHandler] = useLoadMore(archives, loadCallback);
 
   const archiveGroups = groupByCreatedYear(nodes);
   const years = _.keys(archiveGroups).sort((a, b) => +b - +a);
@@ -128,7 +130,7 @@ const ArchivesPage: next.NextFunctionComponent<IArchivesPageProps> = (props) => 
               })}
             </Block>
           ))}
-          <LoadMore loading={loading} visiable={pageInfo.hasNextPage} onClick={loadMore} />
+          <LoadMore loading={loading} visiable={pageInfo.hasNextPage} onClick={loadHandler} />
         </Col>
         <Col lg={4}>
           <Sidebar dataSource={{ recommend }} />

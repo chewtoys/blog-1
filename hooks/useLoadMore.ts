@@ -1,7 +1,7 @@
 import * as React from 'react';
 import _ from 'lodash/fp';
 
-type LoadMoreFunction = (pageInfo: IGithubPageInfo) => Promise<IGithubIssues>;
+type LoadCallback = (pageInfo: IGithubPageInfo) => Promise<IGithubIssues>;
 
 interface IReducerState extends IGithubIssues {
   loading: boolean;
@@ -46,15 +46,15 @@ const reducer = (state: IReducerState, action: IReducerAction) => {
 
 const useLoadMore = (
   initState: IGithubIssues,
-  loadFn: LoadMoreFunction,
+  loadCallback: LoadCallback,
 ): [IReducerState, () => void] => {
   // @ts-ignore
   const [state, dispatch] = React.useReducer(reducer, initState, init);
   const { pageInfo } = state;
 
-  const loadMore = () => {
+  const loadHandler = () => {
     dispatch({ type: ActionTypes.LOADING });
-    loadFn(pageInfo).then((more: IGithubIssues) => {
+    loadCallback(pageInfo).then((more: IGithubIssues) => {
       dispatch({
         type: ActionTypes.LOADED,
         payload: more,
@@ -69,7 +69,7 @@ const useLoadMore = (
     });
   }, [initState]);
 
-  return [state, loadMore];
+  return [state, loadHandler];
 };
 
 export default useLoadMore;
