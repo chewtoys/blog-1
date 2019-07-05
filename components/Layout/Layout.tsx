@@ -8,6 +8,7 @@ import SEO from '../SEO';
 import Header from '../Header';
 import Container from '../Container';
 import Footer from '../Footer';
+import analytics from '../../lib/analytics';
 
 const Main = styled.main`
   margin-top: 70px;
@@ -16,6 +17,11 @@ const Main = styled.main`
 `;
 
 const Layout: React.SFC = (props) => {
+  React.useEffect(() => {
+    analytics.initial();
+    analytics.pageView();
+  }, []);
+
   return (
     <div>
       <SEO />

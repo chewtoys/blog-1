@@ -70,7 +70,7 @@ const LabelsWidget: React.SFC<ILabelsWidgetProps> = (props) => {
           const labelSize = getLabelSizeByCount(issues.totalCount);
 
           return (
-            <Link href={`/archives?label=${name}`}>
+            <Link href={`/archives?label=${name}`} key={name}>
               <Label key={name} size={labelSize}>
                 {name}
               </Label>
