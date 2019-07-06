@@ -36,7 +36,7 @@ const Header: React.SFC<IHeaderProps> = (props) => {
   const [visible, setVisible] = React.useState(true);
 
   const { y } = useWindowScroll();
-  React.useLayoutEffect(() => {
+  React.useEffect(() => {
     const outrideHeader = y < height;
     const isScrollUp = y < lastY.current;
 

@@ -17,8 +17,12 @@ const Wrapper = styled.div`
   text-align: center;
 `;
 
-const Loader = styled(BeatLoader)`
-  padding-top: 20px;
+const Loader = styled(({ className, ...props }) => (
+  <div className={className}>
+    <BeatLoader {...props} />
+  </div>
+))`
+  padding-top: 10px;
 `;
 
 const Button = styled.button`
@@ -29,8 +33,15 @@ const Button = styled.button`
   border: none;
   outline: none;
   padding: 10px;
-  border: 1px solid #e1e4e8;
-  border-radius: 3px;
+  border: 1px solid ${themeColor};
+  border-radius: 5px;
+  transition: all ease-out 0.3s;
+  cursor: pointer;
+
+  &:hover {
+    color: #fff;
+    background-color: ${themeColor};
+  }
 `;
 
 const LoadMore: React.SFC<ILoadingProps> = (props) => {
