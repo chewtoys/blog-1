@@ -125,7 +125,7 @@ const ArchivesPage: next.NextFunctionComponent<IArchivesPageProps> = (props) => 
               );
             })}
           </Labels>
-          {label && <h2>标签: {label}</h2>}
+          {label && <h3>标签: {label}</h3>}
           {years.map((year: string) => (
             <Block key={year}>
               <Year>{year}</Year>

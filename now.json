@@ -6,7 +6,7 @@
   },
   "builds": [
     { "src": "next.config.js", "use": "@now/next" },
-    { "src": "/server/api/**/*.ts", "use": "@now/node" }
+    { "src": "/server/**/*.ts", "use": "@now/node" }
   ],
   "routes": [
     { "src": "/api/post", "dest": "server/api/post.ts" },
@@ -14,6 +14,8 @@
     { "src": "/api/recommend", "dest": "server/api/recommend.ts" },
     { "src": "/api/labels", "dest": "server/api/labels.ts" },
     { "src": "/api/archives", "dest": "server/api/archives.ts" },
+
+    { "src": "/sitemap.xml", "dest": "server/sitemap.ts" },
 
     { "src": "/post/(?<id>[0-9]+)$", "dest": "/post?id=$id" },
     {
