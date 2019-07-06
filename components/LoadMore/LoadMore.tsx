@@ -37,6 +37,7 @@ const Button = styled.button`
   border-radius: 5px;
   transition: all ease-out 0.3s;
   cursor: pointer;
+  font-size: 0.9rem;
 
   &:hover {
     color: #fff;

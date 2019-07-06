@@ -12,14 +12,13 @@ interface IHeaderProps {
 
 interface IWrapperProps {
   readonly visible: boolean;
-  readonly height: number;
 }
 
 // tslint:disable-next-line
 const Wrapper = styled.header<IWrapperProps>`
   position: fixed;
   top: 0;
-  height: ${(props) => `${props.height}px`};
+  height: 60px;
   width: 100%;
   opacity: ${(props) => (props.visible ? 1 : 0)};
   background-color: #fff;
@@ -29,23 +28,22 @@ const Wrapper = styled.header<IWrapperProps>`
   z-index: 666;
 `;
 
-const Header: React.SFC<IHeaderProps> = (props) => {
-  const { height = 60 } = props;
-
+const Header: React.SFC<IHeaderProps> = (_, ref) => {
   const lastY = React.useRef(0);
   const [visible, setVisible] = React.useState(true);
 
   const { y } = useWindowScroll();
   React.useEffect(() => {
+    const height = ref.current.offsetHeight;
     const outrideHeader = y < height;
     const isScrollUp = y < lastY.current;
 
     setVisible(outrideHeader || isScrollUp);
     lastY.current = y;
-  }, [y, height]);
+  }, [y, ref]);
 
   return (
-    <Wrapper height={60} visible={visible}>
+    <Wrapper visible={visible} ref={ref}>
       <Container>
         <Logo padding="18px 0" />
         <Navbar />
@@ -54,4 +52,4 @@ const Header: React.SFC<IHeaderProps> = (props) => {
   );
 };
 
-export default Header;
+export default React.forwardRef(Header);

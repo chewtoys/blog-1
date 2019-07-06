@@ -29,11 +29,11 @@ const Link = styled.a`
   }
 `;
 
-const Footer: React.SFC = () => {
+const Footer: React.SFC = (_, ref) => {
   const currentYear = getYear(Date.now());
 
   return (
-    <Wrapper>
+    <Wrapper ref={ref}>
       <Container>
         <Logo />
         <Copyright>
@@ -46,4 +46,4 @@ const Footer: React.SFC = () => {
   );
 };
 
-export default Footer;
+export default React.forwardRef(Footer);

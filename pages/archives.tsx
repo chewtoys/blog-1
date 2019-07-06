@@ -30,6 +30,15 @@ const Block = styled.div`
   margin-bottom: 1.5rem;
 `;
 
+const Labels = styled.div`
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+
+  @media (max-width: 576px) {
+    display: none;
+  }
+`;
+
 const Label = styled.span<ILabelProps>`
   display: inline-block;
   font-size: 0.85rem;
@@ -51,7 +60,7 @@ const Label = styled.span<ILabelProps>`
   }
 `;
 
-const Year = styled.h2`
+const Year = styled.h3`
   margin-top: 0;
   margin-bottom: 1rem;
 `;
@@ -64,11 +73,19 @@ const Item = styled.div`
 const DateTime = styled.time`
   color: #7a7a7a;
   margin-right: 10px;
+
+  @media (max-width: 576px) {
+    margin-right: 0;
+    font-size: 0.75rem;
+  }
 `;
 
 const Title = styled.span`
-  font-size: 1rem;
   color: ${themeColor};
+
+  @media (max-width: 576px) {
+    display: block;
+  }
 `;
 
 const groupByCreatedYear = _.groupBy(
@@ -96,7 +113,7 @@ const ArchivesPage: next.NextFunctionComponent<IArchivesPageProps> = (props) => 
     <Layout>
       <Row>
         <Col lg={8}>
-          <Block>
+          <Labels>
             {labels.nodes.map((node) => {
               const { name } = node;
               const active = label === name;
@@ -107,7 +124,8 @@ const ArchivesPage: next.NextFunctionComponent<IArchivesPageProps> = (props) => 
                 </Link>
               );
             })}
-          </Block>
+          </Labels>
+          {label && <h2>标签: {label}</h2>}
           {years.map((year: string) => (
             <Block key={year}>
               <Year>{year}</Year>
