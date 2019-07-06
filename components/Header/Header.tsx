@@ -1,10 +1,11 @@
 import * as React from 'react';
-import useWindowScroll from 'react-use/lib/useWindowScroll';
 import styled from 'styled-components';
+import useWindowScroll from 'react-use/lib/useWindowScroll';
 
 import Logo from '../Logo';
 import Navbar from './Navbar';
 import Container from '../Container';
+import useRouteChange from '../../hooks/useRouteChange';
 
 interface IHeaderProps {
   height?: number;
@@ -31,6 +32,8 @@ const Wrapper = styled.header<IWrapperProps>`
 const Header: React.SFC<IHeaderProps> = (_, ref) => {
   const lastY = React.useRef(0);
   const [visible, setVisible] = React.useState(true);
+
+  useRouteChange(() => lastY.current = 0);
 
   const { y } = useWindowScroll();
   React.useEffect(() => {
