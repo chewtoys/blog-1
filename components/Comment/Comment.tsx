@@ -44,6 +44,9 @@ const GitalkContainer = styled.div`
     & .email-hidden-reply {
       display: none;
     }
+    & .gt-popup .gt-action.is--active:before {
+      background: ${themeColor};
+    }
   }
 `;
 
