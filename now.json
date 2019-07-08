@@ -16,6 +16,7 @@
     { "src": "/api/archives", "dest": "server/api/archives.ts" },
 
     { "src": "/sitemap.xml", "dest": "server/sitemap.ts" },
+    { "src": "/atom.xml", "dest": "server/feed.ts" },
 
     { "src": "/post/(?<id>[0-9]+)$", "dest": "/post?id=$id" },
     {

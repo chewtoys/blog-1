@@ -27,13 +27,11 @@ query ($owner: String!, $repo: String!, $after: String) {
 }
 `;
 
+// @ts-ignore
 export default async (req: NowRequest, res: NowResponse) => {
-  const after = _.toString(req.query.cursor) || null;
-
   const data = await octokit(query, {
     owner,
     repo,
-    after,
   });
   const { issues } = data.repository;
 
