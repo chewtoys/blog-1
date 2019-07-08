@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "blog",
+  "alias": "www.ahonn.me",
   "env": {
     "TOKEN": "@github-token"
   },
