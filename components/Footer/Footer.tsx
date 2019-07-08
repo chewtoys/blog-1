@@ -21,7 +21,7 @@ const Copyright = styled.p`
 const SitePV = styled.span`
   padding-left: 5px;
   color: #8c8c8c;
-  font-size: 0.75rem;
+  font-size: 0.8rem;
 `;
 
 const Count = styled.span`

@@ -30,7 +30,7 @@ const Title = styled.h1<ITitleProps>`
 const Meta = styled.div`
   margin-bottom: 1rem;
   color: #7a7a7a;
-  font-size: 13px;
+  font-size: 14px;
 `;
 
 const DateTime = styled.time`
@@ -85,7 +85,7 @@ const Post: React.SFC<IPostProps> = (props) => {
             ))}
           </Labels>
           {!excerpt && (
-            <PagePV>
+            <PagePV id="busuanzi_container_page_pv" style={{ display: 'none' }}>
               本文总阅读量 <span id="busuanzi_value_page_pv" /> 次
             </PagePV>
           )}
