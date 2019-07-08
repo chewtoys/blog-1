@@ -46,6 +46,7 @@ export default async (req: NowRequest, res: NowResponse) => {
     link: config.siteUrl,
     language: 'zh-cn',
     favicon: config.siteUrl + config.icon,
+    image: config.siteUrl + config.icon,
     copyright: `All rights reserved ${config.since}, ${config.author}`,
   });
 
