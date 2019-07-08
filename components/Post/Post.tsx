@@ -30,17 +30,28 @@ const Title = styled.h1<ITitleProps>`
 const Meta = styled.div`
   margin-bottom: 1rem;
   color: #7a7a7a;
-  font-size: 14px;
+  font-size: 13px;
 `;
 
 const DateTime = styled.time`
   margin-right: 10px;
 `;
 
+const Labels = styled.span`
+  margin-right: 10px;
+`;
+
+const PagePV = styled.span`
+  margin-right: 10px;
+`;
+
 const Label = styled.a`
   box-shadow: none;
-  margin-right: 7px;
   cursor: pointer;
+
+  & + & {
+    margin-left: 5px;
+  }
 `;
 
 const ReadMore = styled.span`
@@ -66,11 +77,18 @@ const Post: React.SFC<IPostProps> = (props) => {
         </Link>
         <Meta>
           <DateTime>{format(createdAt, 'YYYY年MM月DD日')}</DateTime>
-          {labels.nodes.map(({ name }) => (
-            <Link href={`/archives?label=${name}`} key={name}>
-              <Label key={name}>#{name}</Label>
-            </Link>
-          ))}
+          <Labels>
+            {labels.nodes.map(({ name }) => (
+              <Link href={`/archives?label=${name}`} key={name}>
+                <Label key={name}>#{name}</Label>
+              </Link>
+            ))}
+          </Labels>
+          {!excerpt && (
+            <PagePV>
+              本文总阅读量 <span id="busuanzi_value_page_pv" /> 次
+            </PagePV>
+          )}
         </Meta>
       </div>
       <Markdown source={body} excerpt={excerpt} />

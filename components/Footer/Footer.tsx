@@ -21,11 +21,11 @@ const Copyright = styled.p`
 const SitePV = styled.span`
   padding-left: 5px;
   color: #8c8c8c;
-  font-size: 0.85rem;
+  font-size: 0.75rem;
 `;
 
 const Count = styled.span`
-  margin: 0 5px;
+  margin: 0 3px;
 `;
 
 const Link = styled.a`
