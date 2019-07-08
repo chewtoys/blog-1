@@ -24,6 +24,10 @@ const SitePV = styled.span`
   font-size: 0.85rem;
 `;
 
+const Count = styled.span`
+  margin: 0 5px;
+`;
+
 const Link = styled.a`
   color: inherit;
   border-bottom: 1px dotted;
@@ -49,7 +53,9 @@ const Footer: React.SFC = (_, ref) => {
         </Copyright>
         <SitePV id="busuanzi_container_site_pv" style={{ display: 'none' }}>
           本站总访问量
-          <span id="busuanzi_value_site_pv" />次
+          <Count id="busuanzi_value_site_pv" />
+          次， 本站访客数
+          <Count id="busuanzi_value_site_uv" />人次
         </SitePV>
       </Container>
     </Wrapper>
