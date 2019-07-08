@@ -18,6 +18,12 @@ const Copyright = styled.p`
   font-size: 0.85rem;
 `;
 
+const SitePV = styled.span`
+  padding-left: 5px;
+  color: #8c8c8c;
+  font-size: 0.85rem;
+`;
+
 const Link = styled.a`
   color: inherit;
   border-bottom: 1px dotted;
@@ -41,6 +47,10 @@ const Footer: React.SFC = (_, ref) => {
           <Link href="https://nextjs.org/">Next.js</Link> &{' '}
           <Link href="https://zeit.co/now">Now</Link>
         </Copyright>
+        <SitePV id="busuanzi_container_site_pv" style={{ display: 'none' }}>
+          本站总访问量
+          <span id="busuanzi_value_site_pv" />次
+        </SitePV>
       </Container>
     </Wrapper>
   );
