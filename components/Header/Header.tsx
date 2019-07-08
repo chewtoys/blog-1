@@ -33,7 +33,10 @@ const Header: React.SFC<IHeaderProps> = (_, ref) => {
   const lastY = React.useRef(0);
   const [visible, setVisible] = React.useState(true);
 
-  useRouteChange(() => lastY.current = 0);
+  useRouteChange(() => {
+    setVisible(true);
+    lastY.current = 0;
+  });
 
   const { y } = useWindowScroll();
   React.useEffect(() => {
