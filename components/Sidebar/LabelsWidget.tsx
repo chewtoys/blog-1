@@ -33,7 +33,7 @@ const Label = styled.span<ILabelProps>`
   border: 1px solid #e9e9e9;
   border-radius: 3px;
   cursor: pointer;
-  transition: 0.2s ease-out;
+  transition: color 0.2s ease-out;
 
   &::before {
     content: '#';

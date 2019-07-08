@@ -28,7 +28,7 @@ const Title = styled.span`
   color: #242424;
   font-size: 0.85rem;
   cursor: pointer;
-  transition: 0.2s ease-out;
+  transition: color 0.2s ease-out;
 
   &:hover {
     color: ${themeColor};
