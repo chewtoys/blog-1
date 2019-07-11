@@ -9,6 +9,7 @@ import Header from '../Header';
 import Container from '../Container';
 import Footer from '../Footer';
 import useAnalytics from '../../hooks/useAnalytics';
+import useScript from '../../hooks/useScript';
 
 interface IMainProps {
   minHeight: string;
@@ -35,6 +36,7 @@ const Layout: React.SFC = (props) => {
   }, [headerRef, footerRef]);
 
   useAnalytics();
+  useScript('busuanzi', '//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js');
 
   return (
     <>

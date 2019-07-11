@@ -36,7 +36,6 @@ export default class MyDocument extends Document {
       <Html>
         <Head>
           <TypographyStyle typography={typography} />
-          <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
         </Head>
         <body>
           <Main />
