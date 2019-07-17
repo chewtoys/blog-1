@@ -7,6 +7,7 @@
   },
   "builds": [
     { "src": "next.config.js", "use": "@now/next" },
+    { "src": "static/**", "use": "@now/static" },
     { "src": "/server/**/*.ts", "use": "@now/node" }
   ],
   "routes": [
@@ -22,6 +23,7 @@
       "src": "^/(.*).html",
       "headers": { "cache-control": "public,max-age=0,must-revalidate" }
     },
+    { "src": "/robots.txt", "dest": "static/robots.txt" },
 
     { "src": "/api/post", "dest": "server/api/post.ts" },
     { "src": "/api/posts", "dest": "server/api/posts.ts" },
