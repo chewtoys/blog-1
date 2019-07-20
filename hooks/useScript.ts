@@ -8,7 +8,6 @@ const useScript = (id: string, src: string) => {
     script.async = true;
 
     document.body.appendChild(script);
-    console.log('useScripta: ' + src);
 
     return () => script.remove();
   }, [id, src]);
