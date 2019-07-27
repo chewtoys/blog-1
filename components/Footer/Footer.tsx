@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { getYear } from 'date-fns';
 import styled from 'styled-components';
+import ReactSvg from 'react-svg';
 
 import Container from '../Container';
 import Logo from '../Logo';
@@ -9,6 +10,15 @@ import { author, since, themeColor } from '../../config.json';
 const Wrapper = styled.footer`
   padding: 30px 0 40px;
   background-color: rgba(0, 0, 0, 0.03);
+  overflow: auto;
+`;
+
+const Left = styled.div`
+  float: left;
+`;
+
+const Right = styled.div`
+  float: right;
 `;
 
 const Copyright = styled.p`
@@ -39,24 +49,64 @@ const Link = styled.a`
   }
 `;
 
+const IconLink = styled.a`
+  display: inline-block;
+  color: inherit;
+  box-shadow: none;
+  padding-top: 15px;
+
+  & + & {
+    margin-left: 5px;
+  }
+`;
+
+const IconSvg = styled(ReactSvg)`
+  svg {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+
+    path {
+      fill: #8c8c8c;
+    }
+  }
+
+  &:hover {
+    svg path {
+      fill: ${themeColor};
+    }
+  }
+`;
+
 const Footer: React.SFC = (_, ref) => {
   const currentYear = getYear(Date.now());
 
   return (
     <Wrapper ref={ref}>
       <Container>
-        <Logo />
-        <Copyright>
-          &copy; {since} - {currentYear} {author} Power By{' '}
-          <Link href="https://nextjs.org/">Next.js</Link> &{' '}
-          <Link href="https://zeit.co/now">Now</Link>
-        </Copyright>
-        <SitePV id="busuanzi_container_site_pv" style={{ display: 'none' }}>
-          本站总访问量
-          <Count id="busuanzi_value_site_pv" />
-          次， 本站访客数
-          <Count id="busuanzi_value_site_uv" />人次
-        </SitePV>
+        <Left>
+          <Logo />
+          <Copyright>
+            &copy; {since} - {currentYear} {author} · Powered By{' '}
+            <Link href="https://nextjs.org/" target="__blank">Next.js</Link> &{' '}
+            <Link href="https://zeit.co/now" target="__blank">Now</Link>
+          </Copyright>
+          <SitePV id="busuanzi_container_site_pv" style={{ display: 'none' }}>
+            本站总访问量
+            <Count id="busuanzi_value_site_pv" />
+            次， 本站访客数
+            <Count id="busuanzi_value_site_uv" />
+            人次
+          </SitePV>
+        </Left>
+        <Right>
+          <IconLink href="/atom.xml" target="__blank">
+            <IconSvg src="/static/feed.svg" />
+          </IconLink>
+          <IconLink href="https://github.com/ahonn" target="__blank">
+            <IconSvg src="/static/github.svg" />
+          </IconLink>
+        </Right>
       </Container>
     </Wrapper>
   );
