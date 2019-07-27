@@ -18,7 +18,12 @@ const Left = styled.div`
 `;
 
 const Right = styled.div`
+  display: none;
   float: right;
+
+  @media (min-width: 992px) {
+    display: block;
+  }
 `;
 
 const Copyright = styled.p`
