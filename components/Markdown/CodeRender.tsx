@@ -29,7 +29,9 @@ const CodeBlock = styled(Highlight)`
   padding: 1rem 1.5rem !important;
   background-color: #f5f2f0;
   border-radius: 5px;
-  word-break: keep-all;
+  word-break: normal;
+  word-wrap: normal;
+  white-space: pre;
 `;
 
 const Language = styled.div`
