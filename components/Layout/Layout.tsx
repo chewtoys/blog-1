@@ -17,9 +17,13 @@ interface IMainProps {
 
 const Main = styled.main<IMainProps>`
   min-height: ${(props) => props.minHeight};
-  margin-top: 70px;
   padding-bottom: 30px;
   overflow: hidden;
+  margin-top: 50px;
+
+  @media (min-width: 992px) {
+    margin-top: 70px;
+  }
 `;
 
 const Layout: React.SFC = (props) => {

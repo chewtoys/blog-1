@@ -18,19 +18,23 @@ const InlineCode = styled.code`
   border-radius: 5px;
 `;
 
-const CodeBlock = styled(Highlight)`
+const Wrapper = styled.div`
   position: relative;
+`;
+
+const CodeBlock = styled(Highlight)`
   font-size: 0.9rem !important;
   line-height: 1.5rem;
   margin: 1.25rem 0 !important;
   padding: 1rem 1.5rem !important;
   background-color: #f5f2f0;
   border-radius: 5px;
+  word-break: keep-all;
 `;
 
 const Language = styled.div`
   position: absolute;
-  top: 0;
+  top: 5px;
   right: 0;
   opacity: 0.3;
   font-size: 0.85rem;
@@ -45,10 +49,10 @@ const CodeRender: React.SFC<ICodeRenderProps> = (props) => {
 
   const language = _.toLower(props.language || '');
   return (
-    <CodeBlock className={language}>
-      {props.value}
+    <Wrapper>
+      <CodeBlock className={language}>{props.value}</CodeBlock>
       <Language>{language}</Language>
-    </CodeBlock>
+    </Wrapper>
   );
 };
 
