@@ -2,6 +2,7 @@ import * as React from 'react';
 import _ from 'lodash/fp';
 import ReactMarkdown from 'react-markdown';
 
+import HeadingRender from './HeadingRender.tsx';
 import CodeRender from './CodeRender';
 import BlockquteRender from './BlockquteRender';
 import ImageRender from './ImageRender';
@@ -13,6 +14,7 @@ interface IPostContentProps {
 }
 
 const markdownRenderers = {
+  heading: HeadingRender,
   code: CodeRender,
   inlineCode: CodeRender,
   blockquote: BlockquteRender,

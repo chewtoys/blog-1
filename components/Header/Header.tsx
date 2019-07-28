@@ -26,7 +26,7 @@ const Wrapper = styled.header<IWrapperProps>`
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
   transition: opacity ease-out 0.3s;
   overflow: hidden;
-  z-index: 666;
+  z-index: ${(props) => (props.visible ? 233 : -18)};
 `;
 
 const Header: React.SFC<IHeaderProps> = (_, ref) => {
