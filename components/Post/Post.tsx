@@ -57,6 +57,7 @@ const Label = styled.a`
 const ReadMore = styled.span`
   font-size: 0.9rem;
   color: ${themeColor};
+  cursor: pointer;
 `;
 
 const Post: React.SFC<IPostProps> = (props) => {
