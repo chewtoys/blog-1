@@ -2,7 +2,7 @@ import * as React from 'react';
 import _ from 'lodash/fp';
 import ReactMarkdown from 'react-markdown';
 
-import HeadingRender from './HeadingRender.tsx';
+import HeadingRender from './HeadingRender';
 import CodeRender from './CodeRender';
 import BlockquteRender from './BlockquteRender';
 import ImageRender from './ImageRender';
