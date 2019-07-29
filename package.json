@@ -26,7 +26,7 @@
     "react-highlight": "^0.12.0",
     "react-image-lightbox": "^5.1.0",
     "react-markdown": "^4.0.8",
-    "react-spinners": "0.5.4",
+    "react-spinners": "^0.5.4",
     "react-svg": "^10.0.13",
     "react-typography": "^0.16.19",
     "react-use": "^9.6.0",
