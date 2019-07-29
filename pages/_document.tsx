@@ -4,6 +4,7 @@ import { TypographyStyle } from 'react-typography';
 import { ServerStyleSheet } from 'styled-components';
 
 import typography from '../lib/typography';
+import { themeColor } from '../config.json';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: NextDocumentContext) {
@@ -35,6 +36,17 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
+          <style
+            id="var"
+            dangerouslySetInnerHTML={{
+              __html: `
+                :root {
+                  --theme-color: ${themeColor};
+                }
+              `,
+            }}
+          />
+          <link rel="stylesheet" href="/static/css/nprocess.css" />
           <TypographyStyle typography={typography} />
         </Head>
         <body>

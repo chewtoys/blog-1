@@ -6,7 +6,7 @@ class Api {
   static createWithContext(ctx?: next.NextContext) {
     const config: AxiosRequestConfig = {};
     if (ctx && ctx.req) {
-      const { headers } = ctx.req;
+      const { headers = {} } = ctx.req;
       if (process.env.NODE_ENV === 'development') {
         config.baseURL = `http://${headers['x-forwarded-host']}`;
       } else {

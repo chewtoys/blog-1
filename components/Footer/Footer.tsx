@@ -106,10 +106,10 @@ const Footer: React.SFC = (_, ref) => {
         </Left>
         <Right>
           <IconLink href="/atom.xml" target="_blank">
-            <IconSvg src="/static/feed.svg" />
+            <IconSvg src="/static/images/feed.svg" />
           </IconLink>
           <IconLink href="https://github.com/ahonn" target="_blank">
-            <IconSvg src="/static/github.svg" />
+            <IconSvg src="/static/images/github.svg" />
           </IconLink>
         </Right>
       </Container>

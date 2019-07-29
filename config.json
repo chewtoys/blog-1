@@ -6,7 +6,7 @@
   "description": "Ahonn 的个人博客",
   "siteUrl": "https://www.ahonn.me",
   "since": 2015,
-  "icon": "/static/icon.png",
+  "icon": "/static/images/icon.png",
   "themeColor": "#FA7268",
   "menu": [],
   "gitalk": {
