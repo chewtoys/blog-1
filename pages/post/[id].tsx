@@ -4,10 +4,10 @@ import _ from 'lodash/fp';
 import { Row, Col } from 'react-bootstrap';
 import removeMarkdown from 'remove-markdown';
 
-import SEO from '../components/SEO';
-import Layout from '../components/Layout';
-import Post from '../components/Post';
-import Api from '../lib/api';
+import SEO from '../../components/SEO';
+import Layout from '../../components/Layout';
+import Post from '../../components/Post';
+import Api from '../../lib/api';
 
 interface IPostsPageProps {
   post: IGithubIssue;
@@ -19,7 +19,7 @@ const truncate = _.compose(
   removeMarkdown,
 );
 
-const PostsPage: next.NextFunctionComponent<IPostsPageProps> = (props) => {
+const PostsPage: next.NextPage<IPostsPageProps> = (props) => {
   const { post } = props;
   const { title, body } = post;
 
@@ -35,7 +35,7 @@ const PostsPage: next.NextFunctionComponent<IPostsPageProps> = (props) => {
   );
 };
 
-PostsPage.getInitialProps = async (ctx: next.NextContext) => {
+PostsPage.getInitialProps = async (ctx: next.NextPageContext) => {
   const id = _.toNumber(ctx.query.id);
   const post = await Api.createWithContext(ctx).post(id);
 

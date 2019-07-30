@@ -1,5 +1,5 @@
 import * as React from 'react';
-import Document, { NextDocumentContext, Html, Head, Main, NextScript } from 'next/document';
+import Document, { DocumentContext, Html, Head, Main, NextScript } from 'next/document';
 import { TypographyStyle } from 'react-typography';
 import { ServerStyleSheet } from 'styled-components';
 
@@ -7,7 +7,7 @@ import typography from '../lib/typography';
 import { themeColor } from '../config.json';
 
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx: NextDocumentContext) {
+  static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 

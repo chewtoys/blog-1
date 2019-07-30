@@ -95,7 +95,7 @@ const groupByCreatedYear = _.groupBy(
   ),
 );
 
-const ArchivesPage: next.NextFunctionComponent<IArchivesPageProps> = (props) => {
+const ArchivesPage: next.NextPage<IArchivesPageProps> = (props) => {
   const { archives, recommend, labels, label } = props;
 
   const api: Api = Api.createWithContext();
@@ -158,7 +158,7 @@ const ArchivesPage: next.NextFunctionComponent<IArchivesPageProps> = (props) => 
   );
 };
 
-ArchivesPage.getInitialProps = async (ctx: next.NextContext) => {
+ArchivesPage.getInitialProps = async (ctx: next.NextPageContext) => {
   const label = (ctx.query.label || '').toString();
   const api = Api.createWithContext(ctx);
 

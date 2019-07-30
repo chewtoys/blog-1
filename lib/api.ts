@@ -3,7 +3,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import _ from 'lodash/fp';
 
 class Api {
-  static createWithContext(ctx?: next.NextContext) {
+  static createWithContext(ctx?: next.NextPageContext) {
     const config: AxiosRequestConfig = {};
     if (ctx && ctx.req) {
       const { headers = {} } = ctx.req;

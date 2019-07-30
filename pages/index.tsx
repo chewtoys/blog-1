@@ -20,7 +20,7 @@ const ColWithMaxWidth = styled(Col)`
   max-width: 650px;
 `;
 
-const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
+const IndexPage: next.NextPage<IIndexPageProps> = (props) => {
   const { posts, recommend, labels } = props;
 
   const api: Api = Api.createWithContext();
@@ -44,7 +44,7 @@ const IndexPage: next.NextFunctionComponent<IIndexPageProps> = (props) => {
   );
 };
 
-IndexPage.getInitialProps = async (ctx: next.NextContext) => {
+IndexPage.getInitialProps = async (ctx: next.NextPageContext) => {
   const api = Api.createWithContext(ctx);
 
   const [posts, recommend, labels] = await Promise.all([
