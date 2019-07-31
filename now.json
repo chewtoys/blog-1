@@ -42,247 +42,247 @@
     {
       "src": "/2018/12/30/summary-of-2018/",
       "status": 301,
-      "headers": { "Location": "/posts/2018123049" }
+      "headers": { "Location": "/post/49" }
     },
     {
       "src": "/2018/11/17/date-in-different-browsers/",
       "status": 301,
-      "headers": { "Location": "/posts/2018111748" }
+      "headers": { "Location": "/post/48" }
     },
     {
       "src": "/2018/09/15/javascript-functional-programming-notes/",
       "status": 301,
-      "headers": { "Location": "/posts/2018091547" }
+      "headers": { "Location": "/post/47" }
     },
     {
       "src": "/2017/12/29/my-2017/",
       "status": 301,
-      "headers": { "Location": "/posts/2017122946" }
+      "headers": { "Location": "/post/46" }
     },
     {
       "src": "/2017/08/31/starting-from-scratch-mac/",
       "status": 301,
-      "headers": { "Location": "/posts/2017083145" }
+      "headers": { "Location": "/post/45" }
     },
     {
       "src": "/2017/07/24/the-evil-of-the-BOM-ufeff-and-i»¿/",
       "status": 301,
-      "headers": { "Location": "/posts/2017072444" }
+      "headers": { "Location": "/post/44" }
     },
     {
       "src": "/2017/07/04/redux-source-code-insight/",
       "status": 301,
-      "headers": { "Location": "/posts/2017070443" }
+      "headers": { "Location": "/post/43" }
     },
     {
       "src": "/2017/06/29/vim-plugin-ctrlsf/",
       "status": 301,
-      "headers": { "Location": "/posts/2017062942" }
+      "headers": { "Location": "/post/42" }
     },
     {
       "src": "/2017/06/08/write-a-react-from-scratch-init-render/",
       "status": 301,
-      "headers": { "Location": "/posts/2017060841" }
+      "headers": { "Location": "/post/41" }
     },
     {
       "src": "/2017/05/17/koa2-analysis/",
       "status": 301,
-      "headers": { "Location": "/posts/2017051740" }
+      "headers": { "Location": "/post/40" }
     },
     {
       "src": "/2017/03/27/use-neovim/",
       "status": 301,
-      "headers": { "Location": "/posts/2017032739" }
+      "headers": { "Location": "/post/39" }
     },
     {
       "src": "/2017/03/16/alibaba-summer-internship-interview-summary/",
       "status": 301,
-      "headers": { "Location": "/posts/2017031638" }
+      "headers": { "Location": "/post/38" }
     },
     {
       "src": "/2017/03/11/answer-front-end-questions/",
       "status": 301,
-      "headers": { "Location": "/posts/2017031137" }
+      "headers": { "Location": "/post/37" }
     },
     {
       "src": "/2017/03/02/xmlhttprequest-study-notes/",
       "status": 301,
-      "headers": { "Location": "/posts/2017030236" }
+      "headers": { "Location": "/post/36" }
     },
     {
       "src": "/2017/02/19/notes-of-vim/",
       "status": 301,
-      "headers": { "Location": "/posts/2017021935" }
+      "headers": { "Location": "/post/35" }
     },
     {
       "src": "/2017/01/24/something-about-javaScript-inherit/",
       "status": 301,
-      "headers": { "Location": "/posts/2017012434" }
+      "headers": { "Location": "/post/34" }
     },
     {
       "src": "/2016/12/15/create-a-hexo-theme-from-scratch/",
       "status": 301,
-      "headers": { "Location": "/posts/2016121533" }
+      "headers": { "Location": "/post/33" }
     },
     {
       "src": "/2016/12/13/2016-summary/",
       "status": 301,
-      "headers": { "Location": "/posts/2016121332" }
+      "headers": { "Location": "/post/32" }
     },
     {
       "src": "/2016/11/30/some-ways-of-javascript-create-object/",
       "status": 301,
-      "headers": { "Location": "/posts/2016113031" }
+      "headers": { "Location": "/post/31" }
     },
     {
       "src": "/2016/11/21/javascript-data-type-judgment/",
       "status": 301,
-      "headers": { "Location": "/posts/2016112130" }
+      "headers": { "Location": "/post/30" }
     },
     {
       "src": "/2016/11/14/wechat-app-summary/",
       "status": 301,
-      "headers": { "Location": "/posts/2016111429" }
+      "headers": { "Location": "/post/29" }
     },
     {
       "src": "/2016/10/11/after-the-react-routing-scroll-to-the-top-of-the-page/",
       "status": 301,
-      "headers": { "Location": "/posts/2016101128" }
+      "headers": { "Location": "/post/28" }
     },
     {
       "src": "/2016/10/02/react-lifecycle-methods/",
       "status": 301,
-      "headers": { "Location": "/posts/2016100227" }
+      "headers": { "Location": "/post/27" }
     },
     {
       "src": "/2016/09/13/the-memo-of-javascript-regexp/",
       "status": 301,
-      "headers": { "Location": "/posts/2016091326" }
+      "headers": { "Location": "/post/26" }
     },
     {
       "src": "/2016/08/31/javascript-best-practices/",
       "status": 301,
-      "headers": { "Location": "/posts/2016083125" }
+      "headers": { "Location": "/post/25" }
     },
     {
       "src": "/2016/08/02/javascript-reduce-the-browser-reflow/",
       "status": 301,
-      "headers": { "Location": "/posts/2016080224" }
+      "headers": { "Location": "/post/24" }
     },
     {
       "src": "/2016/07/25/the-right-way-to-array-of-random-sequence/",
       "status": 301,
-      "headers": { "Location": "/posts/2016072523" }
+      "headers": { "Location": "/post/23" }
     },
     {
       "src": "/2016/07/13/getting-highlightjs-to-work-with-vue.js/",
       "status": 301,
-      "headers": { "Location": "/posts/2016071321" }
+      "headers": { "Location": "/post/22" }
     },
     {
       "src": "/2016/06/29/vertical-center-for-css/",
       "status": 301,
-      "headers": { "Location": "/posts/2016062921" }
+      "headers": { "Location": "/post/21" }
     },
     {
       "src": "/2016/06/07/sass-preliminary-study/",
       "status": 301,
-      "headers": { "Location": "/posts/2016060720" }
+      "headers": { "Location": "/post/20" }
     },
     {
       "src": "/2016/05/28/using-nokogiri-parsing-html/",
       "status": 301,
-      "headers": { "Location": "/posts/2016052819" }
+      "headers": { "Location": "/post/19" }
     },
     {
       "src": "/2016/05/14/use-javascript-to-achieve-simple-drag-and-drop/",
       "status": 301,
-      "headers": { "Location": "/posts/2016051418" }
+      "headers": { "Location": "/post/18" }
     },
     {
       "src": "/2016/05/14/the-first-interview/",
       "status": 301,
-      "headers": { "Location": "/posts/2016051417" }
+      "headers": { "Location": "/post/17" }
     },
     {
       "src": "/2016/05/03/starting-from-the-optimizeCb/",
       "status": 301,
-      "headers": { "Location": "/posts/2016050316" }
+      "headers": { "Location": "/post/16" }
     },
     {
       "src": "/2016/04/28/javascript-hoisting/",
       "status": 301,
-      "headers": { "Location": "/posts/2016042815" }
+      "headers": { "Location": "/post/15" }
     },
     {
       "src": "/2016/04/16/javascript-event-stream/",
       "status": 301,
-      "headers": { "Location": "/posts/2016041614" }
+      "headers": { "Location": "/post/14" }
     },
     {
       "src": "/2016/04/04/javascript-closures/",
       "status": 301,
-      "headers": { "Location": "/posts/2016040413" }
+      "headers": { "Location": "/post/13" }
     },
     {
       "src": "/2016/03/29/javascript-prototype-chain/",
       "status": 301,
-      "headers": { "Location": "/posts/2016032912" }
+      "headers": { "Location": "/post/12" }
     },
     {
       "src": "/2016/03/20/javascript-apply-call-and-bind/",
       "status": 301,
-      "headers": { "Location": "/posts/2016032011" }
+      "headers": { "Location": "/post/11" }
     },
     {
       "src": "/2016/02/29/jade-template-engine/",
       "status": 301,
-      "headers": { "Location": "/posts/2016022910" }
+      "headers": { "Location": "/post/10" }
     },
     {
       "src": "/2016/02/20/python-multithreaded-preliminary/",
       "status": 301,
-      "headers": { "Location": "/posts/201602209" }
+      "headers": { "Location": "/post/9" }
     },
     {
       "src": "/2016/01/23/python-curses-module/",
       "status": 301,
-      "headers": { "Location": "/posts/201601238" }
+      "headers": { "Location": "/post/8" }
     },
     {
       "src": "/2015/12/31/2015-summary/",
       "status": 301,
-      "headers": { "Location": "/posts/201512317" }
+      "headers": { "Location": "/post/7" }
     },
     {
       "src": "/2015/12/21/how-can-i-prevent-sql-injection-in-php/",
       "status": 301,
-      "headers": { "Location": "/posts/201512216" }
+      "headers": { "Location": "/post/6" }
     },
     {
       "src": "/2015/12/19/simple-use-of-the-php-curl-library/",
       "status": 301,
-      "headers": { "Location": "/posts/201512195" }
+      "headers": { "Location": "/post/5" }
     },
     {
       "src": "/2015/11/25/the-crawler-of-zhihu-user-dynamic-monitoring/",
       "status": 301,
-      "headers": { "Location": "/posts/201511254" }
+      "headers": { "Location": "/post/4" }
     },
     {
       "src": "/2015/11/22/phpmyadmin-lack-mcrypt-extension/",
       "status": 301,
-      "headers": { "Location": "/posts/201511223" }
+      "headers": { "Location": "/post/3" }
     },
     {
       "src": "/2015/08/30/sudoers-is-world-writable/",
       "status": 301,
-      "headers": { "Location": "/posts/201508301" }
+      "headers": { "Location": "/post/1" }
     },
     {
       "src": "/2015/08/24/ubuntu-lamp-environment-set-up/",
       "status": 301,
-      "headers": { "Location": "/posts/201508242" }
+      "headers": { "Location": "/post/2" }
     }
   ]
 }
