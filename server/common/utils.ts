@@ -1,3 +1,5 @@
+/// <reference types="../../next-env" />
+
 import _ from 'lodash/fp';
 import removeMarkdown from 'remove-markdown';
 
