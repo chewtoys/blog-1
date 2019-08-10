@@ -133,7 +133,8 @@ const ArchivesPage: next.NextPage<IArchivesPageProps> = (props) => {
                 const { number: id, title, createdAt } = node;
 
                 const linkProps = {
-                  href: `/post/${id}`,
+                  href: `/post?id=${id}`,
+                  as: `/post/${id}`,
                   prefetch: true,
                 };
                 return (

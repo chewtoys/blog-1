@@ -34,6 +34,7 @@
     { "src": "/sitemap.xml", "dest": "server/sitemap.ts" },
     { "src": "/atom.xml", "dest": "server/feed.ts" },
 
+    { "src": "/post/(?<id>[0-9]+)$", "dest": "/post?id=$id" },
     {
       "src": "/posts/[0-9]{8}(?<id>[0-9]+)$",
       "status": 301,

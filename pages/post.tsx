@@ -4,10 +4,10 @@ import _ from 'lodash/fp';
 import { Row, Col } from 'react-bootstrap';
 import removeMarkdown from 'remove-markdown';
 
-import SEO from '../../components/SEO';
-import Layout from '../../components/Layout';
-import Post from '../../components/Post';
-import Api from '../../lib/api';
+import SEO from '../components/SEO';
+import Layout from '../components/Layout';
+import Post from '../components/Post';
+import Api from '../lib/api';
 
 interface IPostsPageProps {
   post: IGithubIssue;
