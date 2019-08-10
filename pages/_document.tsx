@@ -46,7 +46,6 @@ export default class MyDocument extends Document {
               `,
             }}
           />
-          <link rel="stylesheet" href="/static/css/nprocess.css" />
           <TypographyStyle typography={typography} />
         </Head>
         <body>

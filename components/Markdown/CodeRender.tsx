@@ -21,6 +21,7 @@ const Wrapper = styled.div`
 `;
 
 const CodeBlock = styled(Highlight)`
+  display: block;
   font-size: 0.9rem !important;
   line-height: 1.5rem;
   margin: 1.25rem 0 !important;
