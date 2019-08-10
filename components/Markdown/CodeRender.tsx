@@ -3,8 +3,6 @@ import _ from 'lodash/fp';
 import styled from 'styled-components';
 import Highlight from 'react-highlight';
 
-import 'highlight.js/styles/tomorrow.css';
-
 interface ICodeRenderProps {
   inline: string;
   value: string;

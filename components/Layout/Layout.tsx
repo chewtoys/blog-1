@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import 'normalize.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
+import 'highlight.js/styles/tomorrow.css';
 
 import SEO from '../SEO';
 import Header from '../Header';
