@@ -1,22 +1,36 @@
 import * as React from 'react';
 import { NextSeo } from 'next-seo';
 
-import { title, description, siteUrl, twitter } from '../../config.json';
+import config, { icon, twitter } from '../../config.json';
 
 interface ISEOProps {
   subTitle?: string;
-  excerpt?: string;
+  description?: string;
   canonical?: string;
 }
 
 const SEO: React.SFC<ISEOProps> = (props) => {
-  const { subTitle, excerpt, canonical } = props;
+  const { subTitle, description: desc, canonical } = props;
+
+  const title = subTitle ? `${subTitle} - ${config.title}` : config.title;
+  const description = desc || config.description;
+  const url = canonical || config.siteUrl;
+
+  const ogType = subTitle ? 'article' : 'website';
+  const ogImageUrl = `${config.siteUrl}/${icon}`;
 
   return (
     <NextSeo
-      title={subTitle ? `${subTitle} - ${title}` : title}
-      description={excerpt || description}
-      canonical={canonical || siteUrl}
+      title={title}
+      description={description}
+      canonical={url}
+      openGraph={{
+        url,
+        title,
+        description,
+        type: ogType,
+        images: [{ url: ogImageUrl }],
+      }}
       twitter={{
         handle: twitter,
         site: twitter,

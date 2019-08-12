@@ -28,7 +28,7 @@ const PostsPage: next.NextPage<IPostsPageProps> = (props) => {
     <Layout>
       <SEO
         subTitle={title}
-        excerpt={truncate(body)}
+        description={truncate(body)}
         canonical={`${siteUrl}/post/${id}`}
       />
       <Row className="justify-content-md-center">
