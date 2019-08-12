@@ -23,6 +23,8 @@ Wordpress2016.bodyFontFamily = [
     fontWeight: '300',
     marginTop: '1.75rem',
     marginBottom: '1.25rem',
+    letterSpacing: '0.01em',
+    textTransform: 'none',
   },
   a: {
     boxShadow: `0 1px 0 0 ${themeColor}`,
