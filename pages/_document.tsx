@@ -4,7 +4,13 @@ import { TypographyStyle } from 'react-typography';
 import { ServerStyleSheet } from 'styled-components';
 
 import typography from '../lib/typography';
-import { themeColor } from '../config.json';
+import { title, icon, themeColor, rss } from '../config.json';
+
+const globalStyleVariables = `
+  :root {
+    --theme-color: ${themeColor};
+  }
+`;
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -36,16 +42,15 @@ export default class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <style
-            id="var"
-            dangerouslySetInnerHTML={{
-              __html: `
-                :root {
-                  --theme-color: ${themeColor};
-                }
-              `,
-            }}
+          <meta name="theme-color" content={themeColor} />
+          <link rel="shortcut icon" href={icon} />
+          <link
+            rel="alternate"
+            type="application/rss+xml"
+            title={title}
+            href={rss}
           />
+          <style id="variables" dangerouslySetInnerHTML={{ __html: globalStyleVariables }} />
           <TypographyStyle typography={typography} />
         </Head>
         <body>

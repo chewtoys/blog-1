@@ -8,6 +8,7 @@ import SEO from '../components/SEO';
 import Layout from '../components/Layout';
 import Post from '../components/Post';
 import Api from '../lib/api';
+import { siteUrl } from '../config.json';
 
 interface IPostsPageProps {
   post: IGithubIssue;
@@ -21,11 +22,15 @@ const truncate = _.compose(
 
 const PostsPage: next.NextPage<IPostsPageProps> = (props) => {
   const { post } = props;
-  const { title, body } = post;
+  const { number: id, title, body } = post;
 
   return (
     <Layout>
-      <SEO subTitle={title} excerpt={truncate(body)} />
+      <SEO
+        subTitle={title}
+        excerpt={truncate(body)}
+        canonical={`${siteUrl}/post/${id}`}
+      />
       <Row className="justify-content-md-center">
         <Col lg={10}>
           <Post data={post} />

@@ -1,3 +1,5 @@
+/// <reference types="../next-env" />
+
 import { NowRequest, NowResponse } from '@now/node';
 import _ from 'lodash/fp';
 import sm, { EnumChangefreq } from 'sitemap';

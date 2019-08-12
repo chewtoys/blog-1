@@ -7,7 +7,11 @@
   "siteUrl": "https://www.ahonn.me",
   "since": 2015,
   "icon": "/static/images/icon.png",
+  "rss": "/atom.xml",
+  "twitter": "@ahonnjiang",
+
   "themeColor": "#FA7268",
+
   "menu": [],
   "gitalk": {
     "clientID": "af04686863d8fe77f3b3",
