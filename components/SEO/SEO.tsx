@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { NextSeo } from 'next-seo';
+import _ from 'lodash/fp';
 
 import config, { icon, twitter } from '../../config.json';
 
@@ -7,17 +8,23 @@ interface ISEOProps {
   subTitle?: string;
   description?: string;
   canonical?: string;
+  image?: string;
 }
 
+const defaultImage = {
+  url: `${config.siteUrl}${icon}`,
+  alt: config.title,
+};
+
 const SEO: React.SFC<ISEOProps> = (props) => {
-  const { subTitle, description: desc, canonical } = props;
+  const { subTitle, description: desc, canonical, image } = props;
 
   const title = subTitle ? `${subTitle} - ${config.title}` : config.title;
   const description = desc || config.description;
   const url = canonical || config.siteUrl;
 
   const ogType = subTitle ? 'article' : 'website';
-  const ogImageUrl = `${config.siteUrl}/${icon}`;
+  const ogImage = image ? { url: image, alt: subTitle } : defaultImage;
 
   return (
     <NextSeo
@@ -29,7 +36,7 @@ const SEO: React.SFC<ISEOProps> = (props) => {
         title,
         description,
         type: ogType,
-        images: [{ url: ogImageUrl }],
+        images: [ogImage],
       }}
       twitter={{
         handle: twitter,

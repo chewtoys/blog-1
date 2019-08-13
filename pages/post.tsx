@@ -20,6 +20,15 @@ const truncate = _.compose(
   removeMarkdown,
 );
 
+const extractImage = (str: string) => {
+  const imageRe = /!\[.*?\]\((.+?)\)/g;
+  const matchs = imageRe.exec(str);
+  if (matchs) {
+    return matchs[1];
+  }
+  return null;
+};
+
 const PostsPage: next.NextPage<IPostsPageProps> = (props) => {
   const { post } = props;
   const { number: id, title, body } = post;
@@ -30,6 +39,7 @@ const PostsPage: next.NextPage<IPostsPageProps> = (props) => {
         subTitle={title}
         description={truncate(body)}
         canonical={`${siteUrl}/post/${id}`}
+        image={extractImage(body)}
       />
       <Row className="justify-content-md-center">
         <Col lg={10}>
