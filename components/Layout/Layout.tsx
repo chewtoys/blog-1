@@ -6,7 +6,6 @@ import 'bootstrap/dist/css/bootstrap-grid.css';
 import 'highlight.js/styles/tomorrow.css';
 import '../../static/css/nprogress.css';
 
-import SEO from '../SEO';
 import Header from '../Header';
 import Container from '../Container';
 import Footer from '../Footer';
@@ -46,7 +45,6 @@ const Layout: React.SFC = (props) => {
 
   return (
     <>
-      <SEO />
       <Header ref={headerRef} />
       <Main minHeight={minHeight}>
         <Container>{props.children}</Container>
