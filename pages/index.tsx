@@ -4,6 +4,7 @@ import { Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 
 import Layout from '../components/Layout';
+import SEO from '../components/SEO';
 import Post from '../components/Post';
 import Sidebar from '../components/Sidebar';
 import LoadMore from '../components/LoadMore';
@@ -29,6 +30,7 @@ const IndexPage: next.NextPage<IIndexPageProps> = (props) => {
 
   return (
     <Layout>
+      <SEO />
       <Row>
         <ColWithMaxWidth lg={8}>
           {nodes.map((node: IGithubIssue) => (
