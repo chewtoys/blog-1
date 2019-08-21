@@ -26,6 +26,7 @@ interface IGithubIssue {
   body: string;
   labels: IGithubLabels;
   createdAt: string;
+  updatedAt?: string;
   bodyHTML?: string;
 }
 

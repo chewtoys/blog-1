@@ -35,24 +35,16 @@ export default async (req: NowRequest, res: NowResponse) => {
     owner,
     repo,
   });
-  const { issues } = data.repository;
+  const issues: IGithubIssues = data.repository.issues;
 
-  const postUrls = issues.nodes.map((issue: IGithubIssue) => ({
-    url: `/post/${issue.number}`,
-    changefreq: EnumChangefreq.WEEKLY,
-    priority: 0.8,
-  }));
   const sitemap = sm.createSitemap({
     hostname: siteUrl,
     cacheTime: 600000,
-    urls: [
-      {
-        url: '/',
-        changefreq: EnumChangefreq.DAILY,
-        priority: 1,
-      },
-      ...postUrls,
-    ],
+    urls: issues.nodes.map((issue: IGithubIssue) => ({
+      url: `/post/${issue.number}`,
+      changefreq: EnumChangefreq.DAILY,
+      priority: 0.8,
+    })),
   });
 
   res.setHeader('Content-Type', 'application/xml');
