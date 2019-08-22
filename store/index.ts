@@ -1,11 +1,13 @@
 import { init, RematchStore } from '@rematch/core';
 
-import posts from './posts';
+import app from './app';
+import post from './post';
 
 export default (initialState: any = {}): RematchStore => {
   return init({
     models: {
-      posts,
+      app,
+      post,
     },
     redux: {
       initialState,

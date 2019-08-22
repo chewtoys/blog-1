@@ -20,11 +20,11 @@ class MyApp extends App<IAppProps> {
     const { Component, pageProps, reduxStore } = this.props;
 
     return (
-      <Container>
-        <Provider store={reduxStore}>
+      <Provider store={reduxStore}>
+        <Container>
           <Component {...pageProps} />
-        </Provider>
-      </Container>
+        </Container>
+      </Provider>
     );
   }
 }

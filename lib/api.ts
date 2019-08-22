@@ -29,23 +29,23 @@ class Api {
     return data;
   }
 
-  async recommend() {
+  async recommend(): Promise<IGithubIssues> {
     const { data } = await this.request.get('/api/recommend');
     return data;
   }
 
-  async labels() {
+  async labels(): Promise<IGithubLabels> {
     const { data } = await this.request.get('/api/labels');
     return data;
   }
 
-  async post(id: number) {
+  async post(id: number): Promise<IGithubIssue> {
     const params = { id };
     const { data } = await this.request.get('/api/post', { params });
     return data;
   }
 
-  async archives({ cursor, label }: { cursor?: string; label?: string | undefined }) {
+  async archives({ cursor, label }: { cursor?: string; label?: string | undefined }): Promise<IGithubIssues> {
     const params = _.pickBy(_.identity, { cursor, label });
     const { data } = await this.request.get('/api/archives', { params });
     return data;

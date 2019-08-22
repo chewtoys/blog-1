@@ -44,13 +44,9 @@ export default class MyDocument extends Document {
         <Head>
           <meta name="theme-color" content={themeColor} />
           <link rel="shortcut icon" href={icon} />
-          <link
-            rel="alternate"
-            type="application/rss+xml"
-            title={title}
-            href={rss}
-          />
+          <link rel="alternate" type="application/rss+xml" title={title} href={rss} />
           <style id="variables" dangerouslySetInnerHTML={{ __html: globalStyleVariables }} />
+          <script id="history" dangerouslySetInnerHTML={{ __html: 'history.scrollRestoration = "manual";' }} />
           <TypographyStyle typography={typography} />
         </Head>
         <body>

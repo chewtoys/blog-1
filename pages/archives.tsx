@@ -5,17 +5,16 @@ import _ from 'lodash/fp';
 import { format, getYear } from 'date-fns';
 import { Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
+import { connect } from 'react-redux';
 
 import Layout from '../components/Layout';
 import LoadMore from '../components/LoadMore';
 import Sidebar from '../components/Sidebar';
-import useLoadMore from '../hooks/useLoadMore';
-import Api from '../lib/api';
 
 import { themeColor } from '../config.json';
 
 interface IArchivesPageProps {
-  archives: IGithubIssues;
+  posts: IGithubIssues;
   recommend: IGithubIssues;
   labels: IGithubLabels;
   label: string;
@@ -95,19 +94,18 @@ const groupByCreatedYear = _.groupBy(
   ),
 );
 
-const ArchivesPage: next.NextPage<IArchivesPageProps> = (props) => {
-  const { archives, recommend, labels, label } = props;
+const ArchivesPage: next.NextPage = (props: IArchivesPageProps) => {
+  const { posts, recommend, labels, label } = props;
+  const { nodes, pageInfo } = posts;
 
-  const api: Api = Api.create();
-  const loadCallback = ({ endCursor }: IGithubPageInfo) =>
-    api.archives({
-      cursor: endCursor,
-      label,
-    });
-  const [{ nodes, pageInfo, loading }, loadHandler] = useLoadMore(archives, loadCallback);
+  const [loading, setLoading] = React.useState(false);
+  const handleLoadMore = async () => {
+    setLoading(true);
+    setLoading(false);
+  };
 
-  const archiveGroups = groupByCreatedYear(nodes);
-  const years = _.keys(archiveGroups).sort((a, b) => +b - +a);
+  const groups = groupByCreatedYear(nodes);
+  const years = _.keys(groups).sort((a, b) => +b - +a);
 
   return (
     <Layout>
@@ -129,7 +127,7 @@ const ArchivesPage: next.NextPage<IArchivesPageProps> = (props) => {
           {years.map((year: string) => (
             <Block key={year}>
               <Year>{year}</Year>
-              {archiveGroups[year].map((node: IGithubIssue) => {
+              {groups[year].map((node: IGithubIssue) => {
                 const { number: id, title, createdAt } = node;
 
                 const linkProps = {
@@ -148,7 +146,7 @@ const ArchivesPage: next.NextPage<IArchivesPageProps> = (props) => {
               })}
             </Block>
           ))}
-          <LoadMore loading={loading} visiable={pageInfo.hasNextPage} onClick={loadHandler} />
+          <LoadMore loading={loading} visiable={pageInfo.hasNextPage} onClick={handleLoadMore} />
         </Col>
         <Col lg={4}>
           <Sidebar dataSource={{ recommend }} />
@@ -158,22 +156,40 @@ const ArchivesPage: next.NextPage<IArchivesPageProps> = (props) => {
   );
 };
 
-ArchivesPage.getInitialProps = async (ctx: next.NextPageContext) => {
+ArchivesPage.getInitialProps = async (ctx: next.NextPageContext & { reduxStore: any }) => {
   const label = (ctx.query.label || '').toString();
-  const api = Api.create(ctx);
+  const state = ctx.reduxStore.getState();
+  const { archives, recommend, labels } = state.app;
 
-  const [archives, recommend, labels] = await Promise.all([
-    api.archives({ label }),
-    api.recommend(),
-    api.labels(),
-  ]);
+  const dispatchs = [];
+  if (_.isEmpty(archives[label])) {
+    dispatchs.push(ctx.reduxStore.dispatch.app.getArchivesAsync({ ctx, label }));
+  }
+  if (_.isEmpty(recommend)) {
+    dispatchs.push(ctx.reduxStore.dispatch.app.getRecommendAsync({ ctx }));
+  }
+  if (_.isEmpty(labels)) {
+    dispatchs.push(ctx.reduxStore.dispatch.app.getLabelsAsync({ ctx }));
+  }
+  await Promise.all(dispatchs);
+  return { label };
+};
 
+const mapStateToProps = (state: any, props: any) => {
+  const { label } = props;
+  const { archives, recommend, labels } = state.app;
   return {
-    archives,
+    posts: archives[label],
     recommend,
     labels,
-    label,
   };
 };
 
-export default ArchivesPage;
+const mapDispatchToProps = (dispatch: any) => ({
+  loadMorePostsAsync: (cursor?: string) => dispatch.app.loadMorePostsAsync({ cursor }),
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ArchivesPage);

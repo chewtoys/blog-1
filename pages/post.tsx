@@ -1,13 +1,13 @@
 import * as React from 'react';
 import * as next from 'next';
-import _ from 'lodash/fp';
 import { Row, Col } from 'react-bootstrap';
+import { connect } from 'react-redux';
 import removeMarkdown from 'remove-markdown';
+import _ from 'lodash/fp';
 
 import SEO from '../components/SEO';
 import Layout from '../components/Layout';
 import Post from '../components/Post';
-import Api from '../lib/api';
 import { siteUrl } from '../config.json';
 
 interface IPostsPageProps {
@@ -29,7 +29,7 @@ const extractImage = (str: string) => {
   return null;
 };
 
-const PostsPage: next.NextPage<IPostsPageProps> = (props) => {
+const PostsPage: next.NextPage = (props: IPostsPageProps) => {
   const { post } = props;
   const { number: id, title, body } = post;
 
@@ -50,13 +50,23 @@ const PostsPage: next.NextPage<IPostsPageProps> = (props) => {
   );
 };
 
-PostsPage.getInitialProps = async (ctx: next.NextPageContext) => {
+PostsPage.getInitialProps = async (ctx: next.NextPageContext & { reduxStore: any }) => {
   const id = _.toNumber(ctx.query.id);
-  const post = await Api.create(ctx).post(id);
+  const state = ctx.reduxStore.getState();
+  const { posts } = state.post;
 
+  if (_.isEmpty(posts[id])) {
+    await ctx.reduxStore.dispatch.post.getAsync({ ctx, id });
+  }
+  return { id };
+};
+
+const mapStateToProps = (state: any, props: any) => {
+  const { id } = props;
+  const { posts } = state.post;
   return {
-    post,
+    post: posts[id],
   };
 };
 
-export default PostsPage;
+export default connect(mapStateToProps)(PostsPage);

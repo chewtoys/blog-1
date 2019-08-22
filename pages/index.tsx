@@ -3,41 +3,45 @@ import * as next from 'next';
 import { Row, Col } from 'react-bootstrap';
 import styled from 'styled-components';
 import { connect } from 'react-redux';
+import _ from 'lodash/fp';
 
 import Layout from '../components/Layout';
 import SEO from '../components/SEO';
 import Post from '../components/Post';
 import Sidebar from '../components/Sidebar';
 import LoadMore from '../components/LoadMore';
-import useLoadMore from '../hooks/useLoadMore';
-import Api from '../lib/api';
 
 interface IIndexPageProps {
   posts: IGithubIssues;
   recommend: IGithubIssues;
   labels: IGithubLabels;
+  loadMorePostsAsync: (cursor?: string) => Promise<void>;
 }
 
 const ColWithMaxWidth = styled(Col)`
   max-width: 650px;
 `;
 
-const IndexPage: next.NextPage<IIndexPageProps> = (props) => {
+const IndexPage: next.NextPage = (props: IIndexPageProps) => {
   const { posts, recommend, labels } = props;
+  const { pageInfo: { hasNextPage, endCursor } } = posts;
 
-  const api: Api = Api.create();
-  const loadCallback = ({ endCursor }: IGithubPageInfo) => api.posts(endCursor);
-  const [{ nodes, pageInfo, loading }, loadHandler] = useLoadMore(posts, loadCallback);
+  const [loading, setLoading] = React.useState(false);
+  const handleLoadMore = async () => {
+    setLoading(true);
+    await props.loadMorePostsAsync(endCursor);
+    setLoading(false);
+  };
 
   return (
     <Layout>
       <SEO />
       <Row>
         <ColWithMaxWidth lg={8}>
-          {nodes.map((node: IGithubIssue) => (
+          {posts.nodes.map((node: IGithubIssue) => (
             <Post key={node.id} data={node} excerpt />
           ))}
-          <LoadMore loading={loading} visiable={pageInfo.hasNextPage} onClick={loadHandler} />
+          <LoadMore loading={loading} visiable={hasNextPage} onClick={handleLoadMore} />
         </ColWithMaxWidth>
         <Col lg={4}>
           <Sidebar dataSource={{ recommend, labels }} />
@@ -47,33 +51,30 @@ const IndexPage: next.NextPage<IIndexPageProps> = (props) => {
   );
 };
 
-IndexPage.getInitialProps = async (ctx: next.NextPageContext) => {
-  const api = Api.create(ctx);
+IndexPage.getInitialProps = async (ctx: next.NextPageContext & { reduxStore: any }) => {
+  const state = ctx.reduxStore.getState();
+  const { posts, recommend, labels } = state.app;
 
-  const [posts, recommend, labels] = await Promise.all([
-    api.posts(),
-    api.recommend(),
-    api.labels(),
-  ]);
-
-  if (typeof window === 'undefined') {
-    // @ts-ignore
-    await ctx.reduxStore.dispatch.posts.getPosts(ctx);
+  const dispatchs = [];
+  if (_.isEmpty(posts)) {
+    dispatchs.push(ctx.reduxStore.dispatch.app.getPostsAsync({ ctx }));
   }
-
-  return {
-    posts,
-    recommend,
-    labels,
-  };
+  if (_.isEmpty(recommend)) {
+    dispatchs.push(ctx.reduxStore.dispatch.app.getRecommendAsync({ ctx }));
+  }
+  if (_.isEmpty(labels)) {
+    dispatchs.push(ctx.reduxStore.dispatch.app.getLabelsAsync({ ctx }));
+  }
+  await Promise.all(dispatchs);
+  return {};
 };
 
 const mapStateToProps = (state: any) => ({
-  nodes: state.posts.nodes,
+  ...state.app,
 });
 
 const mapDispatchToProps = (dispatch: any) => ({
-  getPosts: (ctx: next.NextPageContext, cursor?: string) => dispatch.posts.getPosts(ctx, cursor),
+  loadMorePostsAsync: (cursor?: string) => dispatch.app.loadMorePostsAsync({ cursor }),
 });
 
 export default connect(
