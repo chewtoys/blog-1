@@ -1,20 +1,32 @@
 import * as React from 'react';
+import { Provider } from 'react-redux';
+import { RematchStore } from '@rematch/core';
 import App, { Container } from 'next/app';
 import Router from 'next/router';
 import NProgress from 'nprogress';
+
+import withRematch from '../hoc/withRematch';
 
 Router.events.on('routeChangeStart', () => NProgress.start());
 Router.events.on('routeChangeComplete', () => NProgress.done());
 Router.events.on('routeChangeError', () => NProgress.done());
 
-export default class extends App {
+interface IAppProps {
+  reduxStore: RematchStore;
+}
+
+class MyApp extends App<IAppProps> {
   render() {
-    const { Component, pageProps } = this.props;
+    const { Component, pageProps, reduxStore } = this.props;
 
     return (
       <Container>
-        <Component {...pageProps} />
+        <Provider store={reduxStore}>
+          <Component {...pageProps} />
+        </Provider>
       </Container>
     );
   }
 }
+
+export default withRematch(MyApp);

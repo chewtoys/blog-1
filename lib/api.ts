@@ -3,7 +3,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import _ from 'lodash/fp';
 
 class Api {
-  static createWithContext(ctx?: next.NextPageContext) {
+  static create(ctx?: next.NextPageContext) {
     const config: AxiosRequestConfig = {};
     if (ctx && ctx.req) {
       const { headers = {} } = ctx.req;
@@ -23,7 +23,7 @@ class Api {
     this.request = axios.create(config);
   }
 
-  async posts(cursor?: string) {
+  async posts(cursor?: string): Promise<IGithubIssues> {
     const params = _.pickBy(_.identity, { cursor });
     const { data } = await this.request.get('/api/posts', { params });
     return data;

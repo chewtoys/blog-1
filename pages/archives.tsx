@@ -98,7 +98,7 @@ const groupByCreatedYear = _.groupBy(
 const ArchivesPage: next.NextPage<IArchivesPageProps> = (props) => {
   const { archives, recommend, labels, label } = props;
 
-  const api: Api = Api.createWithContext();
+  const api: Api = Api.create();
   const loadCallback = ({ endCursor }: IGithubPageInfo) =>
     api.archives({
       cursor: endCursor,
@@ -160,7 +160,7 @@ const ArchivesPage: next.NextPage<IArchivesPageProps> = (props) => {
 
 ArchivesPage.getInitialProps = async (ctx: next.NextPageContext) => {
   const label = (ctx.query.label || '').toString();
-  const api = Api.createWithContext(ctx);
+  const api = Api.create(ctx);
 
   const [archives, recommend, labels] = await Promise.all([
     api.archives({ label }),

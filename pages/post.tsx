@@ -52,7 +52,7 @@ const PostsPage: next.NextPage<IPostsPageProps> = (props) => {
 
 PostsPage.getInitialProps = async (ctx: next.NextPageContext) => {
   const id = _.toNumber(ctx.query.id);
-  const post = await Api.createWithContext(ctx).post(id);
+  const post = await Api.create(ctx).post(id);
 
   return {
     post,
