@@ -73,9 +73,13 @@ const Post: React.SFC<IPostProps> = (props) => {
   return (
     <Card>
       <div>
-        <Link {...linkProps}>
+        {excerpt ? (
+          <Link {...linkProps}>
+            <Title excerpt={excerpt}>{title}</Title>
+          </Link>
+        ) : (
           <Title excerpt={excerpt}>{title}</Title>
-        </Link>
+        )}
         <Meta>
           <DateTime>{format(createdAt, 'YYYY年MM月DD日')}</DateTime>
           <Labels>
