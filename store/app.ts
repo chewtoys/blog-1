@@ -28,10 +28,10 @@ export default {
       };
     },
     setRecommend(state: any, payload: any) {
-      const { recommend } = payload;
+      const { posts } = payload;
       return {
         ...state,
-        recommend,
+        recommend: posts,
       };
     },
     setLabels(state: any, payload: any) {

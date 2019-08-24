@@ -46,7 +46,6 @@ export default class MyDocument extends Document {
           <link rel="shortcut icon" href={icon} />
           <link rel="alternate" type="application/rss+xml" title={title} href={rss} />
           <style id="variables" dangerouslySetInnerHTML={{ __html: globalStyleVariables }} />
-          <script id="history" dangerouslySetInnerHTML={{ __html: 'history.scrollRestoration = "manual";' }} />
           <TypographyStyle typography={typography} />
         </Head>
         <body>
