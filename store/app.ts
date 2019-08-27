@@ -16,6 +16,7 @@ export default {
         posts,
       };
     },
+
     addPosts(state: any, payload: any) {
       const { posts } = payload;
       const { nodes, pageInfo } = posts;
@@ -27,6 +28,7 @@ export default {
         },
       };
     },
+
     setRecommend(state: any, payload: any) {
       const { posts } = payload;
       return {
@@ -34,6 +36,7 @@ export default {
         recommend: posts,
       };
     },
+
     setLabels(state: any, payload: any) {
       const { labels } = payload;
       return {
@@ -41,13 +44,31 @@ export default {
         labels,
       };
     },
+
     setArchives(state: any, payload: any) {
       const { label, posts } = payload;
+      const { archives } = state;
       return {
         ...state,
         archives: {
-          ...state.archives,
+          ...archives,
           [label]: posts,
+        },
+      };
+    },
+
+    addArchives(state: any, payload: any) {
+      const { label, posts } = payload;
+      const { nodes, pageInfo } = posts;
+      const { archives } = state;
+      return {
+        ...state,
+        archives: {
+          ...archives,
+          [label]: {
+            nodes: [...archives[label].nodes, ...nodes],
+            pageInfo,
+          },
         },
       };
     },
@@ -81,6 +102,12 @@ export default {
       const { ctx, label } = payload;
       const posts: IGithubIssues = await Api.create(ctx).archives({ label });
       return this.setArchives({ label, posts });
+    },
+
+    async loadMoreArchivesAsync(payload: { ctx?: next.NextPageContext; label: string, cursor?: string }) {
+      const { ctx, label, cursor } = payload;
+      const posts: IGithubIssues = await Api.create(ctx).archives({ label, cursor });
+      return this.addArchives({ label, posts });
     },
   },
 };

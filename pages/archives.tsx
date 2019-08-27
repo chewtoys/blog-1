@@ -18,6 +18,7 @@ interface IArchivesPageProps {
   recommend: IGithubIssues;
   labels: IGithubLabels;
   label: string;
+  loadMoreArchivesAsync: (label: string, endCursor?: string) => Promise<void>;
 }
 
 interface ILabelProps {
@@ -96,13 +97,17 @@ const groupByCreatedYear = _.groupBy(
 
 const ArchivesPage: next.NextPage = (props: IArchivesPageProps) => {
   const { posts, recommend, labels, label } = props;
-  const { nodes, pageInfo } = posts;
+  const {
+    nodes,
+    pageInfo: { hasNextPage, endCursor },
+  } = posts;
 
   const [loading, setLoading] = React.useState(false);
-  const handleLoadMore = async () => {
+  const handleLoadMore = React.useCallback(async () => {
     setLoading(true);
+    await props.loadMoreArchivesAsync(label, endCursor);
     setLoading(false);
-  };
+  }, [endCursor]);
 
   const groups = groupByCreatedYear(nodes);
   const years = _.keys(groups).sort((a, b) => +b - +a);
@@ -146,7 +151,7 @@ const ArchivesPage: next.NextPage = (props: IArchivesPageProps) => {
               })}
             </Block>
           ))}
-          <LoadMore loading={loading} visiable={pageInfo.hasNextPage} onClick={handleLoadMore} />
+          <LoadMore loading={loading} visiable={hasNextPage} onClick={handleLoadMore} />
         </Col>
         <Col lg={4}>
           <Sidebar dataSource={{ recommend }} />
@@ -186,7 +191,7 @@ const mapStateToProps = (state: any, props: any) => {
 };
 
 const mapDispatchToProps = (dispatch: any) => ({
-  loadMorePostsAsync: (cursor?: string) => dispatch.app.loadMorePostsAsync({ cursor }),
+  loadMoreArchivesAsync: (label: string, cursor?: string) => dispatch.app.loadMoreArchivesAsync({ label, cursor }),
 });
 
 export default connect(

@@ -27,11 +27,11 @@ const IndexPage: next.NextPage = (props: IIndexPageProps) => {
   const { pageInfo: { hasNextPage, endCursor } } = posts;
 
   const [loading, setLoading] = React.useState(false);
-  const handleLoadMore = async () => {
+  const handleLoadMore = React.useCallback(async () => {
     setLoading(true);
     await props.loadMorePostsAsync(endCursor);
     setLoading(false);
-  };
+  }, [endCursor]);
 
   return (
     <Layout>
