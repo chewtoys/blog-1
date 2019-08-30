@@ -38,7 +38,6 @@ const Header: React.SFC<IHeaderProps> = (_, ref) => {
     const outrideHeader = y < height;
     const isScrollUp = y < lastY.current;
 
-    console.log('useEffect: ' + (outrideHeader || isScrollUp));
     setVisible(outrideHeader || isScrollUp);
     lastY.current = y;
   }, [y, ref]);
