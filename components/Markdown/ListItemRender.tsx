@@ -1,5 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
+import _ from 'lodash/fp';
 
 interface IListItemRenderProps {
   checked: boolean | undefined;
@@ -22,7 +23,7 @@ const ListItemRender: React.SFC<IListItemRenderProps> = (props) => {
 
   return (
     <li>
-      {checked !== null && <Checkbox aria-label={children} type="checkbox" checked={checked} disabled />}
+      {checked !== null && <Checkbox type="checkbox" checked={checked} disabled />}
       <Text deleted={!!checked}>{children}</Text>
     </li>
   );
