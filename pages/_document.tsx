@@ -40,7 +40,7 @@ export default class MyDocument extends Document {
 
   render() {
     return (
-      <Html>
+      <Html lang="zh-Hans">
         <Head>
           <meta name="theme-color" content={themeColor} />
           <link rel="shortcut icon" href={icon} />

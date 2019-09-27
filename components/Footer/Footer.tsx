@@ -5,7 +5,7 @@ import ReactSvg from 'react-svg';
 
 import Container from '../Container';
 import Logo from '../Logo';
-import { author, since, themeColor } from '../../config.json';
+import { owner, author, since, themeColor } from '../../config.json';
 
 const Wrapper = styled.footer`
   padding: 30px 0 40px;
@@ -105,10 +105,10 @@ const Footer: React.SFC = (_, ref) => {
           </SitePV>
         </Left>
         <Right>
-          <IconLink href="/atom.xml" target="_blank">
+          <IconLink href="/atom.xml" target="_blank" aria-label="feed">
             <IconSvg src="/static/images/feed.svg" />
           </IconLink>
-          <IconLink href="https://github.com/ahonn" target="_blank">
+          <IconLink href={`https://github.com/${owner}`} target="_blank" aria-label="github">
             <IconSvg src="/static/images/github.svg" />
           </IconLink>
         </Right>

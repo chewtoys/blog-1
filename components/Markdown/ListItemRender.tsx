@@ -22,7 +22,7 @@ const ListItemRender: React.SFC<IListItemRenderProps> = (props) => {
 
   return (
     <li>
-      {checked !== null && <Checkbox type="checkbox" checked={checked} disabled />}
+      {checked !== null && <Checkbox aria-label={children} type="checkbox" checked={checked} disabled />}
       <Text deleted={!!checked}>{children}</Text>
     </li>
   );
