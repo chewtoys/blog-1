@@ -93,8 +93,8 @@ const Footer: React.SFC = (_, ref) => {
           <Logo />
           <Copyright>
             &copy; {since} - {currentYear} {author} · Powered By{' '}
-            <Link href="https://nextjs.org/" target="_blank">Next.js</Link> &{' '}
-            <Link href="https://zeit.co/now" target="_blank">Now</Link>
+            <Link href="https://nextjs.org/" target="_blank" rel="noopener">Next.js</Link> &{' '}
+            <Link href="https://zeit.co/now" target="_blank" rel="noopener">Now</Link>
           </Copyright>
           <SitePV id="busuanzi_container_site_pv" style={{ display: 'none' }}>
             本站总访问量
@@ -108,7 +108,7 @@ const Footer: React.SFC = (_, ref) => {
           <IconLink href="/atom.xml" target="_blank" aria-label="feed">
             <IconSvg src="/static/images/feed.svg" />
           </IconLink>
-          <IconLink href={`https://github.com/${owner}`} target="_blank" aria-label="github">
+          <IconLink href={`https://github.com/${owner}`} target="_blank" rel="noopener" aria-label="github">
             <IconSvg src="/static/images/github.svg" />
           </IconLink>
         </Right>
