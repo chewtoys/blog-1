@@ -93,8 +93,7 @@ const Footer: React.SFC = (_, ref) => {
           <Logo />
           <Copyright>
             &copy; {since} - {currentYear} {author} · Powered By{' '}
-            <Link href="https://nextjs.org/" target="_blank" rel="noopener">Next.js</Link> &{' '}
-            <Link href="https://zeit.co/now" target="_blank" rel="noopener">Now</Link>
+            <Link href="https://nextjs.org/" target="_blank" rel="noopener">Next.js</Link>
           </Copyright>
           <SitePV id="busuanzi_container_site_pv" style={{ display: 'none' }}>
             本站总访问量

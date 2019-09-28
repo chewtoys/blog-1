@@ -20,6 +20,7 @@ interface ITitleProps {
 
 // tslint:disable-next-line
 const Title = styled.h2<ITitleProps>`
+  display: inline-block;
   margin-top: 0;
   margin-bottom: 10px;
   color: ${themeColor};
