@@ -1,7 +1,10 @@
+import dynamic from 'next/dynamic';
 import * as React from 'react';
 import styled from 'styled-components';
-import Lightbox from 'react-image-lightbox';
+// import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
+
+const Lightbox = dynamic(() => import('react-image-lightbox'));
 
 interface IImageRenderProps {
   alt: string;

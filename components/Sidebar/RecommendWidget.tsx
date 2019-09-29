@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { format } from 'date-fns';
 import styled from 'styled-components';
 
-import Card from '../Card';
+import Section from '../Section';
 import { themeColor } from '../../config.json';
 
 interface IRecommendWidgetProps {
@@ -39,7 +39,7 @@ const RecommendWidget: React.SFC<IRecommendWidgetProps> = (props) => {
   const { recommend } = props;
 
   return (
-    <Card title="热门推荐">
+    <Section title="热门推荐">
       {recommend.nodes.map((node: IGithubIssue) => {
         const { number: id, title, createdAt } = node;
 
@@ -54,7 +54,7 @@ const RecommendWidget: React.SFC<IRecommendWidgetProps> = (props) => {
           </Item>
         );
       })}
-    </Card>
+    </Section>
   );
 };
 

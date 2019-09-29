@@ -1,12 +1,21 @@
+import dynamic from 'next/dynamic';
 import * as React from 'react';
 import _ from 'lodash/fp';
 import styled from 'styled-components';
-import Highlight from 'react-highlight';
+// import Highlight from 'react-highlight';
+import 'highlight.js/styles/tomorrow.css';
+
+const Highlight = dynamic(() => import('react-highlight'));
 
 interface ICodeRenderProps {
   inline: string;
   value: string;
   language?: string;
+}
+
+interface ICodeBlockProps {
+  className: string;
+  languages: string[];
 }
 
 const InlineCode = styled.code`
@@ -20,7 +29,7 @@ const Wrapper = styled.div`
   position: relative;
 `;
 
-const CodeBlock = styled(Highlight)`
+const CodeBlock = styled(Highlight)<ICodeBlockProps>`
   display: block;
   font-size: 0.9rem !important;
   line-height: 1.5rem;
@@ -51,7 +60,9 @@ const CodeRender: React.SFC<ICodeRenderProps> = (props) => {
   const language = _.toLower(props.language || '');
   return (
     <Wrapper>
-      <CodeBlock className={language}>{props.value}</CodeBlock>
+      <CodeBlock className={language} languages={[language]}>
+        {props.value}
+      </CodeBlock>
       <Language>{language}</Language>
     </Wrapper>
   );

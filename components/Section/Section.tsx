@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-interface ICardProps {
+interface ISectionProps {
   title?: string;
   padding?: string;
 }
@@ -11,7 +11,7 @@ interface IWrapperProps {
 }
 
 // tslint:disable-next-line
-const Wrapper = styled.div<IWrapperProps>`
+const Wrapper = styled.section<IWrapperProps>`
   margin-top: 10px;
   padding: ${(props) => props.padding || '1.5rem 0 1rem'};
   background: #fff;
@@ -28,7 +28,7 @@ const Title = styled.h3`
   font-weight: 200;
 `;
 
-const Card: React.SFC<ICardProps> = (props) => {
+const Section: React.SFC<ISectionProps> = (props) => {
   const { title, padding, children } = props;
 
   return (
@@ -39,4 +39,4 @@ const Card: React.SFC<ICardProps> = (props) => {
   );
 };
 
-export default Card;
+export default Section;

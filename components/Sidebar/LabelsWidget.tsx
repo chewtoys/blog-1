@@ -3,7 +3,7 @@ import Link from 'next/link';
 import _ from 'lodash/fp';
 import styled from 'styled-components';
 
-import Card from '../Card';
+import Section from '../Section';
 import { themeColor } from '../../config.json';
 
 const MIN_LABEL_SIZE = 12;
@@ -63,7 +63,7 @@ const LabelsWidget: React.SFC<ILabelsWidgetProps> = (props) => {
   };
 
   return (
-    <Card title="标签">
+    <Section title="标签">
       <Labels>
         {labels.nodes.map((node) => {
           const { name, issues } = node;
@@ -78,7 +78,7 @@ const LabelsWidget: React.SFC<ILabelsWidgetProps> = (props) => {
           );
         })}
       </Labels>
-    </Card>
+    </Section>
   );
 };
 

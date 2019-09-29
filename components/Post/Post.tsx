@@ -1,13 +1,15 @@
 import * as React from 'react';
 import Link from 'next/link';
+import dynamic from 'next/dynamic';
 import { format } from 'date-fns';
 import styled from 'styled-components';
 import _ from 'lodash/fp';
 
-import Card from '../Card';
+import Section from '../Section';
 import Markdown from '../Markdown';
-import Comment from '../Comment';
 import { themeColor } from '../../config.json';
+
+const Comment = dynamic(() => import('../Comment'));
 
 interface IPostProps {
   data: IGithubIssue;
@@ -71,9 +73,9 @@ const Post: React.SFC<IPostProps> = (props) => {
     prefetch: true,
   };
 
-  return (
-    <Card>
-      <div>
+  const renderHeader = () => {
+    return (
+      <header>
         {excerpt ? (
           <Link {...linkProps}>
             <Title excerpt={excerpt}>{title}</Title>
@@ -96,16 +98,33 @@ const Post: React.SFC<IPostProps> = (props) => {
             </PagePV>
           )}
         </Meta>
-      </div>
-      <Markdown source={body} excerpt={excerpt} />
-      {excerpt ? (
-        <Link {...linkProps}>
-          <ReadMore>阅读更多...</ReadMore>
-        </Link>
-      ) : (
+      </header>
+    );
+  };
+
+  const renderFooter = () => {
+    if (excerpt) {
+      return (
+        <footer>
+          <Link {...linkProps}>
+            <ReadMore>阅读更多...</ReadMore>
+          </Link>
+        </footer>
+      );
+    }
+    return (
+      <footer>
         <Comment id={id} />
-      )}
-    </Card>
+      </footer>
+    );
+  };
+
+  return (
+    <Section>
+      {renderHeader()}
+      <Markdown source={body} excerpt={excerpt} />
+      {renderFooter()}
+    </Section>
   );
 };
 
