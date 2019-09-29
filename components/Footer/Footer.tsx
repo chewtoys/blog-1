@@ -29,13 +29,13 @@ const Right = styled.div`
 const Copyright = styled.p`
   margin: 0;
   padding-left: 5px;
-  color: #8c8c8c;
+  color: #707070;
   font-size: 0.85rem;
 `;
 
 const SitePV = styled.span`
   padding-left: 5px;
-  color: #8c8c8c;
+  color: #707070;
   font-size: 0.8rem;
 `;
 

@@ -26,13 +26,12 @@ const Title = styled.h2<ITitleProps>`
   margin-top: 0;
   margin-bottom: 10px;
   color: ${themeColor};
-  font-size: 1.85rem;
   cursor: ${(props) => (props.excerpt ? 'pointer' : 'initial')};
 `;
 
 const Meta = styled.div`
   margin-bottom: 1rem;
-  color: #7a7a7a;
+  color: #757575;
   font-size: 14px;
 `;
 

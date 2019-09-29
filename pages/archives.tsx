@@ -71,7 +71,7 @@ const Item = styled.div`
 `;
 
 const DateTime = styled.time`
-  color: #7a7a7a;
+  color: #757575;
   margin-right: 10px;
 
   @media (max-width: 576px) {

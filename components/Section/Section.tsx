@@ -23,9 +23,9 @@ const Wrapper = styled.section<IWrapperProps>`
 
 const Title = styled.h3`
   margin: 0 0 15px;
-  color: #7a7a7a;
+  color: #757575;
   font-size: 1em;
-  font-weight: 200;
+  font-weight: 400;
 `;
 
 const Section: React.SFC<ISectionProps> = (props) => {

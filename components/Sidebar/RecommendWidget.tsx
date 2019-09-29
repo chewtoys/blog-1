@@ -19,14 +19,14 @@ const Item = styled.div`
 const DateTime = styled.time`
   display: block;
   margin-bottom: 5px;
-  color: #7a7a7a;
+  color: #757575;
   font-size: 0.85em;
   line-height: 1rem;
 `;
 
 const Title = styled.span`
   color: #242424;
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   cursor: pointer;
   transition: color 0.2s ease-out;
 
