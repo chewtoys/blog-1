@@ -47,6 +47,7 @@ export default class MyDocument extends Document {
           <link rel="alternate" type="application/rss+xml" title={title} href={rss} />
           <style id="variables" dangerouslySetInnerHTML={{ __html: globalStyleVariables }} />
           <TypographyStyle typography={typography} />
+          <link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet" />
         </Head>
         <body>
           <Main />

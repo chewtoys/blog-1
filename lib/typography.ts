@@ -3,15 +3,10 @@ import Wordpress2016 from 'typography-theme-wordpress-2016';
 
 import { themeColor } from '../config.json';
 
-Wordpress2016.headerFontFamily = ['Georgia', 'serif'];
-Wordpress2016.bodyFontFamily = [
-  '-apple-system',
-  'Helvetica Neue',
-  'PingFang SC',
-  'Microsoft YaHei',
-  'WenQuanYi Micro Hei',
-  'sans-serif',
-];
+const fontFamily = ['Noto Serif SC', 'serif'];
+
+Wordpress2016.headerFontFamily = fontFamily;
+Wordpress2016.bodyFontFamily = fontFamily;
 
 (Wordpress2016 as TypographyOptions).overrideThemeStyles = ({ rhythm }) => ({
   body: {
