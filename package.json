@@ -53,6 +53,7 @@
     "@types/typography": "^0.16.2",
     "@zeit/next-css": "^1.0.1",
     "gray-matter": "^4.0.2",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
     "typescript": "^3.5.3"
   }
 }
