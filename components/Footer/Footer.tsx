@@ -5,7 +5,7 @@ import ReactSvg from 'react-svg';
 
 import Container from '../Container';
 import Logo from '../Logo';
-import { owner, author, since, themeColor } from '../../config.json';
+import { owner, author, since, twitter, themeColor } from '../../config.json';
 
 const Wrapper = styled.footer`
   padding: 30px 0 40px;
@@ -61,7 +61,7 @@ const IconLink = styled.a`
   padding-top: 15px;
 
   & + & {
-    margin-left: 5px;
+    margin-left: 10px;
   }
 `;
 
@@ -93,7 +93,9 @@ const Footer: React.SFC = (_, ref) => {
           <Logo />
           <Copyright>
             &copy; {since} - {currentYear} {author} · Powered By{' '}
-            <Link href="https://nextjs.org/" target="_blank" rel="noopener">Next.js</Link>
+            <Link href="https://nextjs.org/" target="_blank" rel="noopener">
+              Next.js
+            </Link>
           </Copyright>
           <SitePV id="busuanzi_container_site_pv" style={{ display: 'none' }}>
             本站总访问量
@@ -107,8 +109,21 @@ const Footer: React.SFC = (_, ref) => {
           <IconLink href="/atom.xml" target="_blank" aria-label="feed">
             <IconSvg src="/static/images/feed.svg" />
           </IconLink>
-          <IconLink href={`https://github.com/${owner}`} target="_blank" rel="noopener" aria-label="github">
+          <IconLink
+            href={`https://github.com/${owner}`}
+            target="_blank"
+            rel="noopener"
+            aria-label="github"
+          >
             <IconSvg src="/static/images/github.svg" />
+          </IconLink>
+          <IconLink
+            href={`https://twitter.com/${twitter.slice(1)}`}
+            target="_blank"
+            rel="noopener"
+            aria-label="twitter"
+          >
+            <IconSvg src="/static/images/twitter.svg" />
           </IconLink>
         </Right>
       </Container>
