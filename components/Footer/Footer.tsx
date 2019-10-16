@@ -5,7 +5,9 @@ import ReactSvg from 'react-svg';
 
 import Container from '../Container';
 import Logo from '../Logo';
-import { owner, author, since, twitter, themeColor } from '../../config.json';
+import { getConfig } from '../../utils';
+
+const { owner, site, social, theme } = getConfig();
 
 const Wrapper = styled.footer`
   padding: 30px 0 40px;
@@ -49,7 +51,7 @@ const Link = styled.a`
   box-shadow: none;
 
   &:hover {
-    color: ${themeColor};
+    color: ${theme.color};
     border-bottom: none;
   }
 `;
@@ -78,7 +80,7 @@ const IconSvg = styled(ReactSvg)`
 
   &:hover {
     svg path {
-      fill: ${themeColor};
+      fill: ${theme.color};
     }
   }
 `;
@@ -92,7 +94,7 @@ const Footer: React.SFC = (_, ref) => {
         <Left>
           <Logo />
           <Copyright>
-            &copy; {since} - {currentYear} {author} · Powered By{' '}
+            &copy; {site.since} - {currentYear} {site.author} · Powered By{' '}
             <Link href="https://nextjs.org/" target="_blank" rel="noopener">
               Next.js
             </Link>
@@ -118,7 +120,7 @@ const Footer: React.SFC = (_, ref) => {
             <IconSvg src="/static/images/github.svg" />
           </IconLink>
           <IconLink
-            href={`https://twitter.com/${twitter.slice(1)}`}
+            href={`https://twitter.com/${social.twitter.slice(1)}`}
             target="_blank"
             rel="noopener"
             aria-label="twitter"

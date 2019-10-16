@@ -7,7 +7,7 @@ import _ from 'lodash/fp';
 
 import Section from '../Section';
 import Markdown from '../Markdown';
-import { themeColor } from '../../config.json';
+import { getConfig } from '../../utils';
 
 const Comment = dynamic(() => import('../Comment'));
 
@@ -20,12 +20,14 @@ interface ITitleProps {
   excerpt: boolean | undefined;
 }
 
+const { theme } = getConfig();
+
 // tslint:disable-next-line
 const Title = styled.h2<ITitleProps>`
   display: inline-block;
   margin-top: 0;
   margin-bottom: 10px;
-  color: ${themeColor};
+  color: ${theme.color};
   cursor: ${(props) => (props.excerpt ? 'pointer' : 'initial')};
 `;
 
@@ -58,7 +60,7 @@ const Label = styled.a`
 
 const ReadMore = styled.span`
   font-size: 0.9rem;
-  color: ${themeColor};
+  color: ${theme.color};
   cursor: pointer;
 `;
 

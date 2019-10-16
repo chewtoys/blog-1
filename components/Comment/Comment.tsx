@@ -3,7 +3,9 @@ import styled from 'styled-components';
 import Gitalk from 'gitalk';
 import 'gitalk/dist/gitalk.css';
 
-import config, { themeColor } from '../../config.json';
+import { getConfig } from '../../utils';
+
+const { owner, repo, theme } = getConfig();
 
 interface ICommentProps {
   id: number;
@@ -12,23 +14,23 @@ interface ICommentProps {
 const GitalkContainer = styled.div`
   & .gt-container {
     & a {
-      color: ${themeColor};
+      color: ${theme.color};
       box-shadow: none;
       border-bottom: none;
     }
     & svg {
-      fill: ${themeColor};
+      fill: ${theme.color};
     }
     & .gt-ico-github svg {
       fill: #333;
     }
     & .gt-btn {
-      background-color: ${themeColor};
-      border-color: ${themeColor};
+      background-color: ${theme.color};
+      border-color: ${theme.color};
     }
     & .gt-btn-preview {
-      color: ${themeColor};
-      border-color: ${themeColor};
+      color: ${theme.color};
+      border-color: ${theme.color};
       background-color: #fff;
     }
     & .gt-comment-content {
@@ -45,7 +47,7 @@ const GitalkContainer = styled.div`
       display: none;
     }
     & .gt-popup .gt-action.is--active:before {
-      background: ${themeColor};
+      background: ${theme.color};
     }
   }
 `;
@@ -55,11 +57,11 @@ const Comment: React.SFC<ICommentProps> = (props) => {
 
   React.useEffect(() => {
     const gitalk = new Gitalk({
-      clientID: config.gitalk.clientID,
-      clientSecret: config.gitalk.clientSecret,
-      repo: config.repo,
-      owner: config.owner,
-      admin: [config.owner],
+      clientID: process.env.GITALK_CLIENT_ID,
+      clientSecret: process.env.GITALK_CLIENT_SECRET,
+      repo,
+      owner,
+      admin: [owner],
       id: location.pathname,
       number: id,
       distractionFreeMode: false,

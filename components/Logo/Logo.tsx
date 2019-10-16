@@ -2,7 +2,7 @@ import * as React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import config from '../../config.json';
+import { getConfig } from '../../utils';
 
 interface ILogoProps {
   padding?: string;
@@ -11,6 +11,8 @@ interface ILogoProps {
 interface IWrapperProps {
   padding: string;
 }
+
+const { site: { title, icon } } = getConfig();
 
 const Wrapper = styled.div<IWrapperProps>`
   display: inline-block;
@@ -42,8 +44,8 @@ const Logo: React.SFC<ILogoProps> = (props) => {
     <Wrapper padding={padding}>
       <Link prefetch href="/">
         <Title>
-          <Icon src={config.icon} alt={config.title} />
-          <span>{config.title}</span>
+          <Icon src={icon} alt={title} />
+          <span>{title}</span>
         </Title>
       </Link>
     </Wrapper>

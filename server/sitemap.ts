@@ -5,7 +5,9 @@ import _ from 'lodash/fp';
 import sm, { EnumChangefreq } from 'sitemap';
 
 import octokit from './common/octokit';
-import { owner, repo, siteUrl } from '../config.json';
+import { getConfig } from './common/utils';
+
+const { owner, repo, site } = getConfig();
 
 const query = `
 query ($owner: String!, $repo: String!, $after: String) {
@@ -38,7 +40,7 @@ export default async (req: NowRequest, res: NowResponse) => {
   const issues: IGithubIssues = data.repository.issues;
 
   const sitemap = sm.createSitemap({
-    hostname: siteUrl,
+    hostname: site.url,
     cacheTime: 600000,
     urls: issues.nodes.map((issue: IGithubIssue) => ({
       url: `/post/${issue.number}`,

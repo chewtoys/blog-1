@@ -4,10 +4,12 @@ import _ from 'lodash/fp';
 import styled from 'styled-components';
 
 import Section from '../Section';
-import { themeColor } from '../../config.json';
+import { getConfig } from '../../utils';
 
 const MIN_LABEL_SIZE = 12;
 const MAX_LABEL_SIZE = 16;
+
+const { theme } = getConfig();
 
 interface ILabelsWidgetProps {
   labels: IGithubLabels;
@@ -40,8 +42,8 @@ const Label = styled.span<ILabelProps>`
   }
 
   &:hover {
-    color: ${themeColor};
-    border-color: ${themeColor};
+    color: ${theme.color};
+    border-color: ${theme.color};
   }
 `;
 

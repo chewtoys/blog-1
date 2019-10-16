@@ -1,0 +1,19 @@
+owner: ahonn
+repo: blog
+
+site:
+  author: Ahonn,
+  title: Ahonn's Blog
+  description: Ahonn 的个人博客
+  url: https://www.ahonn.me
+  since: 2015
+  icon: /static/images/icon.png
+  rss: /atom.xml
+
+social:
+  twitter: ahonnjiang
+
+theme:
+  color: "#DB1105"
+
+menu:

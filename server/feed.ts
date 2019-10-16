@@ -5,8 +5,9 @@ import _ from 'lodash/fp';
 import { Feed } from 'feed';
 
 import octokit from './common/octokit';
-import { truncate, fixRealCreatedAt } from './common/utils';
-import config, { owner, repo } from '../config.json';
+import { getConfig, truncateMarkdown, fixRealCreatedAt } from './common/utils';
+
+const { owner, repo, site } = getConfig();
 
 const query = `
 query ($owner: String!, $repo: String!, $after: String) {
@@ -42,24 +43,24 @@ export default async (req: NowRequest, res: NowResponse) => {
   const { issues } = data.repository;
 
   const feed = new Feed({
-    id: config.siteUrl,
-    title: config.title,
-    description: config.description,
-    link: config.siteUrl,
+    id: site.url,
+    title: site.title,
+    description: site.description,
+    link: site.url,
     language: 'zh-cn',
-    favicon: config.siteUrl + config.icon,
-    image: config.siteUrl + config.icon,
-    copyright: `All rights reserved ${config.since}, ${config.author}`,
+    favicon: site.url + site.icon,
+    image: site.url + site.icon,
+    copyright: `All rights reserved ${site.since}, ${site.author}`,
   });
 
   issues.nodes.forEach((issue: IGithubIssue) => {
     const { number: id, title, body, bodyHTML, createdAt } = fixRealCreatedAt(issue);
-    const link = `${config.siteUrl}/post/${id}`;
+    const link = `${site.url}/post/${id}`;
 
     feed.addItem({
       title,
       link,
-      description: truncate(body),
+      description: truncateMarkdown(body),
       content: bodyHTML,
       date: new Date(createdAt),
     });

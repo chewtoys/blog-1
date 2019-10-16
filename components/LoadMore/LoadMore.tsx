@@ -2,13 +2,15 @@ import React from 'react';
 import BeatLoader from 'react-spinners/BeatLoader';
 import styled from 'styled-components';
 
-import { themeColor } from '../../config.json';
+import { getConfig } from '../../utils';
 
 interface ILoadingProps {
   loading: boolean;
   visiable: boolean;
   onClick: () => void;
 }
+
+const { theme } = getConfig();
 
 const Wrapper = styled.div`
   min-height: 60px;
@@ -28,12 +30,12 @@ const Loader = styled(({ className, ...props }) => (
 const Button = styled.button`
   width: 100%;
   display: block;
-  color: ${themeColor};
+  color: ${theme.color};
   background-color: #fff;
   border: none;
   outline: none;
   padding: 10px;
-  border: 1px solid ${themeColor};
+  border: 1px solid ${theme.color};
   border-radius: 5px;
   transition: all ease-out 0.3s;
   cursor: pointer;
@@ -41,7 +43,7 @@ const Button = styled.button`
 
   &:hover {
     color: #fff;
-    background-color: ${themeColor};
+    background-color: ${theme.color};
   }
 `;
 
@@ -55,7 +57,7 @@ const LoadMore: React.SFC<ILoadingProps> = (props) => {
   return (
     <Wrapper>
       {loading ? (
-        <Loader color={themeColor} size={10} />
+        <Loader color={theme.color} size={10} />
       ) : (
         <Button onClick={onClick}>加载更多...</Button>
       )}

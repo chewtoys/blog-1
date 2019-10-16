@@ -4,7 +4,9 @@ import { format } from 'date-fns';
 import styled from 'styled-components';
 
 import Section from '../Section';
-import { themeColor } from '../../config.json';
+import { getConfig } from '../../utils';
+
+const { theme } = getConfig();
 
 interface IRecommendWidgetProps {
   recommend: IGithubIssues;
@@ -31,7 +33,7 @@ const Title = styled.span`
   transition: color 0.2s ease-out;
 
   &:hover {
-    color: ${themeColor};
+    color: ${theme.color};
   }
 `;
 

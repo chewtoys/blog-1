@@ -1,7 +1,9 @@
 import Typography, { TypographyOptions } from 'typography';
 import Wordpress2016 from 'typography-theme-wordpress-2016';
 
-import { themeColor } from '../config.json';
+import { getConfig } from '../utils';
+
+const { theme } = getConfig();
 
 const fontFamily = ['Noto Serif SC', 'serif'];
 
@@ -22,8 +24,8 @@ Wordpress2016.bodyFontFamily = fontFamily;
     textTransform: 'none',
   },
   a: {
-    boxShadow: `0 1px 0 0 ${themeColor}`,
-    color: themeColor,
+    boxShadow: `0 1px 0 0 ${theme.color}`,
+    color: theme.color,
     textDecoration: 'none',
   },
   p: {

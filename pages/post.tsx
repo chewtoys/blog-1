@@ -2,32 +2,18 @@ import * as React from 'react';
 import * as next from 'next';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
-import removeMarkdown from 'remove-markdown';
 import _ from 'lodash/fp';
 
 import SEO from '../components/SEO';
 import Layout from '../components/Layout';
 import Post from '../components/Post';
-import { siteUrl } from '../config.json';
+import { getConfig, truncateMarkdown, extractMarkdownImage } from '../utils';
 
 interface IPostsPageProps {
   post: IGithubIssue;
 }
 
-const truncate = _.compose(
-  _.truncate({ length: 200 }),
-  _.replace(/\n/g, ' '),
-  removeMarkdown,
-);
-
-const extractImage = (str: string) => {
-  const imageRe = /!\[.*?\]\((.+?)\)/g;
-  const matchs = imageRe.exec(str);
-  if (matchs) {
-    return matchs[1];
-  }
-  return null;
-};
+const { site } = getConfig();
 
 const PostsPage: next.NextPage = (props: IPostsPageProps) => {
   const { post } = props;
@@ -37,9 +23,9 @@ const PostsPage: next.NextPage = (props: IPostsPageProps) => {
     <Layout>
       <SEO
         subTitle={title}
-        description={truncate(body)}
-        canonical={`${siteUrl}/post/${id}`}
-        image={extractImage(body)}
+        description={truncateMarkdown(body)}
+        canonical={`${site.url}/post/${id}`}
+        image={extractMarkdownImage(body)}
       />
       <Row className="justify-content-md-center">
         <Col lg={10}>

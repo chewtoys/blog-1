@@ -2,7 +2,9 @@ import * as React from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 
-import { menu, themeColor } from '../../config.json';
+import { getConfig } from '../../utils';
+
+const { theme, menu } = getConfig();
 
 const Nav = styled.nav`
   float: right;
@@ -19,7 +21,7 @@ const Item = styled.li`
   cursor: pointer;
 
   &:hover {
-    color: ${themeColor};
+    color: ${theme.color};
   }
 `;
 
@@ -27,7 +29,7 @@ const Navbar: React.SFC = () => {
   return (
     <Nav>
       <List>
-        {menu.map(({ name, url }) => (
+        {(menu || []).map(({ name, url }) => (
           <Link href={url} key={name}>
             <Item>{name}</Item>
           </Link>

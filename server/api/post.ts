@@ -3,8 +3,9 @@ import { NowRequest, NowResponse } from '@now/node';
 import _ from 'lodash/fp';
 
 import octokit from '../common/octokit';
-import { fixRealCreatedAt } from '../common/utils';
-import { owner, repo } from '../../config.json';
+import { getConfig, fixRealCreatedAt } from '../common/utils';
+
+const { owner, repo } = getConfig();
 
 const query = `
 query ($owner: String!, $repo: String!, $number: Int!) {

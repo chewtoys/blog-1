@@ -3,12 +3,26 @@
   "name": "blog",
   "alias": "www.ahonn.me",
   "env": {
-    "TOKEN": "@github-token"
+    "GITHUB_TOKEN": "@github-token"
+  },
+  "build": {
+    "env": {
+      "GA_TRACKING_ID": "@ga-tracking-id",
+      "GA_OPTIMIZE_ID": "@ga-optimize-id",
+      "GITALK_CLIENT_ID": "@gitalk-client-id",
+      "GITALK_CLIENT_SECRET": "@gitalk-client-secret"
+    }
   },
   "builds": [
     { "src": "next.config.js", "use": "@now/next" },
     { "src": "static/**", "use": "@now/static" },
-    { "src": "/server/**/*.ts", "use": "@now/node" }
+    {
+      "src": "/server/**/*.ts",
+      "use": "@now/node",
+      "config": {
+        "includeFiles": "_config.yml"
+      }
+    }
   ],
   "routes": [
     {

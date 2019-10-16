@@ -4,11 +4,13 @@ import { TypographyStyle } from 'react-typography';
 import { ServerStyleSheet } from 'styled-components';
 
 import typography from '../lib/typography';
-import { title, icon, themeColor, rss } from '../config.json';
+import { getConfig } from '../utils';
+
+const { site, theme } = getConfig();
 
 const globalStyleVariables = `
   :root {
-    --theme-color: ${themeColor};
+    --theme-color: ${theme.color};
   }
 `;
 
@@ -42,12 +44,15 @@ export default class MyDocument extends Document {
     return (
       <Html lang="zh-Hans">
         <Head>
-          <meta name="theme-color" content={themeColor} />
-          <link rel="shortcut icon" href={icon} />
-          <link rel="alternate" type="application/rss+xml" title={title} href={rss} />
+          <meta name="theme-color" content={theme.color} />
+          <link rel="shortcut icon" href={site.icon} />
+          <link rel="alternate" type="application/rss+xml" title={site.title} href={site.rss} />
           <style id="variables" dangerouslySetInnerHTML={{ __html: globalStyleVariables }} />
           <TypographyStyle typography={typography} />
-          <link href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap" rel="stylesheet" />
+          <link
+            href="https://fonts.googleapis.com/css?family=Noto+Serif+SC&display=swap"
+            rel="stylesheet"
+          />
         </Head>
         <body>
           <Main />

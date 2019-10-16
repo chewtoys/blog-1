@@ -10,8 +10,7 @@ import { connect } from 'react-redux';
 import Layout from '../components/Layout';
 import LoadMore from '../components/LoadMore';
 import Sidebar from '../components/Sidebar';
-
-import { themeColor } from '../config.json';
+import { getConfig } from '../utils';
 
 interface IArchivesPageProps {
   posts: IGithubIssues;
@@ -24,6 +23,8 @@ interface IArchivesPageProps {
 interface ILabelProps {
   active?: boolean;
 }
+
+const { theme } = getConfig();
 
 const Block = styled.div`
   margin-top: 1.5rem;
@@ -46,8 +47,8 @@ const Label = styled.span<ILabelProps>`
   margin-top: 10px;
   padding: 7px;
   cursor: pointer;
-  color: ${(props) => (props.active ? themeColor : 'inherit')};
-  border: 1px solid ${(props) => (props.active ? themeColor : '#e9e9e9')};
+  color: ${(props) => (props.active ? theme.color : 'inherit')};
+  border: 1px solid ${(props) => (props.active ? theme.color : '#e9e9e9')};
   border-radius: 3px;
 
   &::before {
@@ -55,8 +56,8 @@ const Label = styled.span<ILabelProps>`
   }
 
   &:hover {
-    color: ${themeColor};
-    border-color: ${themeColor};
+    color: ${theme.color};
+    border-color: ${theme.color};
   }
 `;
 
@@ -81,7 +82,7 @@ const DateTime = styled.time`
 `;
 
 const Title = styled.span`
-  color: ${themeColor};
+  color: ${theme.color};
 
   @media (max-width: 576px) {
     display: block;
