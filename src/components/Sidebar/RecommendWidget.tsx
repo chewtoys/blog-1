@@ -47,7 +47,7 @@ const RecommendWidget: React.SFC<IRecommendWidgetProps> = (props) => {
 
         return (
           <Item key={id}>
-            <Link prefetch href={`/post?id=${id}`} as={`/post/${id}`}>
+            <Link href={`/post?id=${id}`} as={`/post/${id}`}>
               <div>
                 <DateTime>{format(createdAt, 'YYYY年MM月DD日')}</DateTime>
                 <Title>{title}</Title>

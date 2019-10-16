@@ -42,7 +42,7 @@ const Logo: React.SFC<ILogoProps> = (props) => {
 
   return (
     <Wrapper padding={padding}>
-      <Link prefetch href="/">
+      <Link href="/">
         <Title>
           <Icon src={icon} alt={title} />
           <span>{title}</span>

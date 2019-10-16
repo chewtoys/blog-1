@@ -139,7 +139,6 @@ const ArchivesPage: next.NextPage = (props: IArchivesPageProps) => {
                 const linkProps = {
                   href: `/post?id=${id}`,
                   as: `/post/${id}`,
-                  prefetch: true,
                 };
                 return (
                   <Link key={id} {...linkProps}>

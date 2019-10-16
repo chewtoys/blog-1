@@ -71,7 +71,6 @@ const Post: React.SFC<IPostProps> = (props) => {
   const linkProps = {
     href: `/post?id=${id}`,
     as: `/post/${id}`,
-    prefetch: true,
   };
 
   const renderHeader = () => {
