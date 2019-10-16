@@ -120,7 +120,7 @@ const Footer: React.SFC = (_, ref) => {
               <IconSvg src="/static/images/github.svg" />
           </IconLink>
           <IconLink
-            href={`https://twitter.com/${social.twitter.slice(1)}`}
+            href={`https://twitter.com/${social.twitter}`}
             target="_blank"
             rel="noopener"
             aria-label="twitter"
