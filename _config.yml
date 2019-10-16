@@ -7,7 +7,7 @@ site:
   description: Ahonn 的个人博客
   url: https://www.ahonn.me
   since: 2015
-  icon: /images/icon.png
+  icon: /static/images/icon.png
   rss: /atom.xml
 
 social:
