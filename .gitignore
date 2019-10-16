@@ -11,4 +11,5 @@ yarn-error.log
 *.report.html
 
 .next/
-.env*
+.env
+.env.build
