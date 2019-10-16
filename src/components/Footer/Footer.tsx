@@ -109,7 +109,7 @@ const Footer: React.SFC = (_, ref) => {
         </Left>
         <Right>
           <IconLink href="/atom.xml" target="_blank" aria-label="feed">
-            <IconSvg src="/static/images/feed.svg" />
+            <IconSvg src="/images/feed.svg" />
           </IconLink>
           <IconLink
             href={`https://github.com/${owner}`}
@@ -117,7 +117,7 @@ const Footer: React.SFC = (_, ref) => {
             rel="noopener"
             aria-label="github"
           >
-            <IconSvg src="/static/images/github.svg" />
+            <IconSvg src="/images/github.svg" />
           </IconLink>
           <IconLink
             href={`https://twitter.com/${social.twitter.slice(1)}`}
@@ -125,7 +125,7 @@ const Footer: React.SFC = (_, ref) => {
             rel="noopener"
             aria-label="twitter"
           >
-            <IconSvg src="/static/images/twitter.svg" />
+            <IconSvg src="/images/twitter.svg" />
           </IconLink>
         </Right>
       </Container>

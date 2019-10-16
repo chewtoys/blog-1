@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 import 'normalize.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
-import '../../static/css/nprogress.css';
+import '../../assets/css/nprogress.css';
 
 import Header from '../Header';
 import Container from '../Container';
