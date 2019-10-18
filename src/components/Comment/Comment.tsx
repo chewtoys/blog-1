@@ -33,6 +33,9 @@ const GitalkContainer = styled.div`
       border-color: ${theme.color};
       background-color: #fff;
     }
+    & .gt-comment-admin .gt-comment-content {
+      background-color: #fff;
+    }
     & .gt-comment-content {
       background-color: #fff;
 
