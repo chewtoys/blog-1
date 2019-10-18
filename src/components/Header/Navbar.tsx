@@ -17,8 +17,11 @@ const List = styled.ul`
 const Item = styled.li`
   display: inline;
   line-height: 60px;
-  margin-right: 20px;
   cursor: pointer;
+
+  & + & {
+    margin-left: 15px;
+  }
 
   &:hover {
     color: ${theme.color};

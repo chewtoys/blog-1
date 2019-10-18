@@ -50,6 +50,11 @@ class Api {
     const { data } = await this.request.get('/api/archives', { params });
     return data;
   }
+
+  async about(): Promise<IGithubIssue> {
+    const { data } = await this.request.get('/api/about');
+    return data;
+  }
 }
 
 export default Api;

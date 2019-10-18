@@ -43,6 +43,7 @@
     { "src": "/api/recommend", "dest": "server/api/recommend.ts" },
     { "src": "/api/labels", "dest": "server/api/labels.ts" },
     { "src": "/api/archives", "dest": "server/api/archives.ts" },
+    { "src": "/api/about", "dest": "server/api/about.ts" },
 
     { "src": "/sitemap.xml", "dest": "server/sitemap.ts" },
     { "src": "/atom.xml", "dest": "server/feed.ts" },

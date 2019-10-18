@@ -7,6 +7,7 @@ export default {
     recommend: {},
     labels: [],
     archives: {},
+    about: {},
   },
   reducers: {
     setPosts(state: any, payload: any) {
@@ -72,6 +73,14 @@ export default {
         },
       };
     },
+
+    setAbout(state: any, payload: any) {
+      const { about } = payload;
+      return {
+        ...state,
+        about,
+      };
+    },
   },
   effects: {
     async getPostsAsync(payload: { ctx?: next.NextPageContext }) {
@@ -104,10 +113,20 @@ export default {
       return this.setArchives({ label, posts });
     },
 
-    async loadMoreArchivesAsync(payload: { ctx?: next.NextPageContext; label: string, cursor?: string }) {
+    async loadMoreArchivesAsync(payload: {
+      ctx?: next.NextPageContext;
+      label: string;
+      cursor?: string;
+    }) {
       const { ctx, label, cursor } = payload;
       const posts: IGithubIssues = await Api.create(ctx).archives({ label, cursor });
       return this.addArchives({ label, posts });
+    },
+
+    async getAboutAsync(payload: { ctx?: next.NextPageContext }) {
+      const { ctx } = payload;
+      const about: IGithubIssue = await Api.create(ctx).about();
+      return this.setAbout({ about });
     },
   },
 };

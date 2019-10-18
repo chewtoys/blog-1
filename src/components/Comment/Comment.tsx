@@ -18,7 +18,7 @@ const GitalkContainer = styled.div`
       box-shadow: none;
       border-bottom: none;
     }
-    & svg {
+    & .gt-svg svg {
       fill: ${theme.color};
     }
     & .gt-ico-github svg {

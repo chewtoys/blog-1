@@ -9,6 +9,7 @@ site:
   since: 2015
   icon: /static/images/icon.png
   rss: /atom.xml
+  about: 59
 
 social:
   twitter: ahonnjiang
@@ -17,3 +18,7 @@ theme:
   color: "#DB1105"
 
 menu:
+  - name: 归档
+    url: /archives
+  - name: 关于我
+    url: /about
