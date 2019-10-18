@@ -23,6 +23,15 @@ Wordpress2016.bodyFontFamily = fontFamily;
     letterSpacing: '0.01em',
     textTransform: 'none',
   },
+  h1: {
+    fontSize: '26px',
+  },
+  h2: {
+    fontSize: '24px',
+  },
+  h3: {
+    fontSize: '20px',
+  },
   a: {
     boxShadow: `0 1px 0 0 ${theme.color}`,
     color: theme.color,
