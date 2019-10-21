@@ -18,10 +18,6 @@ interface IIndexPageProps {
   loadMorePostsAsync: (cursor?: string) => Promise<void>;
 }
 
-const ColWithMaxWidth = styled(Col)`
-  max-width: 650px;
-`;
-
 const IndexPage: next.NextPage = (props: IIndexPageProps) => {
   const { posts, recommend, labels } = props;
   const { pageInfo: { hasNextPage, endCursor } } = posts;
@@ -37,12 +33,12 @@ const IndexPage: next.NextPage = (props: IIndexPageProps) => {
     <Layout>
       <SEO />
       <Row>
-        <ColWithMaxWidth lg={8}>
+        <Col lg={8}>
           {posts.nodes.map((node: IGithubIssue) => (
             <Post key={node.id} data={node} excerpt />
           ))}
           <LoadMore loading={loading} visiable={hasNextPage} onClick={handleLoadMore} />
-        </ColWithMaxWidth>
+        </Col>
         <Col lg={4}>
           <Sidebar dataSource={{ recommend, labels }} />
         </Col>

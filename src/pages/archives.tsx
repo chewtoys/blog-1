@@ -8,13 +8,15 @@ import styled from 'styled-components';
 import { connect } from 'react-redux';
 
 import Layout from '../components/Layout';
+import SEO from '../components/SEO';
 import LoadMore from '../components/LoadMore';
 import Sidebar from '../components/Sidebar';
 import { getConfig } from '../utils';
 
+const { theme, site } = getConfig();
+
 interface IArchivesPageProps {
   posts: IGithubIssues;
-  recommend: IGithubIssues;
   labels: IGithubLabels;
   label: string;
   loadMoreArchivesAsync: (label: string, endCursor?: string) => Promise<void>;
@@ -23,8 +25,6 @@ interface IArchivesPageProps {
 interface ILabelProps {
   active?: boolean;
 }
-
-const { theme } = getConfig();
 
 const Block = styled.div`
   margin-top: 1.5rem;
@@ -97,7 +97,7 @@ const groupByCreatedYear = _.groupBy(
 );
 
 const ArchivesPage: next.NextPage = (props: IArchivesPageProps) => {
-  const { posts, recommend, labels, label } = props;
+  const { posts, labels, label } = props;
   const {
     nodes,
     pageInfo: { hasNextPage, endCursor },
@@ -115,7 +115,11 @@ const ArchivesPage: next.NextPage = (props: IArchivesPageProps) => {
 
   return (
     <Layout>
-      <Row>
+      <SEO
+        subTitle="归档"
+        canonical={`${site.url}/archives`}
+      />
+      <Row className="justify-content-md-center">
         <Col lg={8}>
           <Labels>
             {labels.nodes.map((node) => {
@@ -153,9 +157,6 @@ const ArchivesPage: next.NextPage = (props: IArchivesPageProps) => {
           ))}
           <LoadMore loading={loading} visiable={hasNextPage} onClick={handleLoadMore} />
         </Col>
-        <Col lg={4}>
-          <Sidebar dataSource={{ recommend }} />
-        </Col>
       </Row>
     </Layout>
   );
@@ -164,14 +165,11 @@ const ArchivesPage: next.NextPage = (props: IArchivesPageProps) => {
 ArchivesPage.getInitialProps = async (ctx: next.NextPageContext & { reduxStore: any }) => {
   const label = (ctx.query.label || '').toString();
   const state = ctx.reduxStore.getState();
-  const { archives, recommend, labels } = state.app;
+  const { archives, labels } = state.app;
 
   const dispatchs = [];
   if (_.isEmpty(archives[label])) {
     dispatchs.push(ctx.reduxStore.dispatch.app.getArchivesAsync({ ctx, label }));
-  }
-  if (_.isEmpty(recommend)) {
-    dispatchs.push(ctx.reduxStore.dispatch.app.getRecommendAsync({ ctx }));
   }
   if (_.isEmpty(labels)) {
     dispatchs.push(ctx.reduxStore.dispatch.app.getLabelsAsync({ ctx }));
@@ -182,10 +180,9 @@ ArchivesPage.getInitialProps = async (ctx: next.NextPageContext & { reduxStore: 
 
 const mapStateToProps = (state: any, props: any) => {
   const { label } = props;
-  const { archives, recommend, labels } = state.app;
+  const { archives, labels } = state.app;
   return {
     posts: archives[label],
-    recommend,
     labels,
   };
 };

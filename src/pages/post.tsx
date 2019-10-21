@@ -28,7 +28,7 @@ const PostsPage: next.NextPage = (props: IPostsPageProps) => {
         image={extractMarkdownImage(body)}
       />
       <Row className="justify-content-md-center">
-        <Col lg={10}>
+        <Col lg={8}>
           <Post data={post} />
         </Col>
       </Row>

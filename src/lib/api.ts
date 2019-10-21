@@ -45,8 +45,16 @@ class Api {
     return data;
   }
 
-  async archives({ cursor, label }: { cursor?: string; label?: string | undefined }): Promise<IGithubIssues> {
-    const params = _.pickBy(_.identity, { cursor, label });
+  async archives({
+    cursor,
+    label,
+    size,
+  }: {
+    cursor?: string;
+    label?: string | undefined;
+    size?: number;
+  }): Promise<IGithubIssues> {
+    const params = _.pickBy(_.identity, { cursor, label, size });
     const { data } = await this.request.get('/api/archives', { params });
     return data;
   }

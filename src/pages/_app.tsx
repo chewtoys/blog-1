@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Provider } from 'react-redux';
 import { RematchStore } from '@rematch/core';
-import App, { Container } from 'next/app';
+import App from 'next/app';
 import Router from 'next/router';
 import NProgress from 'nprogress';
 
@@ -21,9 +21,7 @@ class MyApp extends App<IAppProps> {
 
     return (
       <Provider store={reduxStore}>
-        <Container>
-          <Component {...pageProps} />
-        </Container>
+        <Component {...pageProps} />
       </Provider>
     );
   }
