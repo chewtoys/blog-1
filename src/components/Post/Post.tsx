@@ -45,10 +45,6 @@ const Labels = styled.span`
   margin-right: 10px;
 `;
 
-const PagePV = styled.span`
-  margin-right: 10px;
-`;
-
 const Label = styled.a`
   box-shadow: none;
   cursor: pointer;
@@ -92,11 +88,6 @@ const Post: React.SFC<IPostProps> = (props) => {
               </Link>
             ))}
           </Labels>
-          {!excerpt && (
-            <PagePV id="busuanzi_container_page_pv" style={{ display: 'none' }}>
-              本文总阅读量 <span id="busuanzi_value_page_pv" /> 次
-            </PagePV>
-          )}
         </Meta>
       </header>
     );
