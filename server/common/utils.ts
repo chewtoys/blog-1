@@ -2,6 +2,7 @@
 import fs from 'fs';
 import path from 'path';
 import yaml from 'js-yaml';
+import Hashids from 'hashids/cjs';
 import _ from 'lodash/fp';
 import removeMarkdown from 'remove-markdown';
 
@@ -19,11 +20,16 @@ export const truncateMarkdown = (markdown: string, length: number = 200) => {
   )(markdown);
 };
 
-export const fixRealCreatedAt = (node: IGithubIssue) => {
+const { owner } = getConfig();
+const hashids = new Hashids(owner, 8, '0123456789abcedf');
+
+export const generatePost = (node: IGithubIssue) => {
   const { number: issueId, createdAt } = node;
+  const id = hashids.encodeHex(_.toString(issueId));
   const realCreatedAt = _.get('date', _.find({ issueId }, db)) || createdAt;
   return {
     ...node,
+    id,
     createdAt: realCreatedAt,
   };
 };

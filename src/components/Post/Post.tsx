@@ -66,11 +66,11 @@ const ReadMore = styled.span`
 
 const Post: React.SFC<IPostProps> = (props) => {
   const { data, excerpt } = props;
-  const { number: id, title, body, createdAt, labels } = data;
+  const { id, number: issueNumber, title, body, createdAt, labels } = data;
 
   const linkProps = {
     href: `/post?id=${id}`,
-    as: `/post/${id}`,
+    as: `/p/${id}`,
   };
 
   const renderHeader = () => {
@@ -114,7 +114,7 @@ const Post: React.SFC<IPostProps> = (props) => {
     }
     return (
       <footer>
-        <Comment id={id} />
+        <Comment issueNumber={issueNumber} />
       </footer>
     );
   };

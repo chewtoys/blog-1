@@ -1,5 +1,6 @@
 import * as React from 'react';
 import * as next from 'next';
+import { useRouter } from 'next/router';
 import { Row, Col } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import _ from 'lodash/fp';
@@ -9,22 +10,24 @@ import Layout from '../components/Layout';
 import Post from '../components/Post';
 import { getConfig, truncateMarkdown, extractMarkdownImage } from '../utils';
 
+const { owner, site } = getConfig();
+
 interface IPostsPageProps {
   post: IGithubIssue;
+  id: string;
 }
 
-const { site } = getConfig();
-
 const PostsPage: next.NextPage = (props: IPostsPageProps) => {
-  const { post } = props;
-  const { number: id, title, body } = post;
+  const { post, id } = props;
+  const { title, body } = post;
+  const router = useRouter();
 
   return (
     <Layout>
       <SEO
         subTitle={title}
         description={truncateMarkdown(body)}
-        canonical={`${site.url}/post/${id}`}
+        canonical={`${site.url}/p/${id}`}
         image={extractMarkdownImage(body)}
       />
       <Row className="justify-content-md-center">
@@ -37,7 +40,8 @@ const PostsPage: next.NextPage = (props: IPostsPageProps) => {
 };
 
 PostsPage.getInitialProps = async (ctx: next.NextPageContext & { reduxStore: any }) => {
-  const id = _.toNumber(ctx.query.id);
+  const id = _.toString(ctx.query.id);
+
   const state = ctx.reduxStore.getState();
   const { posts } = state.post;
 

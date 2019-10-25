@@ -43,11 +43,11 @@ const RecommendWidget: React.SFC<IRecommendWidgetProps> = (props) => {
   return (
     <Section title="热门推荐">
       {recommend.nodes.map((node: IGithubIssue) => {
-        const { number: id, title, createdAt } = node;
+        const { id, title, createdAt } = node;
 
         return (
           <Item key={id}>
-            <Link href={`/post?id=${id}`} as={`/post/${id}`}>
+            <Link href={`/post?id=${id}`} as={`/p/${id}`}>
               <div>
                 <DateTime>{format(createdAt, 'YYYY年MM月DD日')}</DateTime>
                 <Title>{title}</Title>

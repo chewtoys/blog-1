@@ -138,11 +138,11 @@ const ArchivesPage: next.NextPage = (props: IArchivesPageProps) => {
             <Block key={year}>
               <Year>{year}</Year>
               {groups[year].map((node: IGithubIssue) => {
-                const { number: id, title, createdAt } = node;
+                const { id, title, createdAt } = node;
 
                 const linkProps = {
                   href: `/post?id=${id}`,
-                  as: `/post/${id}`,
+                  as: `/p/${id}`,
                 };
                 return (
                   <Link key={id} {...linkProps}>

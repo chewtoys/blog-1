@@ -5,7 +5,7 @@ import _ from 'lodash/fp';
 import { Feed } from 'feed';
 
 import octokit from './common/octokit';
-import { getConfig, truncateMarkdown, fixRealCreatedAt } from './common/utils';
+import { getConfig, truncateMarkdown, generatePost } from './common/utils';
 
 const { owner, repo, site } = getConfig();
 
@@ -54,8 +54,8 @@ export default async (req: NowRequest, res: NowResponse) => {
   });
 
   issues.nodes.forEach((issue: IGithubIssue) => {
-    const { number: id, title, body, bodyHTML, createdAt } = fixRealCreatedAt(issue);
-    const link = `${site.url}/post/${id}`;
+    const { id, title, body, bodyHTML, createdAt } = generatePost(issue);
+    const link = `${site.url}/p/${id}`;
 
     feed.addItem({
       title,

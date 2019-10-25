@@ -8,7 +8,7 @@ import { getConfig } from '../../utils';
 const { owner, repo, theme } = getConfig();
 
 interface ICommentProps {
-  id: number;
+  issueNumber: number;
 }
 
 const GitalkContainer = styled.div`
@@ -56,7 +56,7 @@ const GitalkContainer = styled.div`
 `;
 
 const Comment: React.SFC<ICommentProps> = (props) => {
-  const { id } = props;
+  const { issueNumber } = props;
 
   React.useEffect(() => {
     const gitalk = new Gitalk({
@@ -66,7 +66,7 @@ const Comment: React.SFC<ICommentProps> = (props) => {
       owner,
       admin: [owner],
       id: location.pathname,
-      number: id,
+      number: issueNumber,
       distractionFreeMode: false,
     });
     gitalk.render('comment');

@@ -26,7 +26,7 @@ const Title = styled.h2`
 
 const About: React.SFC<IAboutProps> = (props) => {
   const { data } = props;
-  const { number: id, title, body } = data;
+  const { number: issueNumber, title, body } = data;
 
   return (
     <Section>
@@ -35,7 +35,7 @@ const About: React.SFC<IAboutProps> = (props) => {
       </header>
       <Markdown source={body} />
       <footer>
-        <Comment id={id} />
+        <Comment issueNumber={issueNumber} />
       </footer>
     </Section>
   );
