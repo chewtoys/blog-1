@@ -12,14 +12,9 @@ const Heading = styled(({ className, level, children, id }) => {
   return <H className={className} id={id}>{children}</H>;
 })`
   a {
-    display: none;
+    display: inline-block;
+    margin-right: 5px;
     box-shadow: none;
-  }
-
-  &:hover {
-    a {
-      display: inline;
-    }
   }
 `;
 
@@ -29,8 +24,8 @@ const HeadingRender: React.SFC<IHeadingRenderProps> = (props) => {
 
   return (
     <Heading level={level} id={id}>
-      {children}
       <a href={`#${id}`}>#</a>
+      {children}
     </Heading>
   );
 };
