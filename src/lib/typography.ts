@@ -18,22 +18,19 @@ Wordpress2016.bodyFontFamily = fontFamily;
   'h1, h2, h3, h4, h5, h6': {
     fontFamily: Wordpress2016.headerFontFamily.join(','),
     fontWeight: '400',
-    marginTop: '1.5rem',
+    marginTop: '2rem',
     marginBottom: '1.25rem',
     letterSpacing: '0.01em',
     textTransform: 'none',
   },
   h1: {
-    marginTop: '3.5rem',
     fontSize: '26px',
   },
   h2: {
-    marginTop: '3rem',
-    fontSize: '24px',
+    fontSize: '22px',
   },
   h3: {
-    marginTop: '2rem',
-    fontSize: '20px',
+    fontSize: '18px',
   },
   a: {
     boxShadow: `0 1px 0 0 ${theme.color}`,

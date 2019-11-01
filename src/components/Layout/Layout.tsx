@@ -1,7 +1,7 @@
 import * as React from 'react';
 import styled from 'styled-components';
 
-import 'normalize.css';
+// import 'normalize.css';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 import '../../assets/css/nprogress.css';
 

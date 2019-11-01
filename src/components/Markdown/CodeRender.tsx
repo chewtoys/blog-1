@@ -25,10 +25,6 @@ const InlineCode = styled.code`
   border-radius: 5px;
 `;
 
-const Wrapper = styled.div`
-  position: relative;
-`;
-
 const CodeBlock = styled(Highlight)<ICodeBlockProps>`
   display: block;
   font-size: 0.9rem !important;
@@ -42,16 +38,6 @@ const CodeBlock = styled(Highlight)<ICodeBlockProps>`
   white-space: pre;
 `;
 
-const Language = styled.div`
-  position: absolute;
-  top: 5px;
-  right: 0;
-  opacity: 0.3;
-  font-size: 0.85rem;
-  padding: 0 7px;
-  text-transform: uppercase;
-`;
-
 const CodeRender: React.SFC<ICodeRenderProps> = (props) => {
   if (props.inline) {
     return <InlineCode>{props.value}</InlineCode>;
@@ -59,12 +45,9 @@ const CodeRender: React.SFC<ICodeRenderProps> = (props) => {
 
   const language = _.toLower(props.language || '');
   return (
-    <Wrapper>
-      <CodeBlock className={language} languages={[language]}>
-        {props.value}
-      </CodeBlock>
-      <Language>{language}</Language>
-    </Wrapper>
+    <CodeBlock className={language} languages={[language]}>
+      {props.value}
+    </CodeBlock>
   );
 };
 

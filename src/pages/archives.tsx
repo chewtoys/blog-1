@@ -67,7 +67,7 @@ const Year = styled.h3`
 `;
 
 const Item = styled.div`
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   cursor: pointer;
 `;
 
@@ -77,12 +77,13 @@ const DateTime = styled.time`
 
   @media (max-width: 576px) {
     margin-right: 0;
-    font-size: 0.75rem;
+    font-size: 0.85em;
   }
 `;
 
 const Title = styled.span`
   color: ${theme.color};
+  line-height: 1.3;
 
   @media (max-width: 576px) {
     display: block;

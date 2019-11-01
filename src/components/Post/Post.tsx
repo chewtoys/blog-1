@@ -16,19 +16,19 @@ interface IPostProps {
   excerpt?: boolean;
 }
 
-interface ITitleProps {
-  excerpt: boolean | undefined;
-}
-
 const { theme } = getConfig();
 
-// tslint:disable-next-line
-const Title = styled.h2<ITitleProps>`
-  display: inline-block;
+const Title = styled.h1`
   margin-top: 0;
   margin-bottom: 10px;
   color: ${theme.color};
-  cursor: ${(props) => (props.excerpt ? 'pointer' : 'initial')};
+`;
+
+const ExcerptTitle = styled.h2`
+  margin-top: 0;
+  margin-bottom: 10px;
+  color: ${theme.color};
+  cursor: pointer;
 `;
 
 const Meta = styled.div`
@@ -74,10 +74,10 @@ const Post: React.SFC<IPostProps> = (props) => {
       <header>
         {excerpt ? (
           <Link {...linkProps}>
-            <Title excerpt={excerpt}>{title}</Title>
+            <ExcerptTitle>{title}</ExcerptTitle>
           </Link>
         ) : (
-          <Title excerpt={excerpt}>{title}</Title>
+          <Title>{title}</Title>
         )}
         <Meta>
           <DateTime>{format(createdAt, 'YYYY年MM月DD日')}</DateTime>
