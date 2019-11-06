@@ -28,10 +28,17 @@ const GitalkContainer = styled.div`
       background-color: ${theme.color};
       border-color: ${theme.color};
     }
+    & .gt-header-controls-tip {
+      display: none;
+    }
     & .gt-btn-preview {
       color: ${theme.color};
       border-color: ${theme.color};
       background-color: #fff;
+
+      &:hover {
+        border-color: ${theme.color};
+      }
     }
     & .gt-comment-admin .gt-comment-content {
       background-color: #fff;
