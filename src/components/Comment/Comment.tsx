@@ -17,6 +17,10 @@ const GitalkContainer = styled.div`
       color: ${theme.color};
       box-shadow: none;
       border-bottom: none;
+
+      &:hover {
+        color: ${theme.color};
+      }
     }
     & .gt-svg svg {
       fill: ${theme.color};
@@ -27,6 +31,11 @@ const GitalkContainer = styled.div`
     & .gt-btn {
       background-color: ${theme.color};
       border-color: ${theme.color};
+
+      &:hover {
+        background-color: ${theme.color};
+        border-color: ${theme.color};
+      }
     }
     & .gt-header-controls-tip {
       display: none;
@@ -37,6 +46,7 @@ const GitalkContainer = styled.div`
       background-color: #fff;
 
       &:hover {
+        background-color: #fff;
         border-color: ${theme.color};
       }
     }
