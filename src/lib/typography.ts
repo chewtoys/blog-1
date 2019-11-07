@@ -45,7 +45,7 @@ Wordpress2016.bodyFontFamily = fontFamily;
     fontSize: '1rem',
   },
   ul: {
-    listStyle: 'square',
+    listStyle: 'inside',
   },
   li: {
     lineHeight: rhythm(1),
