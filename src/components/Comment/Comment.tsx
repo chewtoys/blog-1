@@ -55,6 +55,7 @@ const GitalkContainer = styled.div`
     }
     & .gt-comment-content {
       background-color: #fff;
+      padding: 0;
 
       &:hover {
         box-shadow: none;
